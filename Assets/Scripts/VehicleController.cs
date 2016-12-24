@@ -60,6 +60,8 @@ public class VehicleController : MonoBehaviour
         {
             foreach (var wheelPivot in axle.wheelPivots)
             {
+                if (!wheelPivot) return;
+
 #if UNITY_EDITOR
                 UnityEditor.Handles.color = Color.green;
                 UnityEditor.Handles.DrawWireDisc(wheelPivot.position, wheelPivot.right, wheelData.wheelRadius);
