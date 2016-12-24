@@ -76,6 +76,7 @@ public class VehicleController : MonoBehaviour
                     // Apply suspension force
                     rb.AddForceAtPosition(forceMult * wheelPivot.up, wheelPivot.position);
                 }
+                else wheel.distance = wheelData.suspensionLength;
             }
         }
     }
@@ -99,9 +100,11 @@ public class VehicleController : MonoBehaviour
 
                 if (!wheelPivot) return;
 
+                Vector3 wheelPos = wheelPivot.position - wheelPivot.up * (wheel.distance - wheelData.wheelRadius);
+
 #if UNITY_EDITOR
                 UnityEditor.Handles.color = Color.green;
-                UnityEditor.Handles.DrawWireDisc(wheelPivot.position, wheelPivot.right, wheelData.wheelRadius);
+                UnityEditor.Handles.DrawWireDisc(wheelPos, wheelPivot.right, wheelData.wheelRadius);
 #endif
                 Gizmos.DrawLine(wheelPivot.position, wheelPivot.position - wheelPivot.up * wheelData.suspensionLength);
             }
