@@ -43,6 +43,8 @@ public class VehicleController : MonoBehaviour
 
         [HideInInspector]
         public float distance;
+        [HideInInspector]
+        public float sidewaysForce;
     }
 
     Rigidbody rb;
@@ -91,7 +93,8 @@ public class VehicleController : MonoBehaviour
                     // WHEEL FRICTION
 
                     // Sideways
-                    float sidewaysForce = -wheelData.sidewaysFriction.Evaluate(V.x / wheelData.gripScale) * wheelData.gripGain;
+                    float sidewaysForce = -wheelData.sidewaysFriction.Evaluate(V.x * wheelData.gripScale) * wheelData.gripGain;
+                    wheel.sidewaysForce = sidewaysForce;
 
                     // longitudial (when wheels are still)
                     float longitudialForce = -wheelData.longitudialFriction.Evaluate(V.z / wheelData.gripScale) * wheelData.gripGain;
@@ -136,15 +139,19 @@ public class VehicleController : MonoBehaviour
 
                 if (!wheelPivot) return;
 
+                Vector3 contactPos = wheelPivot.position - wheelPivot.up * (wheel.distance);
                 Vector3 wheelPos = wheelPivot.position - wheelPivot.up * (wheel.distance - wheelData.wheelRadius);
 
 #if UNITY_EDITOR
                 UnityEditor.Handles.color = Color.green;
                 UnityEditor.Handles.DrawWireDisc(wheelPos, wheelPivot.right, wheelData.wheelRadius);
 #endif
+                Gizmos.color = Color.yellow;
                 Gizmos.DrawLine(wheelPivot.position, wheelPivot.position - wheelPivot.up * wheelData.suspensionLength);
+
+                Gizmos.color = Color.red;
+                Gizmos.DrawRay(contactPos, wheelPivot.right * wheel.sidewaysForce);
             }
         }
     }
-
 }
