@@ -36,6 +36,7 @@ public class VehicleController : MonoBehaviour
     Rigidbody rb;
 
     public float test_suspensionForceMult = 10;
+    public float test_dampeningForceMult = 0.1f;
 
     void Start()
     {
@@ -51,7 +52,13 @@ public class VehicleController : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(wheelPivot.position, -wheelPivot.up, out hit, wheelData.suspensionLength))
                 {
-                    float forceMult = (1 - hit.distance) * test_suspensionForceMult;
+
+                    Vector3 V = rb.GetPointVelocity(wheelPivot.position);
+                    V = transform.InverseTransformVector(V);
+
+
+                    float forceMult = (1 - hit.distance) * test_suspensionForceMult + (-V.y * test_dampeningForceMult);
+
 
                     Debug.Log(hit.collider);
 
