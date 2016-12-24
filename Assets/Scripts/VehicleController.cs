@@ -37,7 +37,7 @@ public class VehicleController : MonoBehaviour
 
     void Start()
     {
-        rb.GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
@@ -60,7 +60,10 @@ public class VehicleController : MonoBehaviour
         {
             foreach (var wheelPoint in axle.wheelPoints)
             {
-                Gizmos.DrawSphere(wheelPoint.position, wheelData.wheelRadius);
+#if UNITY_EDITOR
+                UnityEditor.Handles.color = Color.green;
+                UnityEditor.Handles.DrawWireDisc(wheelPoint.position, wheelPoint.right, wheelData.wheelRadius);
+#endif
                 Gizmos.DrawLine(wheelPoint.position, wheelPoint.position - wheelPoint.up * wheelData.suspensionLength);
             }
         }
