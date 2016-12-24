@@ -46,6 +46,7 @@ public class VehicleController : MonoBehaviour
 
     Rigidbody rb;
 
+
     public float test_suspensionForceMult = 10;
     public float test_dampeningForceMult = 0.1f;
 
@@ -70,21 +71,33 @@ public class VehicleController : MonoBehaviour
                     Vector3 V = rb.GetPointVelocity(wheelPivot.position);
                     V = transform.InverseTransformVector(V);
 
+                    // SUSPENSION
 
-                    float forceMult = (1 - hit.distance) * test_suspensionForceMult + (-V.y * test_dampeningForceMult);
+                    float spring = (1 - hit.distance) * test_suspensionForceMult;
+                    float dampening = -V.y * test_dampeningForceMult;
+                    float suspensionForce = spring + dampening;
 
                     // Apply suspension force
-                    rb.AddForceAtPosition(forceMult * wheelPivot.up, wheelPivot.position);
+                    rb.AddForceAtPosition(suspensionForce * wheelPivot.up, wheelPivot.position);
+
+                    // WHEEL FRICTION
+
+                    // Sideways
+                    float sidewaysForce = -wheelData.sidewaysFriction.Evaluate(V.x) * wheelData.gripGain;
+
+                    // longitudial
+                    float longitudialForce = -wheelData.longitudialFriction.Evaluate(V.z) * wheelData.gripGain;
+
+                    Vector3 frictionForce = new Vector3(sidewaysForce, 0, longitudialForce);
+
+                    // apply friction forces
+                    rb.AddForceAtPosition(frictionForce, wheelPivot.position);
                 }
                 else wheel.distance = wheelData.suspensionLength;
             }
         }
     }
 
-    void Update()
-    {
-
-    }
 
     private void OnDrawGizmos()
     {
