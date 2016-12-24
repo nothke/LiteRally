@@ -10,6 +10,7 @@ public class VehicleController : MonoBehaviour
     public class WheelData
     {
         public float gripGain = 1;
+        public float gripScale = 10;
         public AnimationCurve sidewaysFriction;
         public AnimationCurve longitudialFriction;
 
@@ -46,7 +47,8 @@ public class VehicleController : MonoBehaviour
 
     Rigidbody rb;
 
-
+    public float accelMult;
+    public AnimationCurve accelCurve;
     public float test_suspensionForceMult = 10;
     public float test_dampeningForceMult = 0.1f;
 
@@ -89,13 +91,13 @@ public class VehicleController : MonoBehaviour
                     // WHEEL FRICTION
 
                     // Sideways
-                    float sidewaysForce = -wheelData.sidewaysFriction.Evaluate(V.x) * wheelData.gripGain;
+                    float sidewaysForce = -wheelData.sidewaysFriction.Evaluate(V.x / wheelData.gripScale) * wheelData.gripGain;
 
                     // longitudial (when wheels are still)
-                    float longitudialForce = -wheelData.longitudialFriction.Evaluate(V.z) * wheelData.gripGain;
+                    float longitudialForce = -wheelData.longitudialFriction.Evaluate(V.z / wheelData.gripScale) * wheelData.gripGain;
 
                     // Traction force (from using engine)
-                    float accel = accelInput * 1;
+                    float accel = accelInput * accelCurve.Evaluate(V.z) * accelMult;
 
                     Vector3 frictionForce = new Vector3(sidewaysForce, 0, +accel); // longitudialForce
 
