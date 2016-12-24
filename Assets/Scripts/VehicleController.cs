@@ -35,6 +35,8 @@ public class VehicleController : MonoBehaviour
 
     Rigidbody rb;
 
+    public float test_suspensionForceMult = 10;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -42,7 +44,21 @@ public class VehicleController : MonoBehaviour
 
     void FixedUpdate()
     {
+        foreach (var axle in axles)
+        {
+            foreach (var wheelPivot in axle.wheelPivots)
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(wheelPivot.position, -wheelPivot.up, out hit, wheelData.suspensionLength))
+                {
+                    float forceMult = (1 - hit.distance) * test_suspensionForceMult;
 
+                    Debug.Log(hit.collider);
+
+                    rb.AddForceAtPosition(forceMult * wheelPivot.up, wheelPivot.position);
+                }
+            }
+        }
     }
 
     void Update()
