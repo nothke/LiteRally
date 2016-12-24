@@ -69,7 +69,13 @@ public class VehicleController : MonoBehaviour
                     wheel.distance = hit.distance;
 
                     Vector3 V = rb.GetPointVelocity(wheelPivot.position);
-                    V = transform.InverseTransformVector(V);
+                    V = wheelPivot.InverseTransformVector(V);
+
+                    // STEERING
+                    if (axle.steering)
+                    {
+                        wheel.pivot.localRotation = Quaternion.AngleAxis(steerInput * 60, Vector3.up);
+                    }
 
                     // SUSPENSION
 
@@ -85,19 +91,34 @@ public class VehicleController : MonoBehaviour
                     // Sideways
                     float sidewaysForce = -wheelData.sidewaysFriction.Evaluate(V.x) * wheelData.gripGain;
 
-                    // longitudial
+                    // longitudial (when wheels are still)
                     float longitudialForce = -wheelData.longitudialFriction.Evaluate(V.z) * wheelData.gripGain;
 
-                    Vector3 frictionForce = new Vector3(sidewaysForce, 0, longitudialForce);
+                    // Traction force (from using engine)
+                    float accel = accelInput * 1;
+
+                    Vector3 frictionForce = new Vector3(sidewaysForce, 0, +accel); // longitudialForce
+
+                    frictionForce = wheelPivot.TransformVector(frictionForce);
 
                     // apply friction forces
                     rb.AddForceAtPosition(frictionForce, wheelPivot.position);
+
+
                 }
                 else wheel.distance = wheelData.suspensionLength;
             }
         }
     }
 
+    float steerInput;
+    float accelInput;
+
+    private void Update()
+    {
+        steerInput = Input.GetAxis("Horizontal");
+        accelInput = Input.GetAxis("Vertical");
+    }
 
     private void OnDrawGizmos()
     {
