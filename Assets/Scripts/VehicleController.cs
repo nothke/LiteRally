@@ -22,7 +22,7 @@ public class VehicleController : MonoBehaviour
     [System.Serializable]
     public class Axle
     {
-        public Transform[] wheelPoints;
+        public Transform[] wheelPivots;
 
         public bool powered;
         public bool steering;
@@ -58,13 +58,13 @@ public class VehicleController : MonoBehaviour
 
         foreach (var axle in axles)
         {
-            foreach (var wheelPoint in axle.wheelPoints)
+            foreach (var wheelPivot in axle.wheelPivots)
             {
 #if UNITY_EDITOR
                 UnityEditor.Handles.color = Color.green;
-                UnityEditor.Handles.DrawWireDisc(wheelPoint.position, wheelPoint.right, wheelData.wheelRadius);
+                UnityEditor.Handles.DrawWireDisc(wheelPivot.position, wheelPivot.right, wheelData.wheelRadius);
 #endif
-                Gizmos.DrawLine(wheelPoint.position, wheelPoint.position - wheelPoint.up * wheelData.suspensionLength);
+                Gizmos.DrawLine(wheelPivot.position, wheelPivot.position - wheelPivot.up * wheelData.suspensionLength);
             }
         }
     }
