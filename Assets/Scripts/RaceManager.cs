@@ -23,6 +23,9 @@ public class RaceManager : MonoBehaviour
 
     public VehiclePaint[] vehiclePaintSchemes;
 
+    public GameObject playerPrefab;
+    public int numberOfPlayers;
+
     private void Start()
     {
         if (screenText)
@@ -40,6 +43,27 @@ public class RaceManager : MonoBehaviour
 
     public void InitPlayers()
     {
+        if (numberOfPlayers == 0) return;
+
+        players = new Player[numberOfPlayers];
+
+        for (int i = 0; i < numberOfPlayers; i++)
+        {
+            GameObject playerGO = Instantiate(playerPrefab);
+
+            Player player = playerGO.GetComponent<Player>();
+
+            players[i] = player;
+
+            // init controllers
+
+            VehicleInput playerInput = players[i].GetComponent<VehicleInput>();
+            int p = i + 1;
+            playerInput.steerAxis = "P" + p + " Horizontal";
+            playerInput.accelAxis = "P" + p + " Vertical";
+            playerInput.handbrakeButton = "P" + p + " Handbrake";
+        }
+
         for (int i = 0; i < players.Length; i++)
         {
             vehiclePaintSchemes[i].Paint(players[i].vehicleBody);
@@ -204,6 +228,7 @@ public class RaceManager : MonoBehaviour
 
     public void EndRace()
     {
+        screenText.text = "RACE ENDED!";
         Debug.Log("RACE ENDED!");
     }
 }

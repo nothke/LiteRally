@@ -689,6 +689,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1568092556721828, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
   m_IsPrefabParent: 0
@@ -1054,6 +1058,9 @@ MonoBehaviour:
     secondaryColor: {r: 0, g: 0, b: 0, a: 1}
   - primaryColor: {r: 0, g: 0.5448277, b: 1, a: 1}
     secondaryColor: {r: 1, g: 0, b: 0, a: 1}
+  playerPrefab: {fileID: 1568092556721828, guid: 5e0d16bff223aa8429df8c06e3055841,
+    type: 2}
+  numberOfPlayers: 2
   screenText: {fileID: 1327359261}
   colors:
   - serializedVersion: 2
