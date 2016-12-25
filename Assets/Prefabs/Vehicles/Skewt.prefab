@@ -973,9 +973,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba60725b2205ff4d8d197ce6d56ee03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  steerAxis: Horizontal
-  accelAxis: Vertical
-  handbrakeButton: Jump
+  steerAxis: P1 Horizontal
+  accelAxis: P1 Vertical
+  handbrakeButton: P1 Handbrake
 --- !u!114 &114617906354561958
 MonoBehaviour:
   m_ObjectHideFlags: 1
