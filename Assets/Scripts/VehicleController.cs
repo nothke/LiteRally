@@ -85,7 +85,7 @@ public class VehicleController : MonoBehaviour
 
                     // SUSPENSION
 
-                    float spring = (1 - hit.distance) * test_suspensionForceMult;
+                    float spring = (1 - hit.distance / wheelData.suspensionLength) * test_suspensionForceMult;
                     float dampening = -V.y * test_dampeningForceMult;
                     float suspensionForce = spring + dampening;
 
