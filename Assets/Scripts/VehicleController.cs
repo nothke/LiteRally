@@ -79,6 +79,16 @@ public class VehicleController : MonoBehaviour
 
     void Start()
     {
+        InitLights();
+    }
+
+    /// <summary>
+    /// Makes sure lights are properly set up at start
+    /// </summary>
+    void InitLights()
+    {
+        if (revLights)
+            revLights.SetActive(false);
     }
 
     void FixedUpdate()
