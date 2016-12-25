@@ -45,6 +45,8 @@ public class VehicleController : MonoBehaviour
         public float distance;
         [HideInInspector]
         public float sidewaysForce;
+        [HideInInspector]
+        public float accelForce;
     }
 
     Rigidbody rb;
@@ -93,16 +95,17 @@ public class VehicleController : MonoBehaviour
                     // WHEEL FRICTION
 
                     // Sideways
-                    float sidewaysForce = -wheelData.sidewaysFriction.Evaluate(V.x * wheelData.gripScale) * wheelData.gripGain;
+                    int sign = V.x == 0 ? 0 : (V.x < 0 ? -1 : 1);
+                    float sidewaysForce = -sign * wheelData.sidewaysFriction.Evaluate(Mathf.Abs(V.x) * wheelData.gripScale) * wheelData.gripGain;
                     wheel.sidewaysForce = sidewaysForce;
 
                     // longitudial (when wheels are still)
                     float longitudialForce = -wheelData.longitudialFriction.Evaluate(V.z / wheelData.gripScale) * wheelData.gripGain;
 
                     // Traction force (from using engine)
-                    float accel = accelInput * accelCurve.Evaluate(V.z) * accelMult;
+                    wheel.accelForce = accelInput * accelCurve.Evaluate(V.z) * accelMult;
 
-                    Vector3 frictionForce = new Vector3(sidewaysForce, 0, +accel); // longitudialForce
+                    Vector3 frictionForce = new Vector3(sidewaysForce, 0, +wheel.accelForce); // longitudialForce
 
                     frictionForce = wheelPivot.TransformVector(frictionForce);
 
@@ -151,6 +154,8 @@ public class VehicleController : MonoBehaviour
 
                 Gizmos.color = Color.red;
                 Gizmos.DrawRay(contactPos, wheelPivot.right * wheel.sidewaysForce);
+                Gizmos.color = Color.green;
+                Gizmos.DrawRay(contactPos, wheelPivot.forward * wheel.accelForce);
             }
         }
     }
