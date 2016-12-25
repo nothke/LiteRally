@@ -31,20 +31,23 @@ public class RaceManager : MonoBehaviour
         tex.Apply();
     }
 
-    public static void MultPixel(Color color, float u, float v)
+    public static void MultPixel(Color color, float u, float v, int size = 1)
     {
         Texture2D tex = e.tex;
 
         int x = Mathf.RoundToInt(u * tex.width);
         int y = Mathf.RoundToInt(v * tex.height);
 
-        //Debug.Log(x + ", " + y);
+        int w = tex.width;
 
-        e.colors[y * tex.width + x] *= color;
+        e.colors[y * w + x] *= color;
 
-        /*
-        Color c = tex.GetPixel(x, y);
-        tex.SetPixel(x, y, c * color);
-        tex.Apply();*/
+        if (size > 1)
+        {
+            e.colors[y * w + x - 1] *= color;
+            e.colors[y * w + x + 1] *= color;
+            e.colors[(y - 1) * w + x] *= color;
+            e.colors[(y + 1) * w + x] *= color;
+        }
     }
 }
