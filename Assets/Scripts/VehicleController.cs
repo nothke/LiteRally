@@ -65,6 +65,8 @@ public class VehicleController : MonoBehaviour
     public float torqueAssistMult = 0;
     public float torqueAssistStraighten = 0;
 
+    int gear;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -126,7 +128,7 @@ public class VehicleController : MonoBehaviour
 
                         // Traction force (from using engine)
                         if (axle.powered)
-                            wheel.accelForce = Mathf.Clamp01(accelInput) * accelCurve.Evaluate(V.z) * accelMult;
+                            wheel.accelForce = Mathf.Clamp01(accelInput) * accelCurve.Evaluate(V.z) * accelMult * gear;
                         else wheel.accelForce = 0;
 
                         float brakeForce = longitudialForce * brakes;
@@ -222,12 +224,17 @@ public class VehicleController : MonoBehaviour
     {
         if (activeInput)
         {
+            if (gear == 0)
+                gear = 1;
+
             steerInput = Input.GetAxis("Horizontal");
             accelInput = Input.GetAxis("Vertical");
             handbrakeInput = Input.GetButton("Jump") ? 1 : 0;
         }
         else
         {
+            gear = 0;
+
             steerInput = 0;
             accelInput = -1;
             handbrakeInput = 0;
