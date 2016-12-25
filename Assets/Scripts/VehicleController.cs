@@ -63,6 +63,7 @@ public class VehicleController : MonoBehaviour
     public float test_dampeningForceMult = 0.1f;
 
     public float torqueAssistMult = 0;
+    public float torqueAssistStraighten = 0;
 
     void Start()
     {
@@ -159,9 +160,9 @@ public class VehicleController : MonoBehaviour
         {
             float amount = rb.angularVelocity.y;
 
-            float counteractTorque = steerInput == 0 ? -amount * 5000 : 0;
+            float straightenTorque = steerInput == 0 ? -amount * torqueAssistStraighten : 0;
 
-            rb.AddRelativeTorque(Vector3.up * (steerInput * torqueAssistMult + counteractTorque));
+            rb.AddRelativeTorque(Vector3.up * (steerInput * torqueAssistMult + straightenTorque));
 
         }
     }
@@ -170,16 +171,16 @@ public class VehicleController : MonoBehaviour
     {
         Color c = GetColorFromTexture(hit);
 
-        if (c.g == c.r && c.r == c.b) // no color > is tarmac
+        if (c.g > c.r && c.g > c.b) // if green is dominant, it's grass
         {
-            //Debug.Log("TARMAC!");
-            return 1;
-        }
-        else
-        {
-            //Debug.Log("Grass");
             return 0.5f;
         }
+        else if (c.r > c.g) // else if red is higher, it's dirt
+        {
+            return 0.5f;
+        }
+        else // if grayscale, it's tarmac
+            return 1;
     }
 
     public Color GetColorFromTexture(RaycastHit hit)
