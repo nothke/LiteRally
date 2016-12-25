@@ -140,19 +140,29 @@ public class VehicleController : MonoBehaviour
 
                     if (V.sqrMagnitude > 1)
                     {
-                        float value = 1 - (Mathf.Abs(wheel.accelForce));
+                        float mult = wheel.friction / 10000;
+                        float value = Mathf.Clamp01(1.5f - mult);
 
                         Color lightGray = new Color(value, value, value);
-                        RaceManager.MultPixel(lightGray, hit.textureCoord.x, hit.textureCoord.y);
+                        RaceManager.MultPixel(lightGray, hit.textureCoord.x, hit.textureCoord.y, 2);
                     }
 
-                    if (torqueAssistMult > 0)
-                    {
-                        rb.AddRelativeTorque(Vector3.up * steerInput * torqueAssistMult);
-                    }
+
                 }
                 else wheel.distance = wheelData.suspensionLength;
             }
+        }
+
+        // TORQUE ASSIST
+
+        if (torqueAssistMult > 0)
+        {
+            float amount = rb.angularVelocity.y;
+
+            float counteractTorque = steerInput == 0 ? -amount * 5000 : 0;
+
+            rb.AddRelativeTorque(Vector3.up * (steerInput * torqueAssistMult + counteractTorque));
+
         }
     }
 
