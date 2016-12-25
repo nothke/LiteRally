@@ -15,9 +15,34 @@ public class RaceManager : MonoBehaviour
 
     public Gradient grassMarksGradient;
 
+    public Player[] players;
+
     private void Start()
     {
         InitTexture();
+
+        PopulateGrid();
+    }
+
+    void PopulateGrid()
+    {
+        GridHelper[] grids = FindObjectsOfType<GridHelper>();
+
+        foreach (var grid in grids)
+        {
+            int i = -1;
+
+            if (!int.TryParse(grid.name, out i))
+            {
+                Debug.LogError("Invalid grid object name, must be int");
+                continue;
+            }
+
+            if (i >= players.Length) continue;
+
+            players[i].transform.position = grid.transform.position;
+            players[i].transform.rotation = grid.transform.rotation;
+        }
     }
 
     /// <summary>
