@@ -13,11 +13,34 @@ public class Player : MonoBehaviour
 
     int portalNum;
 
+    public VehicleController control
+    {
+        get
+        {
+            if (!_control)
+                _control = GetComponent<VehicleController>();
+
+            return _control;
+        }
+    }
+
+
+    private VehicleController _control;
+
+
     private void Start()
     {
         portalNum = RaceManager.e.GetNumberOfPortals();
 
         nextPortal = 1;
+    }
+
+    public void EnableInput(bool enabled, bool freezeRigidbody = true)
+    {
+        control.activeInput = enabled;
+
+        if (freezeRigidbody)
+            GetComponent<Rigidbody>().isKinematic = !enabled;
     }
 
     private void OnTriggerEnter(Collider other)

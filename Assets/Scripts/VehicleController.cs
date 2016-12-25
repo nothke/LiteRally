@@ -216,11 +216,22 @@ public class VehicleController : MonoBehaviour
     float accelInput;
     float handbrakeInput;
 
+    public bool activeInput = true;
+
     private void Update()
     {
-        steerInput = Input.GetAxis("Horizontal");
-        accelInput = Input.GetAxis("Vertical");
-        handbrakeInput = Input.GetButton("Jump") ? 1 : 0;
+        if (activeInput)
+        {
+            steerInput = Input.GetAxis("Horizontal");
+            accelInput = Input.GetAxis("Vertical");
+            handbrakeInput = Input.GetButton("Jump") ? 1 : 0;
+        }
+        else
+        {
+            steerInput = 0;
+            accelInput = -1;
+            handbrakeInput = 0;
+        }
     }
 
     private void OnDrawGizmos()

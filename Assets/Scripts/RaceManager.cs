@@ -37,7 +37,7 @@ public class RaceManager : MonoBehaviour
     {
         foreach (var player in players)
         {
-            // TODO: deactivate player controls
+            player.EnableInput(false);
         }
 
         yield return new WaitForSeconds(1);
@@ -66,7 +66,7 @@ public class RaceManager : MonoBehaviour
 
         foreach (var player in players)
         {
-            // TODO: Activate player controls
+            player.EnableInput(true);
         }
 
 
