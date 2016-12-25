@@ -81,83 +81,87 @@ public class VehicleController : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(wheelPivot.position, -wheelPivot.up, out hit, wheelData.suspensionLength))
                 {
-                    wheel.distance = hit.distance;
-
-                    Vector3 V = rb.GetPointVelocity(wheelPivot.position);
-                    V = wheelPivot.InverseTransformVector(V);
-
-                    // STEERING
-                    if (axle.steering)
+                    if (!hit.collider.isTrigger)
                     {
-                        wheel.pivot.localRotation = Quaternion.AngleAxis(steerInput * 60, Vector3.up);
-                    }
 
-                    // SUSPENSION
+                        wheel.distance = hit.distance;
 
-                    float spring = (1 - hit.distance / wheelData.suspensionLength) * test_suspensionForceMult;
-                    float dampening = -V.y * test_dampeningForceMult;
-                    float suspensionForce = spring + dampening;
+                        Vector3 V = rb.GetPointVelocity(wheelPivot.position);
+                        V = wheelPivot.InverseTransformVector(V);
 
-                    // Apply suspension force
-                    rb.AddForceAtPosition(suspensionForce * wheelPivot.up, wheelPivot.position);
+                        // STEERING
+                        if (axle.steering)
+                        {
+                            wheel.pivot.localRotation = Quaternion.AngleAxis(steerInput * 60, Vector3.up);
+                        }
 
-                    // WHEEL FRICTION
+                        // SUSPENSION
 
-                    wheel.surfaceGrip = GetGripFromGround(hit);
+                        float spring = (1 - hit.distance / wheelData.suspensionLength) * test_suspensionForceMult;
+                        float dampening = -V.y * test_dampeningForceMult;
+                        float suspensionForce = spring + dampening;
 
-                    // Sideways
-                    int sign = V.x == 0 ? 0 : (V.x < 0 ? -1 : 1);
-                    float sidewaysForce = -sign * wheelData.sidewaysFriction.Evaluate(Mathf.Abs(V.x) * wheelData.gripScale) * wheelData.gripGain;
-                    wheel.sidewaysForce = sidewaysForce;
+                        // Apply suspension force
+                        rb.AddForceAtPosition(suspensionForce * wheelPivot.up, wheelPivot.position);
 
-                    bool handbrake = axle.handbrake && handbrakeInput == 1;
-                    float brakes = 1 - Mathf.Clamp01(1 + accelInput);
+                        // WHEEL FRICTION
 
-                    if (handbrake) brakes = 1;
+                        wheel.surfaceGrip = GetGripFromGround(hit);
 
-                    // longitudial (when wheels are still)
-                    float longitudialForce = -wheelData.longitudialFriction.Evaluate(V.z / wheelData.gripScale) * wheelData.gripGain;
+                        // Sideways
+                        int sign = V.x == 0 ? 0 : (V.x < 0 ? -1 : 1);
+                        float sidewaysForce = -sign * wheelData.sidewaysFriction.Evaluate(Mathf.Abs(V.x) * wheelData.gripScale) * wheelData.gripGain;
+                        wheel.sidewaysForce = sidewaysForce;
 
-                    // Traction force (from using engine)
-                    if (axle.powered)
-                        wheel.accelForce = Mathf.Clamp01(accelInput) * accelCurve.Evaluate(V.z) * accelMult;
-                    else wheel.accelForce = 0;
+                        bool handbrake = axle.handbrake && handbrakeInput == 1;
+                        float brakes = 1 - Mathf.Clamp01(1 + accelInput);
 
-                    float brakeForce = longitudialForce * brakes;
+                        if (handbrake) brakes = 1;
 
-                    if (handbrake) wheel.surfaceGrip = 0;
+                        // longitudial (when wheels are still)
+                        float longitudialForce = -wheelData.longitudialFriction.Evaluate(V.z / wheelData.gripScale) * wheelData.gripGain;
 
-                    Vector3 frictionForce = new Vector3(sidewaysForce, 0, +wheel.accelForce + brakeForce); // longitudialForce
-                    frictionForce *= wheel.surfaceGrip;
+                        // Traction force (from using engine)
+                        if (axle.powered)
+                            wheel.accelForce = Mathf.Clamp01(accelInput) * accelCurve.Evaluate(V.z) * accelMult;
+                        else wheel.accelForce = 0;
 
-                    frictionForce = wheelPivot.TransformVector(frictionForce);
+                        float brakeForce = longitudialForce * brakes;
 
-                    wheel.friction = frictionForce.magnitude;
+                        if (handbrake) wheel.surfaceGrip = 0;
 
-                    // apply friction forces
-                    rb.AddForceAtPosition(frictionForce, wheelPivot.position);
+                        Vector3 frictionForce = new Vector3(sidewaysForce, 0, +wheel.accelForce + brakeForce); // longitudialForce
+                        frictionForce *= wheel.surfaceGrip;
 
-                    // SURFACE COLORING
+                        frictionForce = wheelPivot.TransformVector(frictionForce);
 
-                    float colorMult = wheel.friction / 10000;
+                        wheel.friction = frictionForce.magnitude;
 
-                    if (V.sqrMagnitude > 1)
-                    {
-                        float value = Mathf.Clamp01(1.5f - colorMult);
+                        // apply friction forces
+                        rb.AddForceAtPosition(frictionForce, wheelPivot.position);
 
-                        Color lightGray = new Color(value, value, value);
-                        RaceManager.MultPixel(lightGray, hit.textureCoord.x, hit.textureCoord.y, 2);
-                    }
+                        // SURFACE COLORING
 
-                    // Grass + dirt tracks
+                        float colorMult = wheel.friction / 10000;
 
-                    // not nice, combine getting with setting for efficiency!
-                    Color texC = GetColorFromTexture(hit);
+                        if (V.sqrMagnitude > 1)
+                        {
+                            float value = Mathf.Clamp01(1.5f - colorMult);
 
-                    if (texC.g > texC.r)
-                    {
-                        Color dirtColor = RaceManager.e.grassMarksGradient.Evaluate(colorMult);
-                        RaceManager.LerpPixel(dirtColor, hit.textureCoord.x, hit.textureCoord.y, colorMult * 1f, 2);
+                            Color lightGray = new Color(value, value, value);
+                            RaceManager.MultPixel(lightGray, hit.textureCoord.x, hit.textureCoord.y, 2);
+                        }
+
+                        // Grass + dirt tracks
+
+                        // not nice, combine getting with setting for efficiency!
+                        Color texC = GetColorFromTexture(hit);
+
+                        if (texC.g > texC.r)
+                        {
+                            Color dirtColor = RaceManager.e.grassMarksGradient.Evaluate(colorMult);
+                            RaceManager.LerpPixel(dirtColor, hit.textureCoord.x, hit.textureCoord.y, colorMult * 1f, 2);
+                        }
                     }
                 }
                 else wheel.distance = wheelData.suspensionLength;
