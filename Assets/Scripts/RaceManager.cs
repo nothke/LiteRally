@@ -62,6 +62,9 @@ public class RaceManager : MonoBehaviour
             playerInput.steerAxis = "P" + p + " Horizontal";
             playerInput.accelAxis = "P" + p + " Vertical";
             playerInput.handbrakeButton = "P" + p + " Handbrake";
+
+            player.name = player.name.Replace("(Clone)", "");
+            player.name = "P" + p + "_" + player.name;
         }
 
         for (int i = 0; i < players.Length; i++)
@@ -226,9 +229,12 @@ public class RaceManager : MonoBehaviour
         return portalGO.transform.childCount;
     }
 
-    public void EndRace()
+    public void EndRace(Player player)
     {
-        screenText.text = "RACE ENDED!";
+        screenText.text = "RACE ENDED!\n" +
+            player.name + " has won!" + "\n" +
+            "Fastest lap: " + player.GetFastestTime();
+
         Debug.Log("RACE ENDED!");
     }
 }

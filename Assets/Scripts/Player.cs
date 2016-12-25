@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public List<float> lapTimes;
 
     int currentPortal;
-    int nextPortal;
+    int nextPortal = 1;
 
     int portalNum;
 
@@ -60,13 +60,17 @@ public class Player : MonoBehaviour
         {
             // LAP
             float lapTime = Time.time - timeSinceLastLap;
-            lapTimes.Add(lapTime);
+
+            if (lapTime == 0)
+                Debug.LogError("Lap time is 0 ??? WUT!?");
+            else
+                lapTimes.Add(lapTime);
 
             timeSinceLastLap = Time.time;
 
-            if (lapTimes.Count > RaceManager.e.lapsToRace)
+            if (lapTimes.Count >= RaceManager.e.lapsToRace)
             {
-                RaceManager.e.EndRace();
+                RaceManager.e.EndRace(this);
             }
 
             Debug.Log("LAPPED! Time: " + lapTime);
@@ -78,5 +82,10 @@ public class Player : MonoBehaviour
 
         if (nextPortal >= portalNum)
             nextPortal = 0;
+    }
+
+    public float GetFastestTime()
+    {
+        return Mathf.Min(lapTimes.ToArray());
     }
 }

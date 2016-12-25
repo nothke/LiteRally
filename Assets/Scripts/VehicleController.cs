@@ -212,7 +212,7 @@ public class VehicleController : MonoBehaviour
 
     IEnumerator ReverseCo()
     {
-        int frames = 60;
+        int frames = 20;
 
         Debug.Log("Started ReverseCo");
 
