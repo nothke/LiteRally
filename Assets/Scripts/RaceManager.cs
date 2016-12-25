@@ -7,6 +7,8 @@ public class RaceManager : MonoBehaviour
     public static RaceManager e;
     void Awake() { e = this; }
 
+    public int lapsToRace = 3;
+
     public Renderer trackRenderer;
 
     public Texture2D tex;
@@ -91,5 +93,25 @@ public class RaceManager : MonoBehaviour
     void LerpPixel(int x, int y, Color color, float amount)
     {
         e.colors[y * w + x] = Color32.Lerp(e.colors[y * w + x], color, amount);
+    }
+
+    // Portals
+
+    public int GetNumberOfPortals()
+    {
+        GameObject portalGO = GameObject.Find("Portals");
+
+        if (!portalGO)
+        {
+            Debug.Log("Portals not found");
+            return 0;
+        }
+
+        return portalGO.transform.childCount;
+    }
+
+    public void EndRace()
+    {
+        Debug.Log("RACE ENDED!");
     }
 }
