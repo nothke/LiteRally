@@ -21,14 +21,26 @@ public class RaceManager : MonoBehaviour
 
     public bool doCountdown = true;
 
+    public VehiclePaint[] vehiclePaintSchemes;
+
     private void Start()
     {
         InitTexture();
+
+        InitPlayers();
 
         PopulateGrid();
 
         if (doCountdown)
             StartCoroutine(DoCountdown());
+    }
+
+    public void InitPlayers()
+    {
+        for (int i = 0; i < players.Length; i++)
+        {
+            vehiclePaintSchemes[i].Paint(players[i].vehicleBody);
+        }
     }
 
     public Text screenText;
@@ -107,6 +119,7 @@ public class RaceManager : MonoBehaviour
         trackRenderer.material.mainTexture = tex;
     }
 
+    [HideInInspector]
     public Color32[] colors;
 
     private void Update()

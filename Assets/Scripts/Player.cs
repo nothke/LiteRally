@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
 
     int portalNum;
 
+    public Renderer vehicleBody;
+
     public VehicleController control
     {
         get

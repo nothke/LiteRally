@@ -1003,8 +1003,15 @@ MonoBehaviour:
   players:
   - {fileID: 532287266}
   doCountdown: 1
+  vehiclePaintSchemes:
+  - primaryColor: {r: 1, g: 0, b: 0, a: 1}
+    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+  - primaryColor: {r: 1, g: 1, b: 1, a: 1}
+    secondaryColor: {r: 0.23421279, g: 0.37077314, b: 0.5588235, a: 1}
   screenText: {fileID: 1327359261}
-  colors: []
+  colors:
+  - serializedVersion: 2
+    rgba: 0
 --- !u!4 &675655006
 Transform:
   m_ObjectHideFlags: 0

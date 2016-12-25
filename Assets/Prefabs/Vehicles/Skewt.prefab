@@ -1114,3 +1114,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeSinceLastLap: 0
   lapTimes: []
+  vehicleBody: {fileID: 23826582975548780}
