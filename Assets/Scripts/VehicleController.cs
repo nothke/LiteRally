@@ -73,7 +73,10 @@ public class VehicleController : MonoBehaviour
     public float test_dampeningForceMult = 0.1f;
 
     public float torqueAssistMult = 0;
+    public AnimationCurve torqueAssistCurve;
     public float torqueAssistStraighten = 0;
+
+    public float speed;
 
     int gear;
 
@@ -201,36 +204,17 @@ public class VehicleController : MonoBehaviour
 
         if (torqueAssistMult > 0)
         {
-            float amount = rb.angularVelocity.y;
+            float straightenAmount = rb.angularVelocity.y;
 
-            float straightenTorque = Mathf.Abs(steer) < 0.01f ? -amount * torqueAssistStraighten : 0;
+            speed = rb.velocity.magnitude;
 
-            rb.AddRelativeTorque(Vector3.up * (steer * torqueAssistMult + straightenTorque));
+            float straightenTorque = Mathf.Abs(steer) < 0.01f ? -straightenAmount * torqueAssistStraighten : 0;
+            float steerAssistTorque = steer * torqueAssistMult * torqueAssistCurve.Evaluate(rb.velocity.magnitude);
+
+            rb.AddRelativeTorque(Vector3.up * (steerAssistTorque + straightenTorque));
 
         }
     }
-    /*
-    IEnumerator ReverseCo()
-    {
-        int frames = 20;
-
-        Debug.Log("Started ReverseCo");
-
-        for (int i = 0; i < frames; i++)
-        {
-            yield return null;
-
-            // check if player is still holding brakes and vehicle is stopped
-            // ..otherwise stop this coroutine
-            if (!(HasStopped && accel < -0.5f))
-                yield break;
-        }
-
-        if (gear == 1)
-            gear = -1;
-        else
-            gear = 1;
-    }*/
 
     public float GetGripFromGround(RaycastHit hit)
     {
@@ -272,8 +256,6 @@ public class VehicleController : MonoBehaviour
         get { return rb.velocity.sqrMagnitude < 1; }
     }
 
-    //bool prevStopped;
-
     int prevGear;
 
     float brakeHeld;
@@ -311,14 +293,6 @@ public class VehicleController : MonoBehaviour
             else if (accelInput > 0)
                 gear = 1;
 
-            /*
-            //if stopped more than 1 sec and holding brakes, reverse
-            if (HasStopped && HasStopped != prevStopped)
-                StartCoroutine(ReverseCo());*/
-
-            /*
-            if (accelInput > 0)
-                prevStopped = false;*/
         }
         else
         {
@@ -333,7 +307,6 @@ public class VehicleController : MonoBehaviour
         if (prevGear != gear)
             SwitchGear();
 
-        //prevStopped = HasStopped;
         prevGear = gear;
     }
 
