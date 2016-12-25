@@ -221,6 +221,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1694132601642842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4784710084350734}
+  - component: {fileID: 20746144642242004}
+  - component: {fileID: 124125446653766622}
+  - component: {fileID: 92005943531095642}
+  - component: {fileID: 81097369165338824}
+  m_Layer: 0
+  m_Name: Camera (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1703718784716182
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,6 +567,19 @@ Transform:
   m_Father: {fileID: 4204774300469962}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!4 &4784710084350734
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694132601642842}
+  m_LocalRotation: {x: 0.13019556, y: -0, z: -0, w: 0.99148834}
+  m_LocalPosition: {x: 0, y: 3.22, z: -5.39}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4898868691456216}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 14.962001, y: 0, z: 0}
 --- !u!4 &4807568775453316
 Transform:
   m_ObjectHideFlags: 1
@@ -592,6 +624,7 @@ Transform:
   - {fileID: 4062069360386466}
   - {fileID: 4635374829931612}
   - {fileID: 4353575845631178}
+  - {fileID: 4784710084350734}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -609,6 +642,40 @@ Transform:
   m_Father: {fileID: 4898868691456216}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -180.00002, z: 0}
+--- !u!20 &20746144642242004
+Camera:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694132601642842}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 120
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
 --- !u!23 &23208613922692684
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -824,8 +891,22 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.48, y: 1.09, z: 1.18}
-  m_Center: {x: 0, y: 0, z: -0.06}
+  m_Size: {x: 1.4799999, y: 0.97216606, z: 1.18}
+  m_Center: {x: 0, y: 0.058915794, z: -0.060000032}
+--- !u!81 &81097369165338824
+AudioListener:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694132601642842}
+  m_Enabled: 1
+--- !u!92 &92005943531095642
+Behaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694132601642842}
+  m_Enabled: 1
 --- !u!108 &108225867494240178
 Light:
   m_ObjectHideFlags: 1
@@ -1110,8 +1191,27 @@ MonoBehaviour:
     m_RotationOrder: 0
   test_suspensionForceMult: 10000
   test_dampeningForceMult: 2000
-  torqueAssistMult: 8000
+  torqueAssistMult: 10000
+  torqueAssistCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0.08163024
+      outSlope: 0.08163024
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 30
+      value: 1
+      inSlope: 0.00014924961
+      outSlope: 0.00014924961
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   torqueAssistStraighten: 10000
+  speed: 0
   steerInput: 0
   accelInput: 0
   handbrakeInput: 0
@@ -1133,3 +1233,10 @@ MonoBehaviour:
   timeSinceLastLap: 0
   lapTimes: []
   vehicleBody: {fileID: 23826582975548780}
+--- !u!124 &124125446653766622
+Behaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694132601642842}
+  m_Enabled: 1
