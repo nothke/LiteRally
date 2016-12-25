@@ -113,7 +113,10 @@ public class VehicleController : MonoBehaviour
                     float longitudialForce = -wheelData.longitudialFriction.Evaluate(V.z / wheelData.gripScale) * wheelData.gripGain;
 
                     // Traction force (from using engine)
-                    wheel.accelForce = Mathf.Clamp01(accelInput) * accelCurve.Evaluate(V.z) * accelMult;
+                    if (axle.powered)
+                        wheel.accelForce = Mathf.Clamp01(accelInput) * accelCurve.Evaluate(V.z) * accelMult;
+                    else wheel.accelForce = 0;
+
                     float brakeForce = longitudialForce * brakes;
 
                     if (handbrake) wheel.surfaceGrip = 0;
