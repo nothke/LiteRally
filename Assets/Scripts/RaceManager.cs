@@ -25,6 +25,9 @@ public class RaceManager : MonoBehaviour
 
     private void Start()
     {
+        if (screenText)
+            screenText.text = "";
+
         InitTexture();
 
         InitPlayers();

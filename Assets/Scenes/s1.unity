@@ -1008,6 +1008,10 @@ MonoBehaviour:
     secondaryColor: {r: 1, g: 1, b: 1, a: 1}
   - primaryColor: {r: 1, g: 1, b: 1, a: 1}
     secondaryColor: {r: 0.23421279, g: 0.37077314, b: 0.5588235, a: 1}
+  - primaryColor: {r: 1, g: 0.7241379, b: 0, a: 1}
+    secondaryColor: {r: 0, g: 0, b: 0, a: 1}
+  - primaryColor: {r: 0, g: 0.5448277, b: 1, a: 1}
+    secondaryColor: {r: 1, g: 0, b: 0, a: 1}
   screenText: {fileID: 1327359261}
   colors:
   - serializedVersion: 2
