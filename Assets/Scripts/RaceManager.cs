@@ -111,6 +111,9 @@ public class RaceManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+
         // Apply main texture every frame
         tex.SetPixels32(colors);
         tex.Apply();
