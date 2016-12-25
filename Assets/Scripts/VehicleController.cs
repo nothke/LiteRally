@@ -170,7 +170,7 @@ public class VehicleController : MonoBehaviour
         {
             float amount = rb.angularVelocity.y;
 
-            float straightenTorque = steerInput == 0 ? -amount * torqueAssistStraighten : 0;
+            float straightenTorque = Mathf.Abs(steerInput) < 0.01f ? -amount * torqueAssistStraighten : 0;
 
             rb.AddRelativeTorque(Vector3.up * (steerInput * torqueAssistMult + straightenTorque));
 
