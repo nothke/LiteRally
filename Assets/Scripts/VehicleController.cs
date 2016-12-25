@@ -202,13 +202,15 @@ public class VehicleController : MonoBehaviour
     {
         int frames = 60;
 
+        Debug.Log("Started ReverseCo");
+
         for (int i = 0; i < frames; i++)
         {
             yield return null;
 
             // check if player is still holding brakes and vehicle is stopped
             // ..otherwise stop this coroutine
-            if (!(HasStopped && steerInput < -0.5f))
+            if (!(HasStopped && accelInput < -0.5f))
                 yield break;
         }
 
@@ -257,10 +259,6 @@ public class VehicleController : MonoBehaviour
 
     void Update()
     {
-
-
-        Debug.Log(gear + " " + prevGear);
-
         if (brakeLights)
         {
             if (accelInput < -0.1f)
@@ -282,9 +280,9 @@ public class VehicleController : MonoBehaviour
             accelInput = Input.GetAxis("Vertical") * gear;
             handbrakeInput = Input.GetButton("Jump") ? 1 : 0;
 
-            // if stopped more than 1 sec and holding brakes, reverse
-            //if (HasStopped && HasStopped != prevStopped)
-            //   StartCoroutine("ReverseCo");
+            //if stopped more than 1 sec and holding brakes, reverse
+            if (HasStopped && HasStopped != prevStopped)
+                StartCoroutine(ReverseCo());
         }
         else
         {
