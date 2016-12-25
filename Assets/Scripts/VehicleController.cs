@@ -55,7 +55,17 @@ public class VehicleController : MonoBehaviour
         public float friction;
     }
 
-    Rigidbody rb;
+    private Rigidbody _rb;
+
+    public Rigidbody rb
+    {
+        get
+        {
+            if (!_rb) _rb = GetComponent<Rigidbody>();
+
+            return _rb;
+        }
+    }
 
     public float accelMult;
     public AnimationCurve accelCurve;
@@ -69,7 +79,6 @@ public class VehicleController : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
@@ -189,6 +198,23 @@ public class VehicleController : MonoBehaviour
         }
     }
 
+    IEnumerator ReverseCo()
+    {
+        int frames = 60;
+
+        for (int i = 0; i < frames; i++)
+        {
+            yield return null;
+
+            // check if player is still holding brakes and vehicle is stopped
+            // ..otherwise stop this coroutine
+            if (!(HasStopped && steerInput < -0.5f))
+                yield break;
+        }
+
+        gear = -1;
+    }
+
     public float GetGripFromGround(RaycastHit hit)
     {
         Color c = GetColorFromTexture(hit);
@@ -220,16 +246,45 @@ public class VehicleController : MonoBehaviour
 
     public bool activeInput = true;
 
-    private void Update()
+    bool HasStopped
     {
+        get { return rb.velocity.sqrMagnitude < 1; }
+    }
+
+    bool prevStopped;
+
+    int prevGear;
+
+    void Update()
+    {
+
+
+        Debug.Log(gear + " " + prevGear);
+
+        if (brakeLights)
+        {
+            if (accelInput < -0.1f)
+                brakeLights.SetActive(true);
+            else
+                brakeLights.SetActive(false);
+        }
+
         if (activeInput)
         {
             if (gear == 0)
+            {
                 gear = 1;
+            }
+
+
 
             steerInput = Input.GetAxis("Horizontal");
-            accelInput = Input.GetAxis("Vertical");
+            accelInput = Input.GetAxis("Vertical") * gear;
             handbrakeInput = Input.GetButton("Jump") ? 1 : 0;
+
+            // if stopped more than 1 sec and holding brakes, reverse
+            //if (HasStopped && HasStopped != prevStopped)
+            //   StartCoroutine("ReverseCo");
         }
         else
         {
@@ -238,6 +293,30 @@ public class VehicleController : MonoBehaviour
             steerInput = 0;
             accelInput = -1;
             handbrakeInput = 0;
+        }
+
+        // check for gear changes
+        if (prevGear != gear)
+            SwitchGear();
+
+        prevStopped = HasStopped;
+        prevGear = gear;
+    }
+
+    public GameObject revLights;
+    public GameObject headLights;
+    public GameObject brakeLights;
+
+    void SwitchGear()
+    {
+        Debug.Log("Gear switch: " + gear);
+
+        if (revLights)
+        {
+            if (gear == -1)
+                revLights.SetActive(true);
+            else
+                revLights.SetActive(false);
         }
     }
 
