@@ -139,16 +139,26 @@ public class VehicleController : MonoBehaviour
 
                     // SURFACE COLORING
 
+                    float colorMult = wheel.friction / 10000;
+
                     if (V.sqrMagnitude > 1)
                     {
-                        float mult = wheel.friction / 10000;
-                        float value = Mathf.Clamp01(1.5f - mult);
+                        float value = Mathf.Clamp01(1.5f - colorMult);
 
                         Color lightGray = new Color(value, value, value);
                         RaceManager.MultPixel(lightGray, hit.textureCoord.x, hit.textureCoord.y, 2);
                     }
 
+                    // Grass + dirt tracks
 
+                    // not nice, combine getting with setting for efficiency!
+                    Color texC = GetColorFromTexture(hit);
+
+                    if (texC.g > texC.r)
+                    {
+                        Color dirtColor = RaceManager.e.grassMarksGradient.Evaluate(colorMult);
+                        RaceManager.LerpPixel(dirtColor, hit.textureCoord.x, hit.textureCoord.y, colorMult * 1f, 2);
+                    }
                 }
                 else wheel.distance = wheelData.suspensionLength;
             }
