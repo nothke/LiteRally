@@ -47,6 +47,9 @@ public class VehicleController : MonoBehaviour
         public float sidewaysForce;
         [HideInInspector]
         public float accelForce;
+
+        [HideInInspector]
+        public float surfaceGrip;
     }
 
     Rigidbody rb;
@@ -94,18 +97,29 @@ public class VehicleController : MonoBehaviour
 
                     // WHEEL FRICTION
 
+                    wheel.surfaceGrip = GetGripFromGround(hit);
+
                     // Sideways
                     int sign = V.x == 0 ? 0 : (V.x < 0 ? -1 : 1);
                     float sidewaysForce = -sign * wheelData.sidewaysFriction.Evaluate(Mathf.Abs(V.x) * wheelData.gripScale) * wheelData.gripGain;
                     wheel.sidewaysForce = sidewaysForce;
 
+                    bool handbrake = axle.handbrake && handbrakeInput == 1;
+                    float brakes = 1 - Mathf.Clamp01(1 + accelInput);
+
+                    if (handbrake) brakes = 1;
+
                     // longitudial (when wheels are still)
                     float longitudialForce = -wheelData.longitudialFriction.Evaluate(V.z / wheelData.gripScale) * wheelData.gripGain;
 
                     // Traction force (from using engine)
-                    wheel.accelForce = accelInput * accelCurve.Evaluate(V.z) * accelMult;
+                    wheel.accelForce = Mathf.Clamp01(accelInput) * accelCurve.Evaluate(V.z) * accelMult;
+                    float brakeForce = longitudialForce * brakes;
 
-                    Vector3 frictionForce = new Vector3(sidewaysForce, 0, +wheel.accelForce); // longitudialForce
+                    if (handbrake) wheel.surfaceGrip = 0;
+
+                    Vector3 frictionForce = new Vector3(sidewaysForce, 0, +wheel.accelForce + brakeForce); // longitudialForce
+                    frictionForce *= wheel.surfaceGrip;
 
                     frictionForce = wheelPivot.TransformVector(frictionForce);
 
@@ -119,13 +133,40 @@ public class VehicleController : MonoBehaviour
         }
     }
 
+    public float GetGripFromGround(RaycastHit hit)
+    {
+        Color c = GetColorFromTexture(hit);
+
+        if (c.g == c.r && c.r == c.b) // no color > is tarmac
+        {
+            Debug.Log("TARMAC!");
+            return 1;
+        }
+        else
+        {
+            Debug.Log("Grass");
+            return 0.5f;
+        }
+    }
+
+    public Color GetColorFromTexture(RaycastHit hit)
+    {
+        Texture2D tex = hit.collider.GetComponent<Renderer>().sharedMaterial.mainTexture as Texture2D;
+
+        Color c = tex.GetPixelBilinear(hit.textureCoord.x, hit.textureCoord.y);
+
+        return c;
+    }
+
     float steerInput;
     float accelInput;
+    float handbrakeInput;
 
     private void Update()
     {
         steerInput = Input.GetAxis("Horizontal");
         accelInput = Input.GetAxis("Vertical");
+        handbrakeInput = Input.GetButton("Jump") ? 1 : 0;
     }
 
     private void OnDrawGizmos()
@@ -153,9 +194,16 @@ public class VehicleController : MonoBehaviour
                 Gizmos.DrawLine(wheelPivot.position, wheelPivot.position - wheelPivot.up * wheelData.suspensionLength);
 
                 Gizmos.color = Color.red;
-                Gizmos.DrawRay(contactPos, wheelPivot.right * wheel.sidewaysForce);
+                Gizmos.DrawRay(contactPos, wheelPivot.right * wheel.sidewaysForce / 4000);
                 Gizmos.color = Color.green;
-                Gizmos.DrawRay(contactPos, wheelPivot.forward * wheel.accelForce);
+                Gizmos.DrawRay(contactPos, wheelPivot.forward * wheel.accelForce / 4000);
+
+                if (wheel.surfaceGrip == 1)
+                    Gizmos.color = Color.gray;
+                else
+                    Gizmos.color = Color.green;
+
+                Gizmos.DrawSphere(contactPos + Vector3.up * 2.5f, 0.6f);
             }
         }
     }
