@@ -113,7 +113,7 @@ public class VehicleController : MonoBehaviour
                         // STEERING
                         if (axle.steering)
                         {
-                            wheel.pivot.localRotation = Quaternion.AngleAxis(steerInput * 60, Vector3.up);
+                            wheel.pivot.localRotation = Quaternion.AngleAxis(steer * 60, Vector3.up);
                         }
 
                         // SUSPENSION
@@ -137,11 +137,11 @@ public class VehicleController : MonoBehaviour
                         float sidewaysForce = -signX * wheelData.sidewaysFriction.Evaluate(Mathf.Abs(V.x) * wheelData.gripScale) * wheelData.gripGain;
                         wheel.sidewaysForce = sidewaysForce;
 
-                        bool handbrake = axle.handbrake && handbrakeInput == 1;
+                        bool handbrakePressed = axle.handbrake && handbrake == 1;
                         // gets range from 0 to -1:
-                        float brakes = 1 - Mathf.Clamp01(1 + accelInput);
+                        float brakes = 1 - Mathf.Clamp01(1 + accel);
 
-                        if (handbrake) brakes = 1;
+                        if (handbrakePressed) brakes = 1;
 
                         // longitudial (when wheels are still)
                         int signZ = V.z == 0 ? 0 : (V.z < 0 ? -1 : 1);
@@ -149,12 +149,12 @@ public class VehicleController : MonoBehaviour
 
                         // Traction force (from using engine)
                         if (axle.powered)
-                            wheel.accelForce = Mathf.Clamp01(accelInput) * accelCurve.Evaluate(V.z) * accelMult * gear;
+                            wheel.accelForce = Mathf.Clamp01(accel) * accelCurve.Evaluate(V.z) * accelMult * gear;
                         else wheel.accelForce = 0;
 
                         float brakeForce = longitudialForce * brakes;
 
-                        if (handbrake) wheel.surfaceGrip = 0;
+                        if (handbrakePressed) wheel.surfaceGrip = 0;
 
                         Vector3 frictionForce = new Vector3(sidewaysForce, 0, +wheel.accelForce + brakeForce); // longitudialForce
                         frictionForce *= wheel.surfaceGrip;
@@ -203,9 +203,9 @@ public class VehicleController : MonoBehaviour
         {
             float amount = rb.angularVelocity.y;
 
-            float straightenTorque = Mathf.Abs(steerInput) < 0.01f ? -amount * torqueAssistStraighten : 0;
+            float straightenTorque = Mathf.Abs(steer) < 0.01f ? -amount * torqueAssistStraighten : 0;
 
-            rb.AddRelativeTorque(Vector3.up * (steerInput * torqueAssistMult + straightenTorque));
+            rb.AddRelativeTorque(Vector3.up * (steer * torqueAssistMult + straightenTorque));
 
         }
     }
@@ -222,7 +222,7 @@ public class VehicleController : MonoBehaviour
 
             // check if player is still holding brakes and vehicle is stopped
             // ..otherwise stop this coroutine
-            if (!(HasStopped && accelInput < -0.5f))
+            if (!(HasStopped && accel < -0.5f))
                 yield break;
         }
 
@@ -257,9 +257,13 @@ public class VehicleController : MonoBehaviour
         return c;
     }
 
-    float steerInput;
-    float accelInput;
-    float handbrakeInput;
+    float steer;
+    float accel;
+    float handbrake;
+
+    public float steerInput;
+    public float accelInput;
+    public float handbrakeInput;
 
     public bool activeInput = true;
 
@@ -276,7 +280,7 @@ public class VehicleController : MonoBehaviour
     {
         if (brakeLights)
         {
-            if (accelInput < -0.1f)
+            if (accel < -0.1f)
                 brakeLights.SetActive(true);
             else
                 brakeLights.SetActive(false);
@@ -291,9 +295,9 @@ public class VehicleController : MonoBehaviour
 
 
 
-            steerInput = Input.GetAxis("Horizontal");
-            accelInput = Input.GetAxis("Vertical") * gear;
-            handbrakeInput = Input.GetButton("Jump") ? 1 : 0;
+            steer = steerInput;
+            accel = accelInput * gear;
+            handbrake = handbrakeInput;
 
             //if stopped more than 1 sec and holding brakes, reverse
             if (HasStopped && HasStopped != prevStopped)
@@ -303,9 +307,9 @@ public class VehicleController : MonoBehaviour
         {
             gear = 0;
 
-            steerInput = 0;
-            accelInput = -1;
-            handbrakeInput = 0;
+            steer = 0;
+            accel = -1;
+            handbrake = 0;
         }
 
         // check for gear changes
