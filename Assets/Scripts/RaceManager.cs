@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
+
 public class RaceManager : MonoBehaviour
 {
     public static RaceManager e;
@@ -17,11 +19,57 @@ public class RaceManager : MonoBehaviour
 
     public Player[] players;
 
+    public bool doCountdown = true;
+
     private void Start()
     {
         InitTexture();
 
         PopulateGrid();
+
+        if (doCountdown)
+            StartCoroutine(DoCountdown());
+    }
+
+    public Text screenText;
+
+    IEnumerator DoCountdown()
+    {
+        foreach (var player in players)
+        {
+            // TODO: deactivate player controls
+        }
+
+        yield return new WaitForSeconds(1);
+
+        // 3
+        if (screenText)
+            screenText.text = "3";
+
+        yield return new WaitForSeconds(1);
+
+        // 2
+        if (screenText)
+            screenText.text = "2";
+
+        yield return new WaitForSeconds(1);
+
+        // 1
+        if (screenText)
+            screenText.text = "1";
+
+        yield return new WaitForSeconds(1);
+
+        // START!
+        if (screenText)
+            screenText.text = "";
+
+        foreach (var player in players)
+        {
+            // TODO: Activate player controls
+        }
+
+
     }
 
     void PopulateGrid()
