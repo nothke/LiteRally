@@ -152,9 +152,6 @@ public class VehicleController : MonoBehaviour
                             wheel.accelForce = Mathf.Clamp01(accelInput) * accelCurve.Evaluate(V.z) * accelMult * gear;
                         else wheel.accelForce = 0;
 
-                        if (axle.powered)
-                            Debug.Log(wheel.accelForce);
-
                         float brakeForce = longitudialForce * brakes;
 
                         if (handbrake) wheel.surfaceGrip = 0;
@@ -325,7 +322,7 @@ public class VehicleController : MonoBehaviour
 
     void SwitchGear()
     {
-        Debug.Log("Gear switch: " + gear);
+        // Debug.Log("Gear switch: " + gear);
 
         if (revLights)
         {

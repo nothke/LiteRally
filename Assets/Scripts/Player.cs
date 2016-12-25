@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
             Debug.Log("LAPPED! Time: " + lapTime);
         }
         else
-            Debug.Log("Passed tru " + nextPortal);
+            Debug.Log(name + " passed tru " + nextPortal);
 
         nextPortal++;
 
