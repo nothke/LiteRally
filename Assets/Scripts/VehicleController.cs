@@ -123,22 +123,27 @@ public class VehicleController : MonoBehaviour
                             wheel.surfaceGrip = 1;
 
                         // Sideways
-                        int sign = V.x == 0 ? 0 : (V.x < 0 ? -1 : 1);
-                        float sidewaysForce = -sign * wheelData.sidewaysFriction.Evaluate(Mathf.Abs(V.x) * wheelData.gripScale) * wheelData.gripGain;
+                        int signX = V.x == 0 ? 0 : (V.x < 0 ? -1 : 1);
+                        float sidewaysForce = -signX * wheelData.sidewaysFriction.Evaluate(Mathf.Abs(V.x) * wheelData.gripScale) * wheelData.gripGain;
                         wheel.sidewaysForce = sidewaysForce;
 
                         bool handbrake = axle.handbrake && handbrakeInput == 1;
+                        // gets range from 0 to -1:
                         float brakes = 1 - Mathf.Clamp01(1 + accelInput);
 
                         if (handbrake) brakes = 1;
 
                         // longitudial (when wheels are still)
-                        float longitudialForce = -wheelData.longitudialFriction.Evaluate(V.z / wheelData.gripScale) * wheelData.gripGain;
+                        int signZ = V.z == 0 ? 0 : (V.z < 0 ? -1 : 1);
+                        float longitudialForce = -signZ * wheelData.longitudialFriction.Evaluate(Mathf.Abs(V.z) * wheelData.gripScale) * wheelData.gripGain;
 
                         // Traction force (from using engine)
                         if (axle.powered)
                             wheel.accelForce = Mathf.Clamp01(accelInput) * accelCurve.Evaluate(V.z) * accelMult * gear;
                         else wheel.accelForce = 0;
+
+                        if (axle.powered)
+                            Debug.Log(wheel.accelForce);
 
                         float brakeForce = longitudialForce * brakes;
 
@@ -214,7 +219,10 @@ public class VehicleController : MonoBehaviour
                 yield break;
         }
 
-        gear = -1;
+        if (gear == 1)
+            gear = -1;
+        else
+            gear = 1;
     }
 
     public float GetGripFromGround(RaycastHit hit)
