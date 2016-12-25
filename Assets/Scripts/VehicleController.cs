@@ -106,7 +106,10 @@ public class VehicleController : MonoBehaviour
 
                         // WHEEL FRICTION
 
-                        wheel.surfaceGrip = GetGripFromGround(hit);
+                        if (hit.collider.tag == "Ground")
+                            wheel.surfaceGrip = GetGripFromGround(hit);
+                        else
+                            wheel.surfaceGrip = 1;
 
                         // Sideways
                         int sign = V.x == 0 ? 0 : (V.x < 0 ? -1 : 1);
@@ -142,25 +145,28 @@ public class VehicleController : MonoBehaviour
 
                         // SURFACE COLORING
 
-                        float colorMult = wheel.friction / 10000;
-
-                        if (V.sqrMagnitude > 1)
+                        if (hit.collider.tag == "Ground")
                         {
-                            float value = Mathf.Clamp01(1.5f - colorMult);
+                            float colorMult = wheel.friction / 10000;
 
-                            Color lightGray = new Color(value, value, value);
-                            RaceManager.MultPixel(lightGray, hit.textureCoord.x, hit.textureCoord.y, 2);
-                        }
+                            if (V.sqrMagnitude > 1)
+                            {
+                                float value = Mathf.Clamp01(1.5f - colorMult);
 
-                        // Grass + dirt tracks
+                                Color lightGray = new Color(value, value, value);
+                                RaceManager.MultPixel(lightGray, hit.textureCoord.x, hit.textureCoord.y, 2);
+                            }
 
-                        // not nice, combine getting with setting for efficiency!
-                        Color texC = GetColorFromTexture(hit);
+                            // Grass + dirt tracks
 
-                        if (texC.g > texC.r)
-                        {
-                            Color dirtColor = RaceManager.e.grassMarksGradient.Evaluate(colorMult);
-                            RaceManager.LerpPixel(dirtColor, hit.textureCoord.x, hit.textureCoord.y, colorMult * 1f, 2);
+                            // not nice, combine getting with setting for efficiency!
+                            Color texC = GetColorFromTexture(hit);
+
+                            if (texC.g > texC.r)
+                            {
+                                Color dirtColor = RaceManager.e.grassMarksGradient.Evaluate(colorMult);
+                                RaceManager.LerpPixel(dirtColor, hit.textureCoord.x, hit.textureCoord.y, colorMult * 1f, 2);
+                            }
                         }
                     }
                 }
