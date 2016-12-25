@@ -126,7 +126,8 @@ public class VehicleController : MonoBehaviour
                     // apply friction forces
                     rb.AddForceAtPosition(frictionForce, wheelPivot.position);
 
-
+                    Color lightGray = new Color(0.95f, 0.95f, 0.95f);
+                    RaceManager.MultPixel(lightGray, hit.textureCoord.x, hit.textureCoord.y);
                 }
                 else wheel.distance = wheelData.suspensionLength;
             }
@@ -139,12 +140,12 @@ public class VehicleController : MonoBehaviour
 
         if (c.g == c.r && c.r == c.b) // no color > is tarmac
         {
-            Debug.Log("TARMAC!");
+            //Debug.Log("TARMAC!");
             return 1;
         }
         else
         {
-            Debug.Log("Grass");
+            //Debug.Log("Grass");
             return 0.5f;
         }
     }
