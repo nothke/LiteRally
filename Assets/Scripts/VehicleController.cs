@@ -50,6 +50,9 @@ public class VehicleController : MonoBehaviour
 
         [HideInInspector]
         public float surfaceGrip;
+
+        [HideInInspector]
+        public float friction;
     }
 
     Rigidbody rb;
@@ -58,6 +61,8 @@ public class VehicleController : MonoBehaviour
     public AnimationCurve accelCurve;
     public float test_suspensionForceMult = 10;
     public float test_dampeningForceMult = 0.1f;
+
+    public float torqueAssistMult = 0;
 
     void Start()
     {
@@ -126,11 +131,25 @@ public class VehicleController : MonoBehaviour
 
                     frictionForce = wheelPivot.TransformVector(frictionForce);
 
+                    wheel.friction = frictionForce.magnitude;
+
                     // apply friction forces
                     rb.AddForceAtPosition(frictionForce, wheelPivot.position);
 
-                    Color lightGray = new Color(0.95f, 0.95f, 0.95f);
-                    RaceManager.MultPixel(lightGray, hit.textureCoord.x, hit.textureCoord.y);
+                    // SURFACE COLORING
+
+                    if (V.sqrMagnitude > 1)
+                    {
+                        float value = 1 - (Mathf.Abs(wheel.accelForce));
+
+                        Color lightGray = new Color(value, value, value);
+                        RaceManager.MultPixel(lightGray, hit.textureCoord.x, hit.textureCoord.y);
+                    }
+
+                    if (torqueAssistMult > 0)
+                    {
+                        rb.AddRelativeTorque(Vector3.up * steerInput * torqueAssistMult);
+                    }
                 }
                 else wheel.distance = wheelData.suspensionLength;
             }
