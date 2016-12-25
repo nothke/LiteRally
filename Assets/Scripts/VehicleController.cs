@@ -209,7 +209,7 @@ public class VehicleController : MonoBehaviour
 
         }
     }
-
+    /*
     IEnumerator ReverseCo()
     {
         int frames = 20;
@@ -230,7 +230,7 @@ public class VehicleController : MonoBehaviour
             gear = -1;
         else
             gear = 1;
-    }
+    }*/
 
     public float GetGripFromGround(RaycastHit hit)
     {
@@ -272,9 +272,11 @@ public class VehicleController : MonoBehaviour
         get { return rb.velocity.sqrMagnitude < 1; }
     }
 
-    bool prevStopped;
+    //bool prevStopped;
 
     int prevGear;
+
+    float brakeHeld;
 
     void Update()
     {
@@ -299,9 +301,24 @@ public class VehicleController : MonoBehaviour
             accel = accelInput * gear;
             handbrake = handbrakeInput;
 
+            if (HasStopped && accelInput < 0)
+                brakeHeld += Time.deltaTime * 3;
+            else
+                brakeHeld = 0;
+
+            if (brakeHeld > 1)
+                gear = -1;
+            else if (accelInput > 0)
+                gear = 1;
+
+            /*
             //if stopped more than 1 sec and holding brakes, reverse
             if (HasStopped && HasStopped != prevStopped)
-                StartCoroutine(ReverseCo());
+                StartCoroutine(ReverseCo());*/
+
+            /*
+            if (accelInput > 0)
+                prevStopped = false;*/
         }
         else
         {
@@ -316,7 +333,7 @@ public class VehicleController : MonoBehaviour
         if (prevGear != gear)
             SwitchGear();
 
-        prevStopped = HasStopped;
+        //prevStopped = HasStopped;
         prevGear = gear;
     }
 
