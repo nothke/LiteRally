@@ -31,6 +31,8 @@ public class Track
         string serialized = JsonUtility.ToJson(this, true);
 
         File.WriteAllText(DirPath + fileName, serialized);
+
+        Debug.Log("Saved " + name + " track to file successfully");
     }
 
     public string DirPath
@@ -85,6 +87,17 @@ public class Track
         return tex;
     }
 
+    public static bool Exists(string trackName)
+    {
+        if (!Directory.Exists(GetDirPath(trackName)))
+            return false;
+
+        if (!File.Exists(GetFilePath(trackName)))
+            return false;
+
+        return true;
+    }
+
     /// <summary>
     /// Runs a check and can log errors if something's wrong
     /// </summary>
@@ -98,8 +111,10 @@ public class Track
         if (!File.Exists(DirPath + name + ".jpg") &&
             !File.Exists(DirPath + name + ".png"))
         {
-            logErrors += "\n Texture doesn't exist";
+            logErrors += "\n - Texture doesn't exist";
         }
+
+        // TODO: Check if one of scale dimensions is 0
 
         if (grids.Length == 0)
             logErrors += "\n - There are no grid positions";
@@ -110,7 +125,7 @@ public class Track
         if (portals.Length == 0)
             logErrors += "\n - There are no pits";
 
-        if (pits.Length == 0)
+        if (pits == null || pits.Length == 0)
             logErrors += "\n - There are no pits";
 
         if (portals.Length < 2)
@@ -125,7 +140,7 @@ public class Track
         }
 
         if (debug)
-            Debug.Log("Track is invalid, there are some problems:\n" + logErrors);
+            Debug.Log("Track is invalid, there are some problems:" + logErrors);
 
         return false;
     }
@@ -154,6 +169,8 @@ public class Pit
     public Vector3 eulerAngles;
 }
 
+// TODO:
+[Serializable]
 public class TrackObject
 {
     public string name;

@@ -662,7 +662,7 @@ GameObject:
   - component: {fileID: 430907088}
   - component: {fileID: 430907087}
   m_Layer: 0
-  m_Name: TrackPlane (1)
+  m_Name: Track
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -676,7 +676,7 @@ Transform:
   m_GameObject: {fileID: 430907085}
   m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 10}
+  m_LocalScale: {x: 5, y: 5, z: 7}
   m_Children: []
   m_Father: {fileID: 577867357}
   m_RootOrder: 1
@@ -1250,16 +1250,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e16173dc5fa2140b69b33bb009cc31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackGO: {fileID: 0}
+  trackGO: {fileID: 430907085}
   trackMesh: {fileID: 0}
   tex: {fileID: 0}
-  loadFromFileName: 
+  loadFromFileName: MyTrack
   gridPoints: []
   track:
     name: MyTrack
-    scale: {x: 0, y: 0, z: 0}
-    portals: []
-    grids: []
+    scale: {x: 5, y: 5, z: 10}
+    portals:
+    - position: {x: 4.12, y: 0, z: -37.6}
+      eulerAngles: {x: -0, y: 89.99997, z: -0}
+      center: {x: 3.0605268, y: 0, z: 5.5398436}
+      size: {x: 23.9656, y: 20, z: 11.0900135}
+    - position: {x: 40.4, y: 0, z: -26.6}
+      eulerAngles: {x: 0.000006825487, y: 2.1252706, z: -0.000006576895}
+      center: {x: 3.060546, y: 0, z: 5.292428}
+      size: {x: 23.9656, y: 20, z: 11.5848465}
+    - position: {x: -9, y: 0, z: -9.1}
+      eulerAngles: {x: 0.000006825487, y: 2.1252706, z: -0.000006576895}
+      center: {x: 1.1382451, y: -5.684342e-14, z: 5.292436}
+      size: {x: 20.121017, y: 20, z: 11.5848465}
+    - position: {x: 34.9, y: 0, z: 34.3}
+      eulerAngles: {x: 0.0000017018101, y: 326.40582, z: -0.000009324518}
+      center: {x: 7.144786, y: -1.1368684e-13, z: 5.2924466}
+      size: {x: 32.133858, y: 20, z: 11.5848465}
+    - position: {x: -34.5, y: 0, z: 36.6}
+      eulerAngles: {x: -0.000009474597, y: 224.40926, z: 0.00000027348574}
+      center: {x: 7.144786, y: -1.1368684e-13, z: 5.2924466}
+      size: {x: 32.133858, y: 20, z: 11.5848465}
+    - position: {x: -32.8, y: 0, z: -29.8}
+      eulerAngles: {x: -0.0000009891812, y: 142.05295, z: 0.000009426788}
+      center: {x: 9.803977, y: -7.9580786e-13, z: 5.2925544}
+      size: {x: 40.11898, y: 20, z: 11.584846}
+    grids:
+    - position: {x: 1.0200002, y: 0, z: -42.28}
+      eulerAngles: {x: -0, y: 90, z: -0}
+    - position: {x: -0.98, y: 0, z: -37.61}
+      eulerAngles: {x: -0, y: 90, z: -0}
+    - position: {x: -6.98, y: 0, z: -42.28}
+      eulerAngles: {x: -0, y: 90, z: -0}
+    - position: {x: -8.98, y: 0, z: -37.61}
+      eulerAngles: {x: -0, y: 90, z: -0}
     pits: []
 --- !u!1 &695271935
 GameObject:

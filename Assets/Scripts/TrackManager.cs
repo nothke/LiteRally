@@ -114,15 +114,27 @@ public class TrackManager : MonoBehaviour
         // TODO: Trackside objects!
     }
 
-    [ContextMenu("Save This to File")]
+    [ContextMenu("Save Track to File")]
     void SerializeToFile()
     {
         track.SerializeToFile();
     }
 
-    [ContextMenu("Deserialize")]
+    [ContextMenu("Load Track from File")]
     void Deserialize()
     {
+        if (string.IsNullOrEmpty(loadFromFileName))
+        {
+            Debug.LogError("No name assigned in loadFromFileName");
+            return;
+        }
+
+        if (!Track.Exists(loadFromFileName))
+        {
+            Debug.LogError("No track with name " + loadFromFileName + " exists");
+            return;
+        }
+
         DeserializeTrack(loadFromFileName);
     }
 
