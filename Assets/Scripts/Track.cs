@@ -56,6 +56,79 @@ public class Track
         string serialized = File.ReadAllText(GetFilePath(fileName));
         return JsonUtility.FromJson<Track>(serialized);
     }
+
+    /// <summary>
+    /// Gets texture from file at the same name as track and in the same folder
+    /// </summary>
+    /// <returns>Returns texture, null if it doesn't exist or is invalid</returns>
+    public Texture2D GetTexture()
+    {
+        string filePath = "";
+
+        if (File.Exists(DirPath + name + ".jpg"))
+            filePath = DirPath + name + ".jpg";
+
+        if (File.Exists(DirPath + name + ".png"))
+            filePath = DirPath + name + ".png";
+
+        if (string.IsNullOrEmpty(filePath))
+        {
+            Debug.LogError("Texture doesn't exist");
+            return null;
+        }
+
+        filePath += ".binary";
+
+        Texture2D tex = new Texture2D(2, 2);
+        tex.LoadImage(File.ReadAllBytes(filePath));
+
+        return tex;
+    }
+
+    /// <summary>
+    /// Runs a check and can log errors if something's wrong
+    /// </summary>
+    /// <param name="debug">log errors?</param>
+    /// <returns>Returns true if everything is fine with the track</returns>
+    public bool IsValid(bool debug = false)
+    {
+        string logErrors = "";
+
+        // check if there is texture of the same name
+        if (!File.Exists(DirPath + name + ".jpg") &&
+            !File.Exists(DirPath + name + ".png"))
+        {
+            logErrors += "\n Texture doesn't exist";
+        }
+
+        if (grids.Length == 0)
+            logErrors += "\n - There are no grid positions";
+
+        if (grids.Length < 4)
+            logErrors += "\n - There is less than 4 grid positions";
+
+        if (portals.Length == 0)
+            logErrors += "\n - There are no pits";
+
+        if (pits.Length == 0)
+            logErrors += "\n - There are no pits";
+
+        if (portals.Length < 2)
+            logErrors += "\n - There must be at least 2 portals";
+
+        if (string.IsNullOrEmpty(logErrors))
+        {
+            if (debug)
+                Debug.Log("Track is valid, no errors found");
+
+            return true;
+        }
+
+        if (debug)
+            Debug.Log("Track is invalid, there are some problems:\n" + logErrors);
+
+        return false;
+    }
 }
 
 [Serializable]
