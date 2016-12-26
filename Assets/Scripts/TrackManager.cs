@@ -25,6 +25,7 @@ public class TrackManager : MonoBehaviour
     {
         get
         {
+            // Considering "World" exists, baaad programming
             if (!_worldRoot) _worldRoot = GameObject.Find("World").transform;
 
             return _worldRoot;
@@ -40,10 +41,83 @@ public class TrackManager : MonoBehaviour
         }
     }
 
-    [ContextMenu("Serialize Scene Track")]
+    [ContextMenu("Convert Scene to Track")]
     void SerializeSceneTrack()
     {
+        // Scale
+        if (!trackGO)
+            trackGO = GameObject.Find("World/Track");
 
+        track.scale = trackGO.transform.localScale;
+
+        // Portals
+
+        GameObject portalsGO = GameObject.Find("World/Portals");
+
+        if (portalsGO)
+        {
+            int childCount = portalsGO.transform.childCount;
+            track.portals = new Portal[childCount];
+
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform child = portalsGO.transform.GetChild(i);
+
+                track.portals[i] = new Portal();
+                track.portals[i].position = child.position;
+                track.portals[i].eulerAngles = child.eulerAngles;
+
+                BoxCollider boxCollider = child.GetComponent<BoxCollider>();
+                // TODO: Check if has BoxCollider
+                track.portals[i].center = boxCollider.center;
+                track.portals[i].size = boxCollider.size;
+            }
+        }
+        else Debug.LogError("Portals not found");
+
+        // Grid
+
+        GameObject gridGO = GameObject.Find("World/StartGrid");
+
+        if (gridGO)
+        {
+            int childCount = gridGO.transform.childCount;
+            track.grids = new Grid[childCount];
+
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform child = gridGO.transform.GetChild(i);
+
+                track.grids[i] = new Grid();
+                track.grids[i].position = child.position;
+                track.grids[i].eulerAngles = child.eulerAngles;
+            }
+        }
+        else Debug.LogError("Grid not found");
+
+        /* Not pits for now
+        
+        // Pits
+
+        GameObject pitsGO = GameObject.Find("World/Pits");
+        
+        if (pitsGO)
+        {
+            int childCount = pitsGO.transform.childCount;
+
+            for (int i = 0; i < childCount; i++)
+            {
+
+            }
+        }*/
+
+        // TODO: Trackside objects!
+    }
+
+    [ContextMenu("Save This to File")]
+    void SerializeToFile()
+    {
+        track.SerializeToFile();
     }
 
     [ContextMenu("Deserialize")]
