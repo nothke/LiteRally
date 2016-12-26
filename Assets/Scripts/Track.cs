@@ -116,19 +116,21 @@ public class Track
 
         // TODO: Check if one of scale dimensions is 0
 
-        if (grids.Length == 0)
+        if (grids == null || grids.Length == 0)
             logErrors += "\n - There are no grid positions";
 
-        if (grids.Length < 4)
+        if (grids == null || grids.Length < 4)
             logErrors += "\n - There is less than 4 grid positions";
 
-        if (portals.Length == 0)
-            logErrors += "\n - There are no pits";
+        if (portals == null || portals.Length == 0)
+            logErrors += "\n - There are no portals";
 
+        /*
         if (pits == null || pits.Length == 0)
             logErrors += "\n - There are no pits";
+            */
 
-        if (portals.Length < 2)
+        if (portals == null || portals.Length < 2)
             logErrors += "\n - There must be at least 2 portals";
 
         if (string.IsNullOrEmpty(logErrors))
