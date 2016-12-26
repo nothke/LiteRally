@@ -63,7 +63,7 @@ public class Track
     /// Gets texture from file at the same name as track and in the same folder
     /// </summary>
     /// <returns>Returns texture, null if it doesn't exist or is invalid</returns>
-    public Texture2D GetTexture()
+    public Texture2D GetTextureFromFile()
     {
         string filePath = "";
 

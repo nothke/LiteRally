@@ -181,7 +181,7 @@ public class VehicleController : MonoBehaviour
                                 float value = Mathf.Clamp01(1.5f - colorMult);
 
                                 Color lightGray = new Color(value, value, value);
-                                RaceManager.MultPixel(lightGray, hit.textureCoord.x, hit.textureCoord.y, 2);
+                                TrackManager.MultPixel(lightGray, hit.textureCoord.x, hit.textureCoord.y, 2);
                             }
 
                             // Grass + dirt tracks
@@ -192,7 +192,7 @@ public class VehicleController : MonoBehaviour
                             if (texC.g > texC.r)
                             {
                                 Color dirtColor = RaceManager.e.grassMarksGradient.Evaluate(colorMult);
-                                RaceManager.LerpPixel(dirtColor, hit.textureCoord.x, hit.textureCoord.y, colorMult * 1f, 2);
+                                TrackManager.LerpPixel(dirtColor, hit.textureCoord.x, hit.textureCoord.y, colorMult * 1f, 2);
                             }
                         }
                     }
