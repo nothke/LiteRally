@@ -237,4 +237,18 @@ public class RaceManager : MonoBehaviour
 
         Debug.Log("RACE ENDED!");
     }
+
+    public Track track;
+
+    [ContextMenu("Serialize Track")]
+    public void SerializeTrack()
+    {
+        track.SerializeToFile();
+    }
+
+    [ContextMenu("Deserialize")]
+    public void DeserializeTrackTest()
+    {
+        track = Track.GetFromFile("MyTrack");
+    }
 }

@@ -774,7 +774,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1568092556721828, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
@@ -1012,64 +1012,29 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1269752838247986, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
+        type: 2}
+      propertyPath: wheelData.steeringLock
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
         type: 2}
-      propertyPath: wheelData.gripGain
-      value: 10000
+      propertyPath: torqueAssistCurve.m_Curve.Array.data[1].time
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
         type: 2}
-      propertyPath: torqueAssistStraighten
-      value: 20000
+      propertyPath: torqueAssistCurve.m_Curve.Array.data[1].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
         type: 2}
       propertyPath: torqueAssistMult
-      value: 20000
+      value: 3000
       objectReference: {fileID: 0}
-    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
-        type: 2}
-      propertyPath: accelMult
-      value: 30000
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
-        type: 2}
-      propertyPath: accelCurve.m_Curve.Array.data[1].time
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
-        type: 2}
-      propertyPath: accelCurve.m_Curve.Array.data[1].value
+    - target: {fileID: 1966689714359474, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
+      propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
-        type: 2}
-      propertyPath: accelCurve.m_Curve.Array.data[1].inSlope
-      value: -0.06935322
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
-        type: 2}
-      propertyPath: accelCurve.m_Curve.Array.data[1].outSlope
-      value: -0.06935322
-      objectReference: {fileID: 0}
-    - target: {fileID: 65147010044883902, guid: d94aceafded3c7e4892726ff3686e922,
-        type: 2}
-      propertyPath: m_Size.z
-      value: 1.1686207
-      objectReference: {fileID: 0}
-    - target: {fileID: 65147010044883902, guid: d94aceafded3c7e4892726ff3686e922,
-        type: 2}
-      propertyPath: m_Center.z
-      value: -0.12630884
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
-        type: 2}
-      propertyPath: wheelData.gripScale
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
@@ -1250,6 +1215,18 @@ MonoBehaviour:
   colors:
   - serializedVersion: 2
     rgba: 0
+  track:
+    name: MyTrack
+    texture: {fileID: 2800000, guid: b3b6698fcda3cdd4fb726fd91fa8d512, type: 3}
+    mesh: {fileID: 4300000, guid: bf6657a3b41a16347b3907f962400779, type: 3}
+    scale: {x: 1, y: 1, z: 1}
+    portals:
+    - position: {x: 1, y: 1, z: 1}
+      eulerAngles: {x: 123, y: 23, z: 0}
+      center: {x: 23, y: 123, z: 0}
+      size: {x: 0, y: 0, z: 0}
+    grids: []
+    objectTest: {fileID: 2017476003}
 --- !u!4 &675655006
 Transform:
   m_ObjectHideFlags: 0
