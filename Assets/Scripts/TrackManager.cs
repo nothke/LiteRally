@@ -31,6 +31,11 @@ public class TrackManager : MonoBehaviour
     }
 
     [ContextMenu("Deserialize")]
+    void Deserialize()
+    {
+        DeserializeTrack(loadFromFileName);
+    }
+
     public void DeserializeTrack(string trackName)
     {
         track = Track.GetFromFile(trackName);
