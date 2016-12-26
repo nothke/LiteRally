@@ -1131,6 +1131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 675655006}
   - component: {fileID: 675655005}
+  - component: {fileID: 675655007}
   m_Layer: 0
   m_Name: MAIN
   m_TagString: Untagged
@@ -1217,8 +1218,6 @@ MonoBehaviour:
     rgba: 0
   track:
     name: MyTrack
-    texture: {fileID: 2800000, guid: b3b6698fcda3cdd4fb726fd91fa8d512, type: 3}
-    mesh: {fileID: 4300000, guid: bf6657a3b41a16347b3907f962400779, type: 3}
     scale: {x: 1, y: 1, z: 1}
     portals:
     - position: {x: 1, y: 1, z: 1}
@@ -1226,7 +1225,7 @@ MonoBehaviour:
       center: {x: 23, y: 123, z: 0}
       size: {x: 0, y: 0, z: 0}
     grids: []
-    objectTest: {fileID: 2017476003}
+    pits: []
 --- !u!4 &675655006
 Transform:
   m_ObjectHideFlags: 0
@@ -1240,6 +1239,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &675655007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 675655004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e16173dc5fa2140b69b33bb009cc31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackGO: {fileID: 0}
+  trackMesh: {fileID: 0}
+  tex: {fileID: 0}
+  loadFromFileName: 
+  gridPoints: []
+  track:
+    name: MyTrack
+    scale: {x: 0, y: 0, z: 0}
+    portals: []
+    grids: []
+    pits: []
 --- !u!1 &695271935
 GameObject:
   m_ObjectHideFlags: 0

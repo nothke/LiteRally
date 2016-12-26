@@ -20,6 +20,16 @@ public class TrackManager : MonoBehaviour
 
     public Track track;
 
+    Transform _worldRoot;
+    public Transform WorldRoot
+    {
+        get
+        {
+            if (!_worldRoot) _worldRoot = GameObject.Find("World").transform;
+
+            return _worldRoot;
+        }
+    }
 
     void Start()
     {
@@ -28,6 +38,12 @@ public class TrackManager : MonoBehaviour
             DeserializeTrack(loadFromFileName);
             CreateTrack();
         }
+    }
+
+    [ContextMenu("Serialize Scene Track")]
+    void SerializeSceneTrack()
+    {
+
     }
 
     [ContextMenu("Deserialize")]
@@ -62,7 +78,7 @@ public class TrackManager : MonoBehaviour
     GameObject CreatePortalObjects(Portal[] portals)
     {
         GameObject rootGO = new GameObject("Portals");
-        rootGO.transform.parent = trackGO.transform;
+        rootGO.transform.parent = WorldRoot;
 
         for (int i = 0; i < portals.Length; i++)
         {
@@ -82,7 +98,7 @@ public class TrackManager : MonoBehaviour
     GameObject CreateGridObjects(Grid[] grids)
     {
         GameObject rootGO = new GameObject("Grids");
-        rootGO.transform.parent = trackGO.transform;
+        rootGO.transform.parent = WorldRoot;
 
         gridPoints = new Transform[grids.Length];
 
