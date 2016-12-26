@@ -79,7 +79,7 @@ public class Track
             return null;
         }
 
-        filePath += ".binary";
+        //filePath += ".binary";
 
         Texture2D tex = new Texture2D(2, 2);
         tex.LoadImage(File.ReadAllBytes(filePath));

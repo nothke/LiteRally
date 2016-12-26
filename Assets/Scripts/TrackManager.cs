@@ -9,7 +9,7 @@ public class TrackManager : MonoBehaviour
 
     public GameObject trackGO;
 
-    Renderer trackRenderer;
+    public Renderer trackRenderer;
     public Mesh trackMesh;
 
     public Texture2D tex;
@@ -154,6 +154,7 @@ public class TrackManager : MonoBehaviour
 
         tex = track.GetTexture();
 
+        if (!trackRenderer) Debug.LogError("No track renderer");
         trackRenderer.material.mainTexture = tex;
 
         CreatePortalObjects(track.portals);
@@ -174,6 +175,7 @@ public class TrackManager : MonoBehaviour
             GO.transform.parent = trackGO.transform;
 
             BoxCollider col = GO.AddComponent<BoxCollider>();
+            col.isTrigger = true;
             col.center = portals[i].center;
             col.size = portals[i].size;
         }

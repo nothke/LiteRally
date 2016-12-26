@@ -774,7 +774,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1568092556721828, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
@@ -1034,7 +1034,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1966689714359474, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
@@ -1251,16 +1251,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackGO: {fileID: 430907085}
+  trackRenderer: {fileID: 430907087}
   trackMesh: {fileID: 0}
   tex: {fileID: 0}
-  loadFromFileName: MyTrack
+  loadFromFileName: Threeway
   gridPoints: []
   track:
-    name: MyTrack
-    scale: {x: 5, y: 5, z: 10}
+    name: Threeway
+    scale: {x: 5, y: 5, z: 5}
     portals:
     - position: {x: 4.12, y: 0, z: -37.6}
-      eulerAngles: {x: -0, y: 89.99997, z: -0}
+      eulerAngles: {x: 0, y: 89.99997, z: 0}
       center: {x: 3.0605268, y: 0, z: 5.5398436}
       size: {x: 23.9656, y: 20, z: 11.0900135}
     - position: {x: 40.4, y: 0, z: -26.6}
@@ -1285,13 +1286,13 @@ MonoBehaviour:
       size: {x: 40.11898, y: 20, z: 11.584846}
     grids:
     - position: {x: 1.0200002, y: 0, z: -42.28}
-      eulerAngles: {x: -0, y: 90, z: -0}
+      eulerAngles: {x: 0, y: 90, z: 0}
     - position: {x: -0.98, y: 0, z: -37.61}
-      eulerAngles: {x: -0, y: 90, z: -0}
+      eulerAngles: {x: 0, y: 90, z: 0}
     - position: {x: -6.98, y: 0, z: -42.28}
-      eulerAngles: {x: -0, y: 90, z: -0}
+      eulerAngles: {x: 0, y: 90, z: 0}
     - position: {x: -8.98, y: 0, z: -37.61}
-      eulerAngles: {x: -0, y: 90, z: -0}
+      eulerAngles: {x: 0, y: 90, z: 0}
     pits: []
 --- !u!1 &695271935
 GameObject:
