@@ -676,7 +676,7 @@ Transform:
   m_GameObject: {fileID: 430907085}
   m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 5, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 577867357}
   m_RootOrder: 1
@@ -770,7 +770,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4898868691456216, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1568092556721828, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
@@ -969,6 +973,107 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b58616fcfc63b4599aa5afc9e0370a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &596538930
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4216443697628314, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.2516274
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216443697628314, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216443697628314, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1.342432
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216443697628314, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216443697628314, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216443697628314, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216443697628314, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216443697628314, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269752838247986, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
+        type: 2}
+      propertyPath: wheelData.gripGain
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
+        type: 2}
+      propertyPath: torqueAssistStraighten
+      value: 20000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
+        type: 2}
+      propertyPath: torqueAssistMult
+      value: 20000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
+        type: 2}
+      propertyPath: accelMult
+      value: 30000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
+        type: 2}
+      propertyPath: accelCurve.m_Curve.Array.data[1].time
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
+        type: 2}
+      propertyPath: accelCurve.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
+        type: 2}
+      propertyPath: accelCurve.m_Curve.Array.data[1].inSlope
+      value: -0.06935322
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
+        type: 2}
+      propertyPath: accelCurve.m_Curve.Array.data[1].outSlope
+      value: -0.06935322
+      objectReference: {fileID: 0}
+    - target: {fileID: 65147010044883902, guid: d94aceafded3c7e4892726ff3686e922,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 1.1686207
+      objectReference: {fileID: 0}
+    - target: {fileID: 65147010044883902, guid: d94aceafded3c7e4892726ff3686e922,
+        type: 2}
+      propertyPath: m_Center.z
+      value: -0.12630884
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
+        type: 2}
+      propertyPath: wheelData.gripScale
+      value: 20
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &648049768
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,7 +1185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lapsToRace: 3
-  trackRenderer: {fileID: 648049769}
+  trackRenderer: {fileID: 430907087}
   tex: {fileID: 0}
   grassMarksGradient:
     key0:
@@ -1156,7 +1261,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &695271935
 GameObject:
@@ -1448,7 +1553,7 @@ RectTransform:
   - {fileID: 1327359259}
   - {fileID: 2060054820}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2134,7 +2239,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1743505689
 GameObject:
