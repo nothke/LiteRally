@@ -16,6 +16,7 @@ public class VehicleController : MonoBehaviour
 
         public float suspensionLength = 1;
         public float wheelRadius = 0.3f;
+        public float steeringLock = 60;
     }
 
     public WheelData wheelData;
@@ -116,7 +117,7 @@ public class VehicleController : MonoBehaviour
                         // STEERING
                         if (axle.steering)
                         {
-                            wheel.pivot.localRotation = Quaternion.AngleAxis(steer * 60, Vector3.up);
+                            wheel.pivot.localRotation = Quaternion.AngleAxis(steer * wheelData.steeringLock, Vector3.up);
                         }
 
                         // SUSPENSION

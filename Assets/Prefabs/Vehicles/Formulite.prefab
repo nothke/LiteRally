@@ -1265,8 +1265,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4799999, y: 0.97216606, z: 1.18}
-  m_Center: {x: 0, y: 0.058915794, z: -0.060000032}
+  m_Size: {x: 1.4799999, y: 0.97216606, z: 1.1686207}
+  m_Center: {x: 0, y: 0.058915794, z: -0.12630884}
 --- !u!81 &81483898858571112
 AudioListener:
   m_ObjectHideFlags: 1
@@ -1457,8 +1457,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelData:
-    gripGain: 6000
-    gripScale: 10
+    gripGain: 10000
+    gripScale: 20
     sidewaysFriction:
       serializedVersion: 2
       m_Curve:
@@ -1521,6 +1521,7 @@ MonoBehaviour:
       m_RotationOrder: 0
     suspensionLength: 0.4
     wheelRadius: 0.3
+    steeringLock: 60
   axles:
   - wheels:
     - pivot: {fileID: 4691058904641458}
@@ -1558,7 +1559,7 @@ MonoBehaviour:
     invertedSteering: 0
     brakes: 0
     handbrake: 1
-  accelMult: 15000
+  accelMult: 30000
   accelCurve:
     serializedVersion: 2
     m_Curve:
@@ -1569,17 +1570,17 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
-      time: 100
+      time: 40
       value: 0
-      inSlope: -0.024835724
-      outSlope: -0.024835724
+      inSlope: -0.06935322
+      outSlope: -0.06935322
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
   test_suspensionForceMult: 100000
   test_dampeningForceMult: 5000
-  torqueAssistMult: 10000
+  torqueAssistMult: 20000
   torqueAssistCurve:
     serializedVersion: 2
     m_Curve:
@@ -1598,7 +1599,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  torqueAssistStraighten: 10000
+  torqueAssistStraighten: 20000
   speed: 0
   steerInput: 0
   accelInput: 0
