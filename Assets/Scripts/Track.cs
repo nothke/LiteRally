@@ -79,10 +79,13 @@ public class Track
             return null;
         }
 
-        //filePath += ".binary";
-
         Texture2D tex = new Texture2D(2, 2);
+
+
+        float t = Time.realtimeSinceStartup;
         tex.LoadImage(File.ReadAllBytes(filePath));
+        t = Time.realtimeSinceStartup - t;
+        Debug.Log("Loading image from file completed in: " + t);
 
         return tex;
     }
