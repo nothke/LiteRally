@@ -81,7 +81,6 @@ public class Track
 
         Texture2D tex = new Texture2D(2, 2);
 
-
         float t = Time.realtimeSinceStartup;
         tex.LoadImage(File.ReadAllBytes(filePath));
         t = Time.realtimeSinceStartup - t;
@@ -90,6 +89,9 @@ public class Track
         return tex;
     }
 
+    /// <summary>
+    /// Does track of this name exist in GameData?
+    /// </summary>
     public static bool Exists(string trackName)
     {
         if (!Directory.Exists(GetDirPath(trackName)))
@@ -178,9 +180,57 @@ public class Pit
 [Serializable]
 public class TrackObject
 {
+    // Serialized variables:
+
     public string name;
 
     public Vector3 position;
     public Vector3 eulerAngles;
     public Vector3 scale;
+
+    public bool isCollidable;
+
+    // properties
+
+    public string DirPath { get { return "GameData/Objects/" + name + "/"; } }
+    public string FilePath { get { return DirPath + name + ".obj"; } }
+
+    public void Spawn()
+    {
+        if (!File.Exists(FilePath))
+        {
+            Debug.LogError("No track object named + " + name + " exists");
+        }
+
+        GameObject GO = OBJLoader.LoadOBJFile(FilePath);
+
+        if (isCollidable)
+        {
+            foreach (Transform child in GO.transform)
+            {
+                child.gameObject.AddComponent<MeshCollider>();
+            }
+        }
+
+
+
+        GO.transform.position = position;
+        GO.transform.eulerAngles = eulerAngles;
+        GO.transform.localScale = scale;
+    }
+
+    public static void SpawnFromFile(string name, Vector3 position, Vector3 eulerAngles, Vector3 scale, bool addMeshCollider = false)
+    {
+        TrackObject TO = new TrackObject();
+
+        TO.name = name;
+
+        TO.position = position;
+        TO.eulerAngles = eulerAngles;
+        TO.scale = scale;
+
+        TO.isCollidable = addMeshCollider;
+
+        TO.Spawn();
+    }
 }
