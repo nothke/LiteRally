@@ -174,6 +174,8 @@ public class TrackManager : MonoBehaviour
         if (!trackRenderer) Debug.LogError("No track renderer");
         trackRenderer.material.mainTexture = tex;
 
+        CleanUpTrack();
+
         CreatePortalObjects(track.portals);
         CreateGridObjects(track.grids);
 
@@ -181,6 +183,41 @@ public class TrackManager : MonoBehaviour
             TO.Spawn();
 
         trackHasBeenLoadedFromFile = true;
+    }
+
+    // Addresses in hierarchy
+    public const string portalsH = "World/Portals";
+    public const string gridH = "World/Grid";
+    public const string objectsH = "World/Objects";
+    public const string pitsH = "World/Pits";
+
+    /// <summary>
+    /// Destroys portals, grid, pits and objects
+    /// </summary>
+    void CleanUpTrack()
+    {
+        GameObject portalRoot = GameObject.Find(portalsH);
+        if (portalRoot) DestroyGO(portalRoot);
+
+        GameObject gridRoot = GameObject.Find(gridH);
+        if (gridRoot) DestroyGO(gridRoot);
+
+        GameObject objectsRoot = GameObject.Find(objectsH);
+        if (objectsRoot) DestroyGO(objectsRoot);
+
+        // TODO: when pits are implemented, uncomment:
+        /*
+        GameObject pitsRoot = GameObject.Find(pitsH);
+        if (pitsRoot) DestroyGO(pitsRoot);
+        */
+    }
+
+    void DestroyGO(GameObject go)
+    {
+        if (Application.isPlaying)
+            Destroy(go);
+        else
+            DestroyImmediate(go);
     }
 
     // Do I need to store them?
