@@ -121,7 +121,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.81
+      value: 29.55
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -129,7 +129,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.6
+      value: 29.88
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
       propertyPath: m_LocalRotation.x
@@ -544,7 +544,7 @@ Transform:
   - {fileID: 590593365}
   - {fileID: 879392728}
   m_Father: {fileID: 577867357}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
 --- !u!1 &339050838 stripped
 GameObject:
@@ -567,6 +567,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackObjectName: tire_wall
   collision: 0
+--- !u!1001 &354166331
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 965099882}
+    m_Modifications:
+    - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -28.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 30.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
+      propertyPath: m_Name
+      value: tire_stack (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
+  m_IsPrefabParent: 0
 --- !u!1 &414534588
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,7 +685,7 @@ Transform:
   - {fileID: 1367100500}
   - {fileID: 329180728}
   m_Father: {fileID: 577867357}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &430907085
 GameObject:
@@ -670,7 +716,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 577867357}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &430907087
 MeshRenderer:
@@ -881,7 +927,7 @@ Transform:
   - {fileID: 414534589}
   - {fileID: 189543103}
   m_Father: {fileID: 577867357}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
 --- !u!114 &532287266 stripped
 MonoBehaviour:
@@ -972,7 +1018,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 648049772}
   - {fileID: 430907086}
   - {fileID: 1478044276}
   - {fileID: 416993460}
@@ -1126,7 +1171,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 337a74754f9c36a4a91365d7186ebdba, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 337a74754f9c36a4a91365d7186ebdba, type: 3}
       propertyPath: m_Name
@@ -1156,89 +1201,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackObjectName: tire_wall
   collision: 0
---- !u!1 &648049768
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 648049772}
-  - component: {fileID: 648049771}
-  - component: {fileID: 648049770}
-  - component: {fileID: 648049769}
-  m_Layer: 0
-  m_Name: TrackPlane
-  m_TagString: Ground
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!23 &648049769
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 648049768}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: c6b1ff20f717d5249a1233de4764445e, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!64 &648049770
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 648049768}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &648049771
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 648049768}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &648049772
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 648049768}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
-  m_Children: []
-  m_Father: {fileID: 577867357}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &675655004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,7 +1342,7 @@ MonoBehaviour:
       eulerAngles: {x: -0, y: 89.99997, z: -0}
       center: {x: 3.0605268, y: 0, z: 5.5398436}
       size: {x: 23.9656, y: 20, z: 11.0900135}
-    - position: {x: 40.4, y: 0, z: -26.6}
+    - position: {x: 40.99, y: 0, z: -25.82}
       eulerAngles: {x: 0.000006825487, y: 2.1252706, z: -0.000006576895}
       center: {x: 3.060546, y: 0, z: 5.292428}
       size: {x: 23.9656, y: 20, z: 11.5848465}
@@ -1388,7 +1350,7 @@ MonoBehaviour:
       eulerAngles: {x: 0.000006825487, y: 2.1252706, z: -0.000006576895}
       center: {x: 1.1382451, y: -5.684342e-14, z: 5.292436}
       size: {x: 20.121017, y: 20, z: 11.5848465}
-    - position: {x: 34.9, y: 0, z: 34.3}
+    - position: {x: 35.12, y: 0, z: 34.6}
       eulerAngles: {x: 0.0000017018101, y: 326.40582, z: -0.000009324518}
       center: {x: 7.144786, y: -1.1368684e-13, z: 5.2924466}
       size: {x: 32.133858, y: 20, z: 11.5848465}
@@ -1412,23 +1374,13 @@ MonoBehaviour:
     pits: []
     trackObjects:
     - name: tire_stack
-      position: {x: 28.81, y: 0, z: 29.6}
-      eulerAngles: {x: -0, y: 0, z: 0}
-      scale: {x: 1, y: 1, z: 1}
-      collision: 1
-    - name: tire_stack
-      position: {x: 0.31, y: 0, z: -10.01}
+      position: {x: -28.07, y: 0, z: 30.76}
       eulerAngles: {x: -0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
       collision: 1
     - name: tire_wall
-      position: {x: -23.72, y: 0, z: -21.68}
-      eulerAngles: {x: -0, y: 281.73438, z: 0}
-      scale: {x: 1, y: 1, z: 1}
-      collision: 0
-    - name: tire_wall
-      position: {x: -24.54, y: 0, z: -21}
-      eulerAngles: {x: -0, y: 281.73438, z: 0}
+      position: {x: -47, y: 0, z: 2.64}
+      eulerAngles: {x: -0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
       collision: 0
     - name: tire_wall
@@ -1436,16 +1388,6 @@ MonoBehaviour:
       eulerAngles: {x: -0, y: 281.73438, z: 0}
       scale: {x: 1, y: 1, z: 1}
       collision: 0
-    - name: tire_wall
-      position: {x: -22.76, y: 0, z: -17.04}
-      eulerAngles: {x: -0, y: 281.73438, z: 0}
-      scale: {x: 1, y: 1, z: 1}
-      collision: 0
-    - name: tire_stack
-      position: {x: 31.11, y: 0, z: -25.77}
-      eulerAngles: {x: -0, y: 0, z: 0}
-      scale: {x: 1, y: 1, z: 1}
-      collision: 1
     - name: tire_wall
       position: {x: -21.76, y: 0, z: -12.31}
       eulerAngles: {x: -0, y: 281.73438, z: 0}
@@ -1462,6 +1404,31 @@ MonoBehaviour:
       scale: {x: 1.0000005, y: 1, z: 1.0000005}
       collision: 0
     - name: tire_wall
+      position: {x: -19.57, y: 0, z: -2.47}
+      eulerAngles: {x: -0, y: 289.84747, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      collision: 0
+    - name: tire_wall
+      position: {x: -24.54, y: 0, z: -21}
+      eulerAngles: {x: -0, y: 281.73438, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      collision: 0
+    - name: tire_wall
+      position: {x: -22.76, y: 0, z: -17.04}
+      eulerAngles: {x: -0, y: 281.73438, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      collision: 0
+    - name: tire_stack
+      position: {x: 32.54, y: 0, z: -25.64}
+      eulerAngles: {x: -0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      collision: 1
+    - name: tire_stack
+      position: {x: -1.13, y: 0, z: -10.24}
+      eulerAngles: {x: -0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      collision: 1
+    - name: tire_wall
       position: {x: -20.5, y: 0, z: -7.65}
       eulerAngles: {x: -0, y: 289.84747, z: 0}
       scale: {x: 1.0000005, y: 1, z: 1.0000005}
@@ -1472,22 +1439,22 @@ MonoBehaviour:
       scale: {x: 1.0000005, y: 1, z: 1.0000005}
       collision: 0
     - name: tire_wall
-      position: {x: -19.57, y: 0, z: -2.47}
-      eulerAngles: {x: -0, y: 289.84747, z: 0}
-      scale: {x: 1, y: 1, z: 1}
-      collision: 0
-    - name: tire_wall
       position: {x: -42.57, y: 0, z: -4.28}
       eulerAngles: {x: -0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
       collision: 0
-    - name: tire_wall
-      position: {x: -40.17, y: 0, z: -3.36}
+    - name: tire_stack
+      position: {x: 29.55, y: 0, z: 29.88}
       eulerAngles: {x: -0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      collision: 1
+    - name: tire_wall
+      position: {x: -23.72, y: 0, z: -21.68}
+      eulerAngles: {x: -0, y: 281.73438, z: 0}
       scale: {x: 1, y: 1, z: 1}
       collision: 0
     - name: tire_wall
-      position: {x: -47, y: 0, z: 2.64}
+      position: {x: -40.17, y: 0, z: -3.36}
       eulerAngles: {x: -0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
       collision: 0
@@ -1975,7 +1942,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 337a74754f9c36a4a91365d7186ebdba, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 337a74754f9c36a4a91365d7186ebdba, type: 3}
       propertyPath: m_Name
@@ -2012,9 +1979,9 @@ Transform:
   - {fileID: 1647679911}
   - {fileID: 9025113}
   - {fileID: 1823114938}
-  - {fileID: 930506717}
-  - {fileID: 1443982917}
   - {fileID: 1388675039}
+  - {fileID: 1443982917}
+  - {fileID: 930506717}
   - {fileID: 1388189153}
   - {fileID: 925386748}
   - {fileID: 631989970}
@@ -2026,8 +1993,9 @@ Transform:
   - {fileID: 1657471803}
   - {fileID: 1194247154}
   - {fileID: 1570358223}
+  - {fileID: 1767343071}
   m_Father: {fileID: 577867357}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &988186211 stripped
 GameObject:
@@ -2138,7 +2106,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.11
+      value: 32.54
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2146,7 +2114,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25.77
+      value: -25.64
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2280,7 +2248,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 577867357}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1194247153 stripped
 GameObject:
@@ -2381,7 +2349,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 337a74754f9c36a4a91365d7186ebdba, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 337a74754f9c36a4a91365d7186ebdba, type: 3}
       propertyPath: m_Name
@@ -2716,7 +2684,7 @@ Transform:
   - {fileID: 1852065035}
   - {fileID: 1986262217}
   m_Father: {fileID: 577867357}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1485642216
 Prefab:
@@ -2890,7 +2858,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.31
+      value: -1.13
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2898,7 +2866,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.01
+      value: -10.24
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3125,6 +3093,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 23.9656, y: 20, z: 11.0900135}
   m_Center: {x: 3.0605268, y: 0, z: 5.5398436}
+--- !u!1 &1767343070 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
+  m_PrefabInternal: {fileID: 354166331}
+--- !u!4 &1767343071 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400002, guid: d3eb858c04650b443a2d70e33817ed0f, type: 3}
+  m_PrefabInternal: {fileID: 354166331}
+--- !u!114 &1767343072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1767343070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5055e428d6d5b24ca2575fda1404376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackObjectName: tire_stack
+  collision: 1
 --- !u!1 &1823114937 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: 337a74754f9c36a4a91365d7186ebdba, type: 3}
@@ -3554,7 +3543,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 337a74754f9c36a4a91365d7186ebdba, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 337a74754f9c36a4a91365d7186ebdba, type: 3}
       propertyPath: m_Name

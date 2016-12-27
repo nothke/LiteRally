@@ -251,16 +251,17 @@ public class TrackObject
     {
         if (!File.Exists(FilePath))
         {
-            Debug.LogError("No track object named + " + name + " exists");
-            return false;
+            throw new Exception("No track object named + " + name + " exists");
+            //Debug.LogError("No track object named + " + name + " exists");
+            //return false;
         }
 
         return true;
     }
 
-    public void Spawn()
+    public GameObject Spawn()
     {
-        if (!Exists()) return;
+        if (!Exists()) return null;
 
         GameObject GO = OBJLoader.LoadOBJFile(FilePath);
 
@@ -288,11 +289,11 @@ public class TrackObject
             }
         }
 
-
-
         GO.transform.position = position;
         GO.transform.eulerAngles = eulerAngles;
         GO.transform.localScale = scale;
+
+        return GO;
     }
 
     public static void SpawnFromFile(string name, Vector3 position, Vector3 eulerAngles, Vector3 scale, CollisionType collision = CollisionType.None)

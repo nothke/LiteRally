@@ -174,13 +174,14 @@ public class TrackManager : MonoBehaviour
         if (!trackRenderer) Debug.LogError("No track renderer");
         trackRenderer.material.mainTexture = tex;
 
-        CleanUpTrack();
+        //CleanUpTrack();
 
         CreatePortalObjects(track.portals);
         CreateGridObjects(track.grids);
 
-        foreach (var TO in track.trackObjects)
-            TO.Spawn();
+        CreateTrackObjects();
+
+
 
         trackHasBeenLoadedFromFile = true;
     }
@@ -212,6 +213,20 @@ public class TrackManager : MonoBehaviour
         */
     }
 
+    GameObject GetOrCreate(string hierarchyPath, Transform atParent = null)
+    {
+        GameObject GO = GameObject.Find(hierarchyPath);
+
+        if (!GO)
+        {
+            GO = new GameObject(System.IO.Path.GetFileName(hierarchyPath));
+            Debug.Log(GO.name);
+            GO.transform.parent = atParent;
+        }
+
+        return GO;
+    }
+
     void DestroyGO(GameObject go)
     {
         if (Application.isPlaying)
@@ -220,11 +235,20 @@ public class TrackManager : MonoBehaviour
             DestroyImmediate(go);
     }
 
+    void DestroyChildren(GameObject go)
+    {
+        var children = new List<GameObject>();
+        foreach (Transform child in transform) children.Add(child.gameObject);
+        children.ForEach(child => DestroyGO(child));
+    }
+
     // Do I need to store them?
     GameObject CreatePortalObjects(Portal[] portals)
     {
-        GameObject rootGO = new GameObject("Portals");
-        rootGO.transform.parent = WorldRoot;
+        GameObject rootGO = GetOrCreate(portalsH, WorldRoot);
+        DestroyChildren(rootGO);
+        //GameObject rootGO = new GameObject("Portals");
+        //rootGO.transform.parent = WorldRoot;
 
         for (int i = 0; i < portals.Length; i++)
         {
@@ -262,10 +286,24 @@ public class TrackManager : MonoBehaviour
             gridPoints[i] = GO.transform;
         }
 
+        Debug.Assert(rootGO);
+
         return rootGO;
     }
 
     // TODO: Pit objects, ^ just copy this basically
+
+    void CreateTrackObjects()
+    {
+        GameObject rootGO = GetOrCreate(objectsH, WorldRoot);
+        DestroyChildren(rootGO);
+
+        foreach (var TO in track.trackObjects)
+        {
+            GameObject GO = TO.Spawn();
+            GO.transform.parent = rootGO.transform;
+        }
+    }
 
     #region Texture Picking and Stamping
 
