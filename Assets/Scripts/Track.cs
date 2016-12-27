@@ -4,16 +4,12 @@ using UnityEngine;
 using System.IO;
 using System;
 
-[System.Serializable]
+[Serializable]
 public class Track
 {
-    [NonSerialized] // Remove?
-    public Texture texture;
-    [NonSerialized] // Remove?
-    public Mesh mesh;
-
     // SERIALIZED:
-    public string name = "MyTrack";
+    public string trackName = "MyTrack";
+    public string layoutName = "MyLayout";
 
     public Vector3 scale;
 
@@ -27,20 +23,20 @@ public class Track
         if (!Directory.Exists(DirPath))
             Directory.CreateDirectory(DirPath);
 
-        string fileName = name + ".json";
+        string fileName = trackName + ".json";
 
         string serialized = JsonUtility.ToJson(this, true);
 
         File.WriteAllText(DirPath + fileName, serialized);
 
-        Debug.Log("Saved " + name + " track to file successfully");
+        Debug.Log("Saved " + trackName + " track to file successfully");
     }
 
     public string DirPath
     {
         get
         {
-            return "GameData/Tracks/" + name + "/";
+            return "GameData/Tracks/" + trackName + "/";
         }
     }
 
@@ -49,17 +45,37 @@ public class Track
         return "GameData/Tracks/" + trackName + "/";
     }
 
-    public static string GetFilePath(string trackName)
+    public static string GetLayoutPath(string trackName, string layoutName)
     {
-        return GetDirPath(trackName) + trackName + ".json";
+        return GetDirPath(trackName) + layoutName + ".json";
     }
 
-    internal static Track GetFromFile(string fileName)
+    // new
+    public static Track GetFromFile(string layoutName)
     {
-        string serialized = File.ReadAllText(GetFilePath(fileName));
+        string[] layoutPaths = GetLayoutPaths();
+
+        foreach (var layoutPath in layoutPaths)
+        {
+            Track t = Deserialize(layoutPath);
+
+            if (t.layoutName == layoutName)
+                return t;
+        }
+
+        Debug.LogError("This layout doesn't exist");
+        return null;
+    }
+
+    // OLD
+    /*
+    public static Track GetFromFile(string trackName, string layoutName)
+    {
+        string serialized = File.ReadAllText(GetLayoutPath(trackName, layoutName));
         return JsonUtility.FromJson<Track>(serialized);
-    }
+    }*/
 
+    // NEW - should be not be broken
     /// <summary>
     /// Gets texture from file at the same name as track and in the same folder
     /// </summary>
@@ -68,11 +84,11 @@ public class Track
     {
         string filePath = "";
 
-        if (File.Exists(DirPath + name + ".jpg"))
-            filePath = DirPath + name + ".jpg";
+        if (File.Exists(DirPath + trackName + ".jpg"))
+            filePath = DirPath + trackName + ".jpg";
 
-        if (File.Exists(DirPath + name + ".png"))
-            filePath = DirPath + name + ".png";
+        if (File.Exists(DirPath + trackName + ".png"))
+            filePath = DirPath + trackName + ".png";
 
         if (string.IsNullOrEmpty(filePath))
         {
@@ -90,18 +106,50 @@ public class Track
         return tex;
     }
 
+    // NEW
+    /// <summary>
+    /// Get a list of all layout paths
+    /// </summary>
+    /// <param name="log">Debug.Log all names?</param>
+    public static string[] GetLayoutPaths(bool log = false)
+    {
+        string dir = "GameData/Tracks/";
+
+        List<string> layouts = new List<string>();
+
+        if (log)
+            foreach (var layout in layouts)
+                Debug.Log(layout);
+
+        return Directory.GetFiles(dir, "*.json", SearchOption.AllDirectories);
+    }
+
+    // NEW - TODO should actually be layoutName
     /// <summary>
     /// Does track of this name exist in GameData?
     /// </summary>
     public static bool Exists(string trackName)
     {
-        if (!Directory.Exists(GetDirPath(trackName)))
-            return false;
+        string[] layoutPaths = GetLayoutPaths();
 
-        if (!File.Exists(GetFilePath(trackName)))
-            return false;
+        foreach (var layoutPath in layoutPaths)
+        {
+            Track t = Deserialize(layoutPath);
 
-        return true;
+            if (t.layoutName == trackName)
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Gets Track object from layoutPath
+    /// </summary>
+    public static Track Deserialize(string layoutPath)
+    {
+        string serialized = File.ReadAllText(layoutPath);
+        return JsonUtility.FromJson<Track>(serialized);
     }
 
     /// <summary>
@@ -113,9 +161,10 @@ public class Track
     {
         string logErrors = "";
 
+        // OLD
         // check if there is texture of the same name
-        if (!File.Exists(DirPath + name + ".jpg") &&
-            !File.Exists(DirPath + name + ".png"))
+        if (!File.Exists(DirPath + trackName + ".jpg") &&
+            !File.Exists(DirPath + trackName + ".png"))
         {
             logErrors += "\n - Texture doesn't exist";
         }
