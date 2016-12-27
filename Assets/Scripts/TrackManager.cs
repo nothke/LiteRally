@@ -22,6 +22,8 @@ public class TrackManager : MonoBehaviour
 
     bool trackHasBeenLoadedFromFile;
 
+    public SurfaceData surfaceData;
+
     Transform _worldRoot;
     public Transform WorldRoot
     {
@@ -314,5 +316,17 @@ public class TrackManager : MonoBehaviour
         // Apply main texture every frame
         tex.SetPixels32(colors);
         tex.Apply();
+    }
+
+    [ContextMenu("Save SurfaceData")]
+    void SaveSurface()
+    {
+        surfaceData.Save();
+    }
+
+    [ContextMenu("Load SurfaceData")]
+    void LoadSurface()
+    {
+        surfaceData = SurfaceData.Load();
     }
 }

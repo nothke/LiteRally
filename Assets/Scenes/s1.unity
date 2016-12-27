@@ -1443,6 +1443,28 @@ MonoBehaviour:
       eulerAngles: {x: -0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
       collision: 1
+  surfaceData:
+    tarmac:
+      gripGain: 1
+      resistance: 0
+    grass:
+      gripGain: 0.5
+      resistance: 0.1
+    dirt:
+      gripGain: 0.5
+      resistance: 0.3
+    sand:
+      gripGain: 0.4
+      resistance: 0.3
+    snow:
+      gripGain: 0.1
+      resistance: 0.2
+    ice:
+      gripGain: 0
+      resistance: 0
+    oil:
+      gripGain: 0
+      resistance: 0
   colors: []
 --- !u!1 &695271935
 GameObject:

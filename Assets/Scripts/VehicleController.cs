@@ -221,16 +221,18 @@ public class VehicleController : MonoBehaviour
     {
         Color c = GetColorFromTexture(hit);
 
+        SurfaceData S = TrackManager.e.surfaceData;
+
         if (c.g > c.r && c.g > c.b) // if green is dominant, it's grass
         {
-            return 0.5f;
+            return S.grass.gripGain;
         }
         else if (c.r > c.g) // else if red is higher, it's dirt
         {
-            return 0.5f;
+            return S.dirt.gripGain;
         }
         else // if grayscale, it's tarmac
-            return 1;
+            return S.tarmac.gripGain;
     }
 
     public Color GetColorFromTexture(RaycastHit hit)

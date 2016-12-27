@@ -262,3 +262,36 @@ public class TrackObject
         TO.Spawn();
     }
 }
+
+[Serializable]
+public class SurfaceData
+{
+    public Surface tarmac;
+    public Surface grass;
+    public Surface dirt;
+    public Surface sand;
+    public Surface snow;
+    public Surface ice;
+    public Surface oil;
+
+    public const string filePath = "GameData/surface.json";
+
+    public void Save()
+    {
+        string serialized = JsonUtility.ToJson(this, true);
+        File.WriteAllText(filePath, serialized);
+    }
+
+    public static SurfaceData Load()
+    {
+        string serialized = File.ReadAllText(filePath);
+        return JsonUtility.FromJson<SurfaceData>(serialized);
+    }
+}
+
+[Serializable]
+public class Surface
+{
+    public float gripGain;
+    public float resistance;
+}
