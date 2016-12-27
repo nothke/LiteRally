@@ -23,13 +23,14 @@ public class Track
         if (!Directory.Exists(DirPath))
             Directory.CreateDirectory(DirPath);
 
-        string fileName = trackName + ".json";
+        string fileName = layoutName + ".json";
+        string path = DirPath + fileName;
 
         string serialized = JsonUtility.ToJson(this, true);
 
-        File.WriteAllText(DirPath + fileName, serialized);
+        File.WriteAllText(path, serialized);
 
-        Debug.Log("Saved " + trackName + " track to file successfully");
+        Debug.Log("Saved " + layoutName + " layout to " + path + " successfully");
     }
 
     public string DirPath
