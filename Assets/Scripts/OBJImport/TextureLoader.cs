@@ -9,7 +9,8 @@ using UnityEngine;
 using System.Collections;
 using System.IO;
 
-public class TextureLoader : MonoBehaviour {
+public class TextureLoader : MonoBehaviour
+{
     public static Texture2D LoadTGA(string fileName)
     {
         using (var imageFile = File.OpenRead(fileName))
@@ -57,9 +58,7 @@ public class TextureLoader : MonoBehaviour {
 
             return (texture);
         }
-#pragma warning disable CS0168 // Variable is declared but never used
-        catch (System.Exception ex)
-#pragma warning restore CS0168 // Variable is declared but never used
+        catch
         {
             Debug.LogError("Error: Could not load DDS");
             return new Texture2D(8, 8);
@@ -69,7 +68,7 @@ public class TextureLoader : MonoBehaviour {
     public static void SetNormalMap(ref Texture2D tex)
     {
         Color[] pixels = tex.GetPixels();
-        for(int i=0; i < pixels.Length; i++)
+        for (int i = 0; i < pixels.Length; i++)
         {
             Color temp = pixels[i];
             temp.r = pixels[i].g;
@@ -78,7 +77,7 @@ public class TextureLoader : MonoBehaviour {
         }
         tex.SetPixels(pixels);
     }
-    public static Texture2D LoadTexture(string fn,bool normalMap = false)
+    public static Texture2D LoadTexture(string fn, bool normalMap = false)
     {
         if (!File.Exists(fn))
             return null;
@@ -97,10 +96,11 @@ public class TextureLoader : MonoBehaviour {
             if (normalMap)
                 SetNormalMap(ref returnTex);
             return returnTex;
-        }else if (ext == ".tga")
+        }
+        else if (ext == ".tga")
         {
             Texture2D returnTex = LoadTGA(fn);
-            if(normalMap)
+            if (normalMap)
                 SetNormalMap(ref returnTex);
             return returnTex;
         }
