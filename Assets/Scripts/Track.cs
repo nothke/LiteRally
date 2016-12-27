@@ -20,6 +20,7 @@ public class Track
     public Portal[] portals;
     public Grid[] grids;
     public Pit[] pits;
+    public TrackObject[] trackObjects;
 
     public void SerializeToFile()
     {
@@ -188,27 +189,52 @@ public class TrackObject
     public Vector3 eulerAngles;
     public Vector3 scale;
 
-    public bool isCollidable;
+    public enum CollisionType { None, Mesh, Box, Sphere, Capsule };
+    public CollisionType collision;
 
     // properties
 
     public string DirPath { get { return "GameData/Objects/" + name + "/"; } }
     public string FilePath { get { return DirPath + name + ".obj"; } }
 
-    public void Spawn()
+    public bool Exists()
     {
         if (!File.Exists(FilePath))
         {
             Debug.LogError("No track object named + " + name + " exists");
+            return false;
         }
+
+        return true;
+    }
+
+    public void Spawn()
+    {
+        if (!Exists()) return;
 
         GameObject GO = OBJLoader.LoadOBJFile(FilePath);
 
-        if (isCollidable)
+        if (collision != CollisionType.None)
         {
             foreach (Transform child in GO.transform)
             {
-                child.gameObject.AddComponent<MeshCollider>();
+                GameObject cGO = child.gameObject;
+
+                switch (collision)
+                {
+                    case CollisionType.Mesh:
+                        cGO.AddComponent<MeshCollider>();
+                        break;
+                    case CollisionType.Box:
+                        cGO.AddComponent<BoxCollider>();
+                        break;
+                    case CollisionType.Sphere:
+                        cGO.AddComponent<SphereCollider>();
+                        break;
+                    case CollisionType.Capsule:
+                        cGO.AddComponent<CapsuleCollider>();
+                        break;
+                }
             }
         }
 
@@ -219,17 +245,19 @@ public class TrackObject
         GO.transform.localScale = scale;
     }
 
-    public static void SpawnFromFile(string name, Vector3 position, Vector3 eulerAngles, Vector3 scale, bool addMeshCollider = false)
+    public static void SpawnFromFile(string name, Vector3 position, Vector3 eulerAngles, Vector3 scale, CollisionType collision = CollisionType.None)
     {
         TrackObject TO = new TrackObject();
 
         TO.name = name;
 
+        if (!TO.Exists()) return;
+
         TO.position = position;
         TO.eulerAngles = eulerAngles;
         TO.scale = scale;
 
-        TO.isCollidable = addMeshCollider;
+        TO.collision = collision;
 
         TO.Spawn();
     }

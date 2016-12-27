@@ -4,10 +4,25 @@ public class TrackObjectEntity : MonoBehaviour
 {
     public string trackObjectName;
 
-    public bool isCollidable = true;
+    public TrackObject.CollisionType collision;
 
     private void Start()
     {
-        TrackObject.SpawnFromFile(trackObjectName, transform.position, transform.eulerAngles, transform.localScale, isCollidable);
+        TrackObject.SpawnFromFile(trackObjectName, transform.position, transform.eulerAngles, transform.localScale, collision);
+    }
+
+    public TrackObject ToTrackObject()
+    {
+        TrackObject TO = new TrackObject();
+
+        TO.name = trackObjectName;
+
+        TO.position = transform.position;
+        TO.eulerAngles = transform.eulerAngles;
+        TO.scale = transform.localScale;
+
+        TO.collision = collision;
+
+        return TO;
     }
 }

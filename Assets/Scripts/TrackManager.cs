@@ -116,6 +116,18 @@ public class TrackManager : MonoBehaviour
         }*/
 
         // TODO: Trackside objects!
+
+        TrackObjectEntity[] TOs = FindObjectsOfType<TrackObjectEntity>();
+
+        if (TOs != null && TOs.Length > 0)
+        {
+            track.trackObjects = new TrackObject[TOs.Length];
+
+            for (int i = 0; i < TOs.Length; i++)
+            {
+                track.trackObjects[i] = TOs[i].ToTrackObject();
+            }
+        }
     }
 
     [ContextMenu("Save Track to File")]
@@ -163,6 +175,9 @@ public class TrackManager : MonoBehaviour
 
         CreatePortalObjects(track.portals);
         CreateGridObjects(track.grids);
+
+        foreach (var TO in track.trackObjects)
+            TO.Spawn();
 
         trackHasBeenLoadedFromFile = true;
     }
