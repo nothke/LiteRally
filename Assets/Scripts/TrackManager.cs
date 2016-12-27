@@ -82,7 +82,7 @@ public class TrackManager : MonoBehaviour
 
         // Grid
 
-        GameObject gridGO = GameObject.Find("World/StartGrid");
+        GameObject gridGO = GameObject.Find("World/Grid");
 
         if (gridGO)
         {

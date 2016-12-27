@@ -30,7 +30,7 @@ public class Track
 
         File.WriteAllText(path, serialized);
 
-        Debug.Log("Saved " + layoutName + " layout to " + path + " successfully");
+        Debug.Log("Successfully saved " + layoutName + " layout to " + path);
     }
 
     public string DirPath
