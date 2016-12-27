@@ -195,7 +195,7 @@ public class TrackManager : MonoBehaviour
             GameObject GO = new GameObject(i.ToString());
             GO.transform.position = portals[i].position;
             GO.transform.eulerAngles = portals[i].eulerAngles;
-            GO.transform.parent = trackGO.transform;
+            GO.transform.parent = rootGO.transform;
 
             BoxCollider col = GO.AddComponent<BoxCollider>();
             col.isTrigger = true;
@@ -218,7 +218,7 @@ public class TrackManager : MonoBehaviour
             GameObject GO = new GameObject(i.ToString());
             GO.transform.position = grids[i].position;
             GO.transform.eulerAngles = grids[i].eulerAngles;
-            GO.transform.parent = trackGO.transform;
+            GO.transform.parent = rootGO.transform;
 
             // not in build?
             GO.AddComponent<GridHelper>();
