@@ -26,8 +26,9 @@ public class RaceManager : MonoBehaviour
     public GameObject playerPrefab;
     public int numberOfPlayers;
 
-    private void Start()
+    public void InitRace()
     {
+        // TODO: move screenText and related functions to UIManager
         if (screenText)
             screenText.text = "";
 

@@ -36,15 +36,14 @@ public class TrackManager : MonoBehaviour
         }
     }
 
-    void Start()
+    public void InitThisTrack()
     {
-        if (!string.IsNullOrEmpty(loadFromFileName))
-        {
-            DeserializeTrack(loadFromFileName);
-            CreateTrack();
+        if (string.IsNullOrEmpty(loadFromFileName)) return;
 
-            InitTexture();
-        }
+        DeserializeTrack(loadFromFileName);
+        CreateTrack();
+
+        InitTexture();
     }
 
     [ContextMenu("Convert Scene to Track")]
