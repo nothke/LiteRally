@@ -1,0 +1,30 @@
+{
+    "tarmac": {
+        "gripGain": 1.0,
+        "resistance": 0.0
+    },
+    "grass": {
+        "gripGain": 0.5,
+        "resistance": 0.1
+    },
+    "dirt": {
+        "gripGain": 0.5,
+        "resistance": 0.3
+    },
+    "sand": {
+        "gripGain": 0.4,
+        "resistance": 0.3
+    },
+    "snow": {
+        "gripGain": 0.1,
+        "resistance": 0.2
+    },
+    "ice": {
+        "gripGain": 0.0,
+        "resistance": 0.0
+    },
+    "oil": {
+        "gripGain": 0.0,
+        "resistance": 0.0
+    }
+}
