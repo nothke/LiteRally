@@ -400,6 +400,7 @@ public class Menu : MonoBehaviour
     void DriveTrack()
     {
         GameManager.e.InitSession();
+        ShowMenu(false);
     }
 
     #endregion

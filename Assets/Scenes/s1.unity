@@ -1548,7 +1548,8 @@ MonoBehaviour:
   trackRenderer: {fileID: 430907087}
   trackMesh: {fileID: 0}
   tex: {fileID: 0}
-  loadFromFileName: 
+  loadTrack: 
+  loadLayout: 
   gridPoints: []
   track:
     trackName: TestTrack
