@@ -36,6 +36,48 @@ public class TrackManager : MonoBehaviour
         }
     }
 
+    Track[] _allLayouts;
+
+    public Track[] AllLayouts
+    {
+        get
+        {
+            if (_allLayouts == null)
+                _allLayouts = GetLayoutsFromGameData();
+
+            return _allLayouts;
+        }
+    }
+
+    public Track[] GetLayoutsFromGameData()
+    {
+        string[] paths = Track.GetLayoutPaths();
+
+        if (paths == null || paths.Length == 0)
+            throw new System.Exception("No tracks in GameData");
+
+        Track[] tracks = new Track[paths.Length];
+
+        for (int i = 0; i < paths.Length; i++)
+        {
+            tracks[i] = Track.Deserialize(paths[i]);
+        }
+
+        return tracks;
+    }
+
+    public string[] GetLayoutNames()
+    {
+        string[] layoutNames = new string[AllLayouts.Length];
+
+        for (int i = 0; i < layoutNames.Length; i++)
+        {
+            layoutNames[i] = AllLayouts[i].trackName + " - " + AllLayouts[i].layoutName;
+        }
+
+        return layoutNames;
+    }
+
     public void InitThisTrack()
     {
         if (string.IsNullOrEmpty(loadFromFileName)) return;
