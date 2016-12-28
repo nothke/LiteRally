@@ -28,6 +28,23 @@ public class TrackManager : MonoBehaviour
 
     public SurfaceData surfaceData;
 
+    public Object[] objects;
+    public GameObject[] sourceObjects;
+
+    void LoadObjects()
+    {
+        objects = Object.GetAll();
+
+        if (objects == null) throw new System.Exception("No objects found. Null");
+        if (objects.Length == 0) throw new System.Exception("No objects found. 0");
+
+        sourceObjects = new GameObject[objects.Length];
+
+        for (int i = 0; i < objects.Length; i++)
+            sourceObjects[i] = objects[i].Spawn();
+    }
+
+
     Transform _worldRoot;
     public Transform WorldRoot
     {
@@ -354,6 +371,8 @@ public class TrackManager : MonoBehaviour
 
     void CreateTrackObjects()
     {
+        LoadObjects();
+
         GameObject rootGO = GetOrCreate(objectsH, WorldRoot);
         DestroyChildren(rootGO);
 
@@ -365,8 +384,20 @@ public class TrackManager : MonoBehaviour
 
         foreach (var TO in track.trackObjects)
         {
-            GameObject GO = TO.Spawn();
+            GameObject sGO = null;
+
+            foreach (var so in sourceObjects)
+                if (so.name == TO.name)
+                    sGO = so;
+
+            if (sGO == null) throw new System.Exception("There is no such object loaded");
+
+            GameObject GO = Instantiate(sGO);
             GO.transform.parent = rootGO.transform;
+
+            GO.transform.position = TO.position;
+            GO.transform.eulerAngles = TO.rotation;
+            GO.transform.localScale = TO.scale;
 
             if (!Application.isPlaying)
             {
@@ -375,7 +406,6 @@ public class TrackManager : MonoBehaviour
 
                 TrackObjectEntity TOE = GO.AddComponent<TrackObjectEntity>();
                 TOE.trackObjectName = TO.name;
-                TOE.collision = TO.collision;
             }
         }
     }

@@ -8,7 +8,7 @@ public class OBJTest : MonoBehaviour
 
     void Start()
     {
-        TrackObject.SpawnFromFile(objectName, Vector3.right * 10, Vector3.zero, Vector3.one);
+        //TrackObject.SpawnFromFile(objectName, Vector3.right * 10, Vector3.zero, Vector3.one);
     }
 
 }

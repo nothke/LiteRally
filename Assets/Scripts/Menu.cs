@@ -212,7 +212,7 @@ public class Menu : MonoBehaviour
     }
 
     Transform prevSelected;
-    string prevText;
+    //string prevText;
 
     Text selectedText;
 
@@ -234,7 +234,7 @@ public class Menu : MonoBehaviour
         }
 
         selectedText = texts[selectedItem];
-        prevText = selectedText.text;
+        //prevText = selectedText.text;
         selectedText.text = Wedge(selectedText.text);
         //selectedText.text = "< " + selectedText.text + " >";
 
@@ -244,6 +244,8 @@ public class Menu : MonoBehaviour
             prevSelected.localScale = Vector3.one;
 
         prevSelected = selectedT;
+
+        prevSelectedOption = selectedItem;
 
         Refresh();
     }

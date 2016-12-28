@@ -258,33 +258,13 @@ public class Pit
 public class TrackObject
 {
     // Serialized variables:
-
     public string name;
 
     public Vector3 position;
-    public Vector3 eulerAngles;
+    public Vector3 rotation;
     public Vector3 scale;
 
-    public enum CollisionType { None, Mesh, Box, Sphere, Capsule };
-    public CollisionType collision;
-
-    // properties
-
-    public string DirPath { get { return "GameData/Objects/" + name + "/"; } }
-    public string FilePath { get { return DirPath + name + ".obj"; } }
-
-    public bool Exists()
-    {
-        if (!File.Exists(FilePath))
-        {
-            throw new Exception("No track object named + " + name + " exists");
-            //Debug.LogError("No track object named + " + name + " exists");
-            //return false;
-        }
-
-        return true;
-    }
-
+    /*
     public GameObject Spawn()
     {
         if (!Exists()) return null;
@@ -316,7 +296,7 @@ public class TrackObject
         }
 
         GO.transform.position = position;
-        GO.transform.eulerAngles = eulerAngles;
+        GO.transform.eulerAngles = rotation;
         GO.transform.localScale = scale;
 
         return GO;
@@ -324,6 +304,8 @@ public class TrackObject
 
     public static void SpawnFromFile(string name, Vector3 position, Vector3 eulerAngles, Vector3 scale, CollisionType collision = CollisionType.None)
     {
+
+
         TrackObject TO = new TrackObject();
 
         TO.name = name;
@@ -331,12 +313,119 @@ public class TrackObject
         if (!TO.Exists()) return;
 
         TO.position = position;
-        TO.eulerAngles = eulerAngles;
+        TO.rotation = eulerAngles;
         TO.scale = scale;
 
         TO.collision = collision;
 
         TO.Spawn();
+    }*/
+}
+
+[Serializable]
+public class Object
+{
+    // Name should be the same as folder/model
+    public string name;
+
+    public enum CollisionType { None, Mesh, Box } //, Sphere, Capsule };
+    public CollisionType collision;
+
+    // Properties
+    public string DirPath { get { return "GameData/Objects/" + name + "/"; } }
+    public string FilePath { get { return DirPath + name + ".obj"; } }
+
+    public bool Exists()
+    {
+        if (!File.Exists(FilePath))
+            throw new Exception("No track object named + " + name + " exists");
+
+        return true;
+    }
+
+    public GameObject Spawn()
+    {
+        if (!Exists()) return null;
+
+        // Load from .OBJ
+        GameObject GO = OBJLoader.LoadOBJFile(FilePath);
+
+        // Add collision
+        if (collision != CollisionType.None)
+        {
+            foreach (Transform child in GO.transform)
+            {
+                GameObject cGO = child.gameObject;
+
+                switch (collision)
+                {
+                    case CollisionType.Mesh:
+                        cGO.AddComponent<MeshCollider>();
+                        break;
+                    case CollisionType.Box:
+                        cGO.AddComponent<BoxCollider>();
+                        break;
+                }
+            }
+        }
+
+        GO.name = name;
+
+        return GO;
+    }
+
+    GameObject SpawnAt(Vector3 position, Vector3 rotation, Vector3 scale)
+    {
+        GameObject GO = Spawn();
+
+        if (!GO) return null;
+
+        GO.transform.position = position;
+        GO.transform.eulerAngles = rotation;
+        GO.transform.localScale = scale;
+
+        return GO;
+    }
+
+    /// <summary>
+    /// Get a list of all objects in GameData/Objects folder
+    /// </summary>
+    /// <param name="log">Debug.Log all names?</param>
+    public static string[] GetPaths(bool log = false)
+    {
+        string dir = "GameData/Objects/";
+
+        List<string> objectPaths = new List<string>();
+
+        if (log)
+            foreach (var layout in objectPaths)
+                Debug.Log(layout);
+
+        return Directory.GetFiles(dir, "*.json", SearchOption.AllDirectories);
+    }
+
+    public static Object[] GetAll()
+    {
+        string[] paths = GetPaths();
+
+        if (paths == null || paths.Length == 0)
+            return null;
+
+        Object[] objects = new Object[paths.Length];
+
+        for (int i = 0; i < paths.Length; i++)
+            objects[i] = Deserialize(paths[i]);
+
+        return objects;
+    }
+
+    public static Object Deserialize(string path)
+    {
+        if (!File.Exists(path))
+            throw new Exception("Object with this path doesn't exist");
+
+        string serialized = File.ReadAllText(path);
+        return JsonUtility.FromJson<Object>(serialized);
     }
 }
 
