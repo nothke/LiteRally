@@ -15,6 +15,7 @@ public class TrackManager : MonoBehaviour
     public Texture2D tex;
 
     [Header("Load from File")]
+    public bool loadFromFile;
     public string loadTrack;
     public string loadLayout;
 
@@ -82,7 +83,7 @@ public class TrackManager : MonoBehaviour
 
     public void InitThisTrack()
     {
-        if (!string.IsNullOrEmpty(loadLayout))
+        if (loadFromFile && !string.IsNullOrEmpty(loadLayout))
             DeserializeTrack(loadTrack, loadLayout);
 
         CreateTrack();
@@ -225,7 +226,10 @@ public class TrackManager : MonoBehaviour
         tex = track.GetTextureFromFile();
 
         if (!trackRenderer) Debug.LogError("No track renderer");
-        trackRenderer.sharedMaterial.mainTexture = tex;
+
+        if (Application.isPlaying)
+            trackRenderer.material.mainTexture = tex;
+        else trackRenderer.sharedMaterial.mainTexture = tex;
 
         CreatePortalObjects(track.portals);
         CreateGridObjects(track.grids);
@@ -347,7 +351,11 @@ public class TrackManager : MonoBehaviour
         GameObject rootGO = GetOrCreate(objectsH, WorldRoot);
         DestroyChildren(rootGO);
 
-        if (track.trackObjects == null) return;
+        if (track.trackObjects == null)
+        {
+            Debug.LogWarning("Track has no objects");
+            return;
+        }
 
         foreach (var TO in track.trackObjects)
         {

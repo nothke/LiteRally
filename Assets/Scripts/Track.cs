@@ -215,13 +215,13 @@ public class Track
         if (string.IsNullOrEmpty(logErrors))
         {
             if (debug)
-                Debug.Log("Track is valid, no errors found");
+                Debug.Log("Track " + trackName + " - " + layoutName + " is valid, no errors found");
 
             return true;
         }
 
         if (debug)
-            Debug.Log("Track is invalid, there are some problems:" + logErrors);
+            Debug.Log("Track " + trackName + " - " + layoutName + " is invalid, there are some problems:" + logErrors);
 
         return false;
     }
