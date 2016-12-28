@@ -164,6 +164,8 @@ public class TrackManager : MonoBehaviour
 
         TrackObjectEntity[] TOs = FindObjectsOfType<TrackObjectEntity>();
 
+        Debug.Log("TOs size: " + TOs.Length);
+
         if (TOs != null && TOs.Length > 0)
         {
             track.trackObjects = new TrackObject[TOs.Length];
@@ -351,6 +353,16 @@ public class TrackManager : MonoBehaviour
         {
             GameObject GO = TO.Spawn();
             GO.transform.parent = rootGO.transform;
+
+            if (!Application.isPlaying)
+            {
+                // Doesn't work with GetComponent() :(
+                // GO.hideFlags = HideFlags.DontSave;
+
+                TrackObjectEntity TOE = GO.AddComponent<TrackObjectEntity>();
+                TOE.trackObjectName = TO.name;
+                TOE.collision = TO.collision;
+            }
         }
     }
 
