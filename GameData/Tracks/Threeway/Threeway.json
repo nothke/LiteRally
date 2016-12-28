@@ -2,9 +2,9 @@
     "trackName": "Threeway",
     "layoutName": "M",
     "scale": {
-        "x": 5.0,
-        "y": 5.0,
-        "z": 5.0
+        "x": 10.0,
+        "y": 10.0,
+        "z": 10.0
     },
     "cameraPosition": {
         "x": 0.0,
