@@ -13,6 +13,9 @@ public class Track
 
     public Vector3 scale;
 
+    public Vector3 cameraPosition;
+    public Vector3 cameraEulerAngles;
+
     public Portal[] portals;
     public Grid[] grids;
     public Pit[] pits;

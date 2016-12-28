@@ -100,9 +100,14 @@ public class TrackManager : MonoBehaviour
 
         track.scale = trackGO.transform.localScale;
 
+        // Camera
+        GameObject skyCamera = GameObject.Find("SkyCamera");
+        track.cameraPosition = skyCamera.transform.position;
+        track.cameraEulerAngles = skyCamera.transform.eulerAngles;
+
         // Portals
 
-        GameObject portalsGO = GameObject.Find("World/Portals");
+        GameObject portalsGO = GameObject.Find(portalsH);
 
         if (portalsGO)
         {
@@ -127,7 +132,7 @@ public class TrackManager : MonoBehaviour
 
         // Grid
 
-        GameObject gridGO = GameObject.Find("World/Grid");
+        GameObject gridGO = GameObject.Find(gridH);
 
         if (gridGO)
         {
@@ -243,6 +248,7 @@ public class TrackManager : MonoBehaviour
     public const string gridH = "World/Grid";
     public const string objectsH = "World/Objects";
     public const string pitsH = "World/Pits";
+    public const string cameraH = "SkyCamera";
 
     /// <summary>
     /// Destroys portals, grid, pits and objects

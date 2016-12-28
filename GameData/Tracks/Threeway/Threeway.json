@@ -6,6 +6,16 @@
         "y": 5.0,
         "z": 5.0
     },
+    "cameraPosition": {
+        "x": 0.0,
+        "y": 72.0,
+        "z": -39.0
+    },
+    "cameraEulerAngles": {
+        "x": 68.5,
+        "y": 0.0,
+        "z": 0.0
+    },
     "portals": [
         {
             "position": {
