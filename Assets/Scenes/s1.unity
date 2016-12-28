@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 212740128}
   - component: {fileID: 212740127}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: SkyCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1226,6 +1226,8 @@ MonoBehaviour:
     trackName: MyTrack
     layoutName: MyLayout
     scale: {x: 1, y: 1, z: 1}
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraEulerAngles: {x: 0, y: 0, z: 0}
     portals:
     - position: {x: 1, y: 1, z: 1}
       eulerAngles: {x: 123, y: 23, z: 0}
@@ -1262,6 +1264,7 @@ MonoBehaviour:
   trackRenderer: {fileID: 430907087}
   trackMesh: {fileID: 0}
   tex: {fileID: 1090897713}
+  loadFromFile: 0
   loadTrack: Intestinagos
   loadLayout: GP
   gridPoints:
@@ -1273,6 +1276,8 @@ MonoBehaviour:
     trackName: Intestinagos
     layoutName: GP
     scale: {x: 10, y: 10, z: 10}
+    cameraPosition: {x: 0, y: 0, z: 0}
+    cameraEulerAngles: {x: 0, y: 0, z: 0}
     portals:
     - position: {x: -27.99, y: 0, z: 18.84}
       eulerAngles: {x: 0, y: 219.69633, z: 0}
@@ -1315,309 +1320,248 @@ MonoBehaviour:
     trackObjects:
     - name: tire_wall
       position: {x: 14.34, y: 0, z: 9.22}
-      eulerAngles: {x: 0, y: 329.89746, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000002, y: 1, z: 1.0000002}
-      collision: 0
     - name: tire_wall
       position: {x: 10.26, y: 0, z: 6.6}
-      eulerAngles: {x: 0, y: 325.8579, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: 6.45, y: 0, z: 3.68}
-      eulerAngles: {x: 0, y: 319.0721, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: 2.93, y: 0, z: 0.24}
-      eulerAngles: {x: 0, y: 312.8666, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -0.32, y: 0, z: -3.36}
-      eulerAngles: {x: 0, y: 312.8666, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -3.13, y: 0, z: -31}
-      eulerAngles: {x: -0, y: 11.670812, z: -0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: 43.34, y: 0, z: 9.38}
-      eulerAngles: {x: -0, y: 1.6423435, z: -0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -10.84, y: 0, z: 22.03}
-      eulerAngles: {x: 0.0000012793766, y: 324.55966, z: 0.0000013580877}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000001, y: 1, z: 1.0000001}
-      collision: 0
     - name: tire_wall
       position: {x: -30.24, y: 0, z: -2.41}
-      eulerAngles: {x: 0, y: 276.4698, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -29.05, y: 0, z: -8.76}
-      eulerAngles: {x: 0, y: 259.84625, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000002, y: 1, z: 1.0000002}
-      collision: 0
     - name: tire_wall
       position: {x: -27.29, y: 0, z: 32.7}
-      eulerAngles: {x: -0, y: 130.51752, z: -0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000005, y: 1, z: 1.0000005}
-      collision: 0
     - name: tire_wall
       position: {x: -24.13, y: 0, z: 36.39}
-      eulerAngles: {x: -0, y: 130.51752, z: -0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000005, y: 1, z: 1.0000005}
-      collision: 0
     - name: tire_wall
       position: {x: -29.41, y: 0, z: 2.27}
-      eulerAngles: {x: 0, y: 285.01105, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 0.99999994, y: 1, z: 0.99999994}
-      collision: 0
     - name: tire_wall
       position: {x: -29.33, y: 0, z: -4.08}
-      eulerAngles: {x: -0.00000014548816, y: 273.30276, z: -0.0000000099551745}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 0.9999999, y: 1, z: 0.9999999}
-      collision: 0
     - name: tire_wall
       position: {x: -28.89, y: 0, z: 0.54}
-      eulerAngles: {x: -0.00000014219985, y: 282.19653, z: -0.00000003232836}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000002, y: 1, z: 1.0000002}
-      collision: 0
     - name: tire_wall
       position: {x: -39.91, y: 0, z: 17.61}
-      eulerAngles: {x: -0, y: 127.71428, z: -0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000002, y: 1, z: 1.0000002}
-      collision: 0
     - name: tire_stack
       position: {x: -46.22, y: 0, z: 37.8}
-      eulerAngles: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -17.14, y: 0, z: -26.84}
-      eulerAngles: {x: 0, y: 204.49808, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 0.99999994, y: 1, z: 0.99999994}
-      collision: 0
     - name: tire_wall
       position: {x: -21.1, y: 0, z: 12.02}
-      eulerAngles: {x: 0.00000083269, y: 313.06372, z: 0.00000066450957}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_stack
       position: {x: 27.76, y: 0, z: 30.11}
-      eulerAngles: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_stack
       position: {x: -39.1, y: 0, z: 45.41}
-      eulerAngles: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -19.45, y: 0, z: -24.51}
-      eulerAngles: {x: -0.0000012505493, y: 212.33359, z: 0.0000014670042}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000004, y: 1, z: 1.0000004}
-      collision: 0
     - name: tire_wall
       position: {x: -5.48, y: 0, z: -29.64}
-      eulerAngles: {x: -0.0000011654064, y: 193.08519, z: 0.0000025205334}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.000001, y: 1, z: 1.000001}
-      collision: 0
     - name: tire_wall
       position: {x: 47.11, y: 0, z: 15.04}
-      eulerAngles: {x: -0, y: 1.6423435, z: -0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000005, y: 1, z: 1.0000005}
-      collision: 0
     - name: tire_wall
       position: {x: -36.68, y: 0, z: 21.4}
-      eulerAngles: {x: -0, y: 130.51752, z: -0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000002, y: 1, z: 1.0000002}
-      collision: 0
     - name: tire_wall
       position: {x: -26.12, y: 0, z: -17.54}
-      eulerAngles: {x: 0, y: 243.56834, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000005, y: 1, z: 1.0000005}
-      collision: 0
     - name: tire_wall
       position: {x: -28.01, y: 0, z: -13.34}
-      eulerAngles: {x: 0, y: 254.5261, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000004, y: 1, z: 1.0000004}
-      collision: 0
     - name: tire_wall
       position: {x: -30.38, y: 0, z: 28.94}
-      eulerAngles: {x: -0, y: 130.51752, z: -0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000005, y: 1, z: 1.0000005}
-      collision: 0
     - name: tire_wall
       position: {x: -23.087, y: 0, z: -21.591}
-      eulerAngles: {x: -0.000001587817, y: 227.34358, z: 0.0000010930736}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 0.9999995, y: 1, z: 0.9999995}
-      collision: 0
     - name: tire_stack
       position: {x: 27.21, y: 0, z: -9.52}
-      eulerAngles: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -29.42, y: 0, z: -11.89}
-      eulerAngles: {x: 0, y: 255.49367, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -21.26, y: 0, z: -24.44}
-      eulerAngles: {x: 0.0000007302072, y: 216.57608, z: -0.0000012378134}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -24.38, y: 0, z: 8.52}
-      eulerAngles: {x: 0.0000008535361, y: 311.2292, z: 0.0000006375119}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000005, y: 1, z: 1.0000005}
-      collision: 0
     - name: tire_wall
       position: {x: -12.64, y: 0, z: -28.63}
-      eulerAngles: {x: -0, y: 17.41371, z: -0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: 38.28, y: 0, z: 13.74}
-      eulerAngles: {x: 0, y: 348.98752, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -17.89, y: 0, z: 15.42}
-      eulerAngles: {x: 0.00000083269, y: 313.06372, z: 0.00000066450957}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -17.57, y: 0, z: 17.1}
-      eulerAngles: {x: 0.00000019069957, y: 313.06137, z: 0.00000017161778}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -27.74, y: 0, z: -16.43}
-      eulerAngles: {x: -0.0000045912116, y: 243.93878, z: 0.000000506694}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000012, y: 1, z: 1.0000012}
-      collision: 0
     - name: tire_wall
       position: {x: -10.16, y: 0, z: -28.49}
-      eulerAngles: {x: -0.0000014113356, y: 198.81758, z: 0.0000023915259}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.000001, y: 1, z: 1.000001}
-      collision: 0
     - name: tire_wall
       position: {x: -14.54, y: 0, z: 18.93}
-      eulerAngles: {x: 0.0000008040592, y: 315.46976, z: 0.00000069888074}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: 37.93, y: 0, z: 12.8}
-      eulerAngles: {x: 0, y: 348.98752, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_stack
       position: {x: -26.43, y: 0, z: -18.95}
-      eulerAngles: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -33.57, y: 0, z: 25.11}
-      eulerAngles: {x: -0, y: 130.51752, z: -0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000005, y: 1, z: 1.0000005}
-      collision: 0
     - name: tire_wall
       position: {x: -27.3, y: 0, z: 6.48}
-      eulerAngles: {x: -0.00000030908606, y: 308.81885, z: -0.00000026421404}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000001, y: 1, z: 1.0000001}
-      collision: 0
     - name: tire_wall
       position: {x: 29.02, y: 0, z: 12.35}
-      eulerAngles: {x: 0, y: 359.5211, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -14.13, y: 0, z: 20.57}
-      eulerAngles: {x: 0.00000018266289, y: 315.67896, z: 0.00000018014794}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: 46.67, y: 0, z: 14.11}
-      eulerAngles: {x: -0, y: 1.6423435, z: -0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: 28.51, y: 0, z: 11.56}
-      eulerAngles: {x: 0, y: 359.5211, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -24.72, y: 0, z: -21.12}
-      eulerAngles: {x: 0, y: 228.87811, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000008, y: 1, z: 1.0000008}
-      collision: 0
     - name: tire_wall
       position: {x: -8.01, y: 0, z: -29.96}
-      eulerAngles: {x: -0, y: 14.77033, z: -0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_stack
       position: {x: -42.8, y: 0, z: 41.96}
-      eulerAngles: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: 42.83, y: 0, z: 10.21}
-      eulerAngles: {x: -0, y: 1.6423435, z: -0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -15.2, y: 0, z: -26.67}
-      eulerAngles: {x: -0.000001082495, y: 206.05077, z: 0.0000015950479}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000002, y: 1, z: 1.0000002}
-      collision: 0
     - name: tire_wall
       position: {x: -30.24, y: 0, z: -7.14}
-      eulerAngles: {x: 0, y: 267.45184, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: 33.63, y: 0, z: 12.88}
-      eulerAngles: {x: 0, y: 348.98752, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: 33.2, y: 0, z: 11.87}
-      eulerAngles: {x: 0, y: 348.98752, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -10.22, y: 0, z: 23.52}
-      eulerAngles: {x: 0.0000009451235, y: 325.7986, z: 0.0000011129812}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000002, y: 1, z: 1.0000002}
-      collision: 0
     - name: tire_wall
       position: {x: -27.36, y: 0, z: 4.84}
-      eulerAngles: {x: 0, y: 301.1455, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
     - name: tire_wall
       position: {x: -24.16, y: 0, z: 10.04}
-      eulerAngles: {x: 0, y: 312.23035, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000001, y: 1, z: 1.0000001}
-      collision: 0
     - name: tire_wall
       position: {x: -20.3, y: 0, z: 39.51}
-      eulerAngles: {x: -0, y: 150.34789, z: -0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1.0000007, y: 1, z: 1.0000007}
-      collision: 0
     - name: tire_wall
       position: {x: -20.85, y: 0, z: 13.52}
-      eulerAngles: {x: 0, y: 312.23035, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
-      collision: 0
   surfaceData:
     tarmac:
       gripGain: 1
@@ -1640,6 +1584,7 @@ MonoBehaviour:
     oil:
       gripGain: 0
       resistance: 0
+  objects: []
   colors: []
 --- !u!114 &675655008
 MonoBehaviour:
