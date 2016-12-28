@@ -215,6 +215,7 @@ public class TrackManager : MonoBehaviour
         track.IsValid(debug: true);
     }
 
+    [ContextMenu("Create from Track")]
     public void CreateTrack()
     {
         if (!track.IsValid()) return;
@@ -222,15 +223,13 @@ public class TrackManager : MonoBehaviour
         tex = track.GetTextureFromFile();
 
         if (!trackRenderer) Debug.LogError("No track renderer");
-        trackRenderer.material.mainTexture = tex;
-
-        //CleanUpTrack();
+        trackRenderer.sharedMaterial.mainTexture = tex;
 
         CreatePortalObjects(track.portals);
         CreateGridObjects(track.grids);
         CreateTrackObjects();
 
-        trackHasBeenLoadedFromFile = true;
+        //trackHasBeenLoadedFromFile = true;
     }
 
     // Addresses in hierarchy
