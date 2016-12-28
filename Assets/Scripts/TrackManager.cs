@@ -37,7 +37,6 @@ public class TrackManager : MonoBehaviour
     }
 
     Track[] _allLayouts;
-
     public Track[] AllLayouts
     {
         get
@@ -80,9 +79,11 @@ public class TrackManager : MonoBehaviour
 
     public void InitThisTrack()
     {
-        if (string.IsNullOrEmpty(loadFromFileName)) return;
+        if (!string.IsNullOrEmpty(loadFromFileName))
+        {
+            DeserializeTrack(loadFromFileName);
+        }
 
-        DeserializeTrack(loadFromFileName);
         CreateTrack();
 
         InitTexture();
@@ -220,10 +221,7 @@ public class TrackManager : MonoBehaviour
 
         CreatePortalObjects(track.portals);
         CreateGridObjects(track.grids);
-
         CreateTrackObjects();
-
-
 
         trackHasBeenLoadedFromFile = true;
     }
@@ -280,7 +278,10 @@ public class TrackManager : MonoBehaviour
     void DestroyChildren(GameObject go)
     {
         var children = new List<GameObject>();
-        foreach (Transform child in transform) children.Add(child.gameObject);
+
+        foreach (Transform child in go.transform)
+            children.Add(child.gameObject);
+
         children.ForEach(child => DestroyGO(child));
     }
 
@@ -289,8 +290,6 @@ public class TrackManager : MonoBehaviour
     {
         GameObject rootGO = GetOrCreate(portalsH, WorldRoot);
         DestroyChildren(rootGO);
-        //GameObject rootGO = new GameObject("Portals");
-        //rootGO.transform.parent = WorldRoot;
 
         for (int i = 0; i < portals.Length; i++)
         {
@@ -310,8 +309,8 @@ public class TrackManager : MonoBehaviour
 
     GameObject CreateGridObjects(Grid[] grids)
     {
-        GameObject rootGO = new GameObject("Grids");
-        rootGO.transform.parent = WorldRoot;
+        GameObject rootGO = GetOrCreate(gridH, WorldRoot);
+        DestroyChildren(rootGO);
 
         gridPoints = new Transform[grids.Length];
 
@@ -429,6 +428,8 @@ public class TrackManager : MonoBehaviour
 
     private void Update()
     {
+        if (!tex) return;
+
         // Apply main texture every frame
         tex.SetPixels32(colors);
         tex.Apply();

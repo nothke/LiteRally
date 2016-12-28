@@ -543,7 +543,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 2978c4cb3b25ef844a4952dd65afe2cb, type: 3}
+    m_Font: {fileID: 12800000, guid: 48227554de90ea247a8f421f4e71b7c3, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -632,7 +632,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 2978c4cb3b25ef844a4952dd65afe2cb, type: 3}
+    m_Font: {fileID: 12800000, guid: 48227554de90ea247a8f421f4e71b7c3, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -1548,7 +1548,7 @@ MonoBehaviour:
   trackRenderer: {fileID: 430907087}
   trackMesh: {fileID: 0}
   tex: {fileID: 0}
-  loadFromFileName: TestTrack
+  loadFromFileName: 
   gridPoints: []
   track:
     trackName: TestTrack
@@ -3133,7 +3133,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 2978c4cb3b25ef844a4952dd65afe2cb, type: 3}
+    m_Font: {fileID: 12800000, guid: 48227554de90ea247a8f421f4e71b7c3, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -3610,7 +3610,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 2978c4cb3b25ef844a4952dd65afe2cb, type: 3}
+    m_Font: {fileID: 12800000, guid: 48227554de90ea247a8f421f4e71b7c3, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -3989,7 +3989,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 2978c4cb3b25ef844a4952dd65afe2cb, type: 3}
+    m_Font: {fileID: 12800000, guid: 48227554de90ea247a8f421f4e71b7c3, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0

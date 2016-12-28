@@ -15,6 +15,7 @@ public class Menu : MonoBehaviour
     public string[] currentOptions;
 
     Tab currentTab;
+    Option currentOption { get { return currentTab.options[selectedItem]; } }
 
     public class Tab
     {
@@ -33,11 +34,16 @@ public class Menu : MonoBehaviour
 
         public int currentOption;
 
-        public delegate void Confirm(); // a delegate for confirming
-        public delegate void Selected(int i); // a delegate for selecting
+        public delegate void ConfirmHandler(); // a delegate for confirming
+        public ConfirmHandler Confirm;
+        public delegate void SelectHandler(int i); // a delegate for selecting
+        public SelectHandler Select;
 
         public override string ToString()
         {
+            if (Length == 0)
+                return preface;
+
             return preface + subOptions[currentOption];
         }
 
@@ -91,6 +97,9 @@ public class Menu : MonoBehaviour
 
             if (currentOption < 0)
                 currentOption = Length - 1;
+
+            if (Select != null)
+                Select(currentOption);
         }
     }
 
@@ -115,6 +124,7 @@ public class Menu : MonoBehaviour
 
         Option selectPlayer = new Option();
         selectPlayer.subOptions = new string[] { "P1", "P2", "P3", "P4" };
+        selectPlayer.Confirm = TurnPlayerOn;
         driversTab.options.Add(selectPlayer);
 
         Option controller = new Option("Controls: ", "WASD", "Arrows", "XboX 1", "XboX 2");
@@ -127,15 +137,21 @@ public class Menu : MonoBehaviour
         Tab tracksTab = new Tab();
         tracksTab.options.Add(tabber);
 
-        Option add = new Option("Add: ", TrackManager.e.GetLayoutNames());
-        tracksTab.options.Add(add);
+        Option selectTrack = new Option("", TrackManager.e.GetLayoutNames());
+        selectTrack.Select = SelectTrack;
+        tracksTab.options.Add(selectTrack);
 
+        Option driveTrack = new Option("Drive");
+        driveTrack.Confirm = DriveTrack;
+        tracksTab.options.Add(driveTrack);
+
+        /*
         // DRIVE! tab, should be empty, maybe overview?
         Tab driveNowTab = new Tab();
-        driveNowTab.options.Add(tabber);
+        driveNowTab.options.Add(tabber);*/
 
         // Now add tabs to tabber option
-        tabber.tabs = new Tab[] { driversTab, tracksTab, driveNowTab };
+        tabber.tabs = new Tab[] { driversTab, tracksTab };
 
         currentTab = driversTab;
     }
@@ -258,21 +274,17 @@ public class Menu : MonoBehaviour
 
         Refresh();
     }
-    
+
+
+
     void ConfirmSelect()
     {
-        if (selectedText.name == "Quit")
+        if (currentOption.Confirm != null)
         {
-            Application.Quit();
-        }
+            currentOption.Confirm();
 
-        if (selectedText.name == "Mode")
-        {
-            ChangeMode();
-            selectedText.text = Wedge(GetModeText());
+            // Play ConfirmClip
         }
-
-        // Play ConfirmClip
     }
 
     void ChangeMode()
@@ -369,6 +381,26 @@ public class Menu : MonoBehaviour
 
 
     #region Custom Actions
+
+    void TurnPlayerOn()
+    {
+        Debug.Log("Turned player on!");
+    }
+
+    void ListPlayerOptions(int i)
+    {
+
+    }
+
+    void SelectTrack(int i)
+    {
+        TrackManager.e.loadFromFileName = TrackManager.e.AllLayouts[i].layoutName;
+    }
+
+    void DriveTrack()
+    {
+        GameManager.e.InitSession();
+    }
 
     #endregion
 }
