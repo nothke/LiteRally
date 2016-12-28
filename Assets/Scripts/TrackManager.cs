@@ -26,14 +26,18 @@ public class TrackManager : MonoBehaviour
 
     bool trackHasBeenLoadedFromFile;
 
+    [Header("OTHER")]
     public SurfaceData surfaceData;
 
     public Object[] objects;
-    public GameObject[] sourceObjects;
+    GameObject[] sourceObjects;
 
     void LoadObjects()
     {
         objects = Object.GetAll();
+
+        GameObject sourceGO = GetOrCreate("SourceObjects", null);
+        sourceGO.SetActive(false);
 
         if (objects == null) throw new System.Exception("No objects found. Null");
         if (objects.Length == 0) throw new System.Exception("No objects found. 0");
@@ -41,9 +45,11 @@ public class TrackManager : MonoBehaviour
         sourceObjects = new GameObject[objects.Length];
 
         for (int i = 0; i < objects.Length; i++)
+        {
             sourceObjects[i] = objects[i].Spawn();
+            sourceObjects[i].transform.parent = sourceGO.transform;
+        }
     }
-
 
     Transform _worldRoot;
     public Transform WorldRoot
