@@ -346,6 +346,8 @@ public class TrackManager : MonoBehaviour
         GameObject rootGO = GetOrCreate(objectsH, WorldRoot);
         DestroyChildren(rootGO);
 
+        if (track.trackObjects == null) return;
+
         foreach (var TO in track.trackObjects)
         {
             GameObject GO = TO.Spawn();
