@@ -246,6 +246,28 @@ public class TrackManager : MonoBehaviour
         track.IsValid(debug: true);
     }
 
+    Camera _skyCamera;
+    Camera SkyCamera
+    {
+        get
+        {
+            if (!_skyCamera) _skyCamera = GameObject.Find("SkyCamera").GetComponent<Camera>();
+
+            return _skyCamera;
+        }
+    }
+
+    Transform _bounds;
+    Transform Bounds
+    {
+        get
+        {
+            if (!_bounds) _bounds = GameObject.Find("World/Bounds").transform;
+
+            return _bounds;
+        }
+    }
+
     [ContextMenu("Create from Track")]
     public void CreateTrack()
     {
@@ -255,12 +277,22 @@ public class TrackManager : MonoBehaviour
 
         if (!trackRenderer) Debug.LogError("No track renderer");
 
+        // Resize track
         trackGO.transform.localScale = track.scale;
 
+        // Resize bounds - border wall
+        Bounds.transform.localScale = track.scale * 0.1f;
+
+        // Reposition camera
+        SkyCamera.transform.position = track.cameraPosition;
+        SkyCamera.transform.eulerAngles = track.cameraEulerAngles;
+
+        // Get texture
         if (Application.isPlaying)
             trackRenderer.material.mainTexture = tex;
         else trackRenderer.sharedMaterial.mainTexture = tex;
 
+        // Create all stuff
         CreatePortalObjects(track.portals);
         CreateGridObjects(track.grids);
         CreateTrackObjects();
