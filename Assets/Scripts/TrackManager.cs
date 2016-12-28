@@ -255,6 +255,8 @@ public class TrackManager : MonoBehaviour
 
         if (!trackRenderer) Debug.LogError("No track renderer");
 
+        trackGO.transform.localScale = track.scale;
+
         if (Application.isPlaying)
             trackRenderer.material.mainTexture = tex;
         else trackRenderer.sharedMaterial.mainTexture = tex;
