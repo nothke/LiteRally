@@ -1506,7 +1506,7 @@ MonoBehaviour:
     secondaryColor: {r: 1, g: 0, b: 0, a: 1}
   playerPrefab: {fileID: 1568092556721828, guid: 5e0d16bff223aa8429df8c06e3055841,
     type: 2}
-  numberOfPlayers: 0
+  numberOfPlayers: 2
   screenText: {fileID: 1327359261}
   track:
     trackName: MyTrack

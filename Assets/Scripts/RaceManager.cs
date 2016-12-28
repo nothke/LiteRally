@@ -44,6 +44,10 @@ public class RaceManager : MonoBehaviour
     {
         if (numberOfPlayers == 0) return;
 
+        if (players.Length > 0)
+            for (int i = 0; i < players.Length; i++)
+                Destroy(players[i].gameObject);
+
         players = new Player[numberOfPlayers];
 
         for (int i = 0; i < numberOfPlayers; i++)

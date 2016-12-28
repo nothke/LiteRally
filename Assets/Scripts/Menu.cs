@@ -233,13 +233,6 @@ public class Menu : MonoBehaviour
             texts[prevSelectedOption].text = Dewedge(texts[prevSelectedOption].text);
         }
 
-        /*
-            if (prevSelected)
-                prevSelected.GetComponent<Text>().text = Dewedge(prevSelected.GetComponent<Text>().text);
-                */
-
-
-
         selectedText = texts[selectedItem];
         prevText = selectedText.text;
         selectedText.text = Wedge(selectedText.text);
