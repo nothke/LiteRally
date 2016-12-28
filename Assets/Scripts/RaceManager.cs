@@ -11,10 +11,6 @@ public class RaceManager : MonoBehaviour
 
     public int lapsToRace = 3;
 
-    //public Renderer trackRenderer;
-
-    //public Texture2D tex;
-
     public Gradient grassMarksGradient;
 
     public Player[] players;
@@ -119,9 +115,7 @@ public class RaceManager : MonoBehaviour
 
     void PopulateGrid()
     {
-        GridHelper[] grids = FindObjectsOfType<GridHelper>();
-
-        foreach (var grid in grids)
+        foreach (var grid in TrackManager.e.gridPoints)
         {
             int i = -1;
 
