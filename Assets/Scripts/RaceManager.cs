@@ -174,10 +174,4 @@ public class RaceManager : MonoBehaviour
     {
         track.SerializeToFile();
     }
-
-    [ContextMenu("Deserialize")]
-    public void DeserializeTrackTest()
-    {
-        track = Track.GetFromFile("MyTrack");
-    }
 }

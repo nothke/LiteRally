@@ -394,7 +394,7 @@ public class Menu : MonoBehaviour
 
     void SelectTrack(int i)
     {
-        TrackManager.e.loadFromFileName = TrackManager.e.AllLayouts[i].layoutName;
+        TrackManager.e.track = TrackManager.e.AllLayouts[i];
     }
 
     void DriveTrack()

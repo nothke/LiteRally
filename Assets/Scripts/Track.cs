@@ -51,7 +51,12 @@ public class Track
         return GetDirPath(trackName) + layoutName + ".json";
     }
 
-    // new
+    public static Track GetFromFile(string trackName, string layoutName)
+    {
+        return Deserialize(GetLayoutPath(trackName, layoutName));
+    }
+
+    [Obsolete("Use GetFromFile(trackName, layoutName) instead")]
     public static Track GetFromFile(string layoutName)
     {
         string[] layoutPaths = GetLayoutPaths();
@@ -125,7 +130,22 @@ public class Track
         return Directory.GetFiles(dir, "*.json", SearchOption.AllDirectories);
     }
 
-    // NEW - TODO should actually be layoutName
+    public static bool Exists(string trackName, string layoutName)
+    {
+        string[] layoutPaths = GetLayoutPaths();
+
+        foreach (var layoutPath in layoutPaths)
+        {
+            Track t = Deserialize(layoutPath);
+
+            if (t.layoutName == layoutName && t.trackName == trackName)
+                return true;
+        }
+
+        return false;
+    }
+
+    // NEW
     /// <summary>
     /// Does track of this name exist in GameData?
     /// </summary>
@@ -137,7 +157,7 @@ public class Track
         {
             Track t = Deserialize(layoutPath);
 
-            if (t.layoutName == trackName)
+            if (t.trackName == trackName)
                 return true;
         }
 
@@ -149,6 +169,9 @@ public class Track
     /// </summary>
     public static Track Deserialize(string layoutPath)
     {
+        if (!File.Exists(layoutPath))
+            throw new Exception("Layout with this path doesn't exist");
+
         string serialized = File.ReadAllText(layoutPath);
         return JsonUtility.FromJson<Track>(serialized);
     }

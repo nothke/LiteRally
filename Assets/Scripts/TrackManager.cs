@@ -14,10 +14,13 @@ public class TrackManager : MonoBehaviour
 
     public Texture2D tex;
 
-    public string loadFromFileName;
+    [Header("Load from File")]
+    public string loadTrack;
+    public string loadLayout;
 
     public Transform[] gridPoints;
 
+    [Header("TRACK")]
     public Track track;
 
     bool trackHasBeenLoadedFromFile;
@@ -79,10 +82,8 @@ public class TrackManager : MonoBehaviour
 
     public void InitThisTrack()
     {
-        if (!string.IsNullOrEmpty(loadFromFileName))
-        {
-            DeserializeTrack(loadFromFileName);
-        }
+        if (!string.IsNullOrEmpty(loadLayout))
+            DeserializeTrack(loadTrack, loadLayout);
 
         CreateTrack();
 
@@ -183,24 +184,30 @@ public class TrackManager : MonoBehaviour
     [ContextMenu("Load Track from File")]
     void Deserialize()
     {
-        if (string.IsNullOrEmpty(loadFromFileName))
+        if (string.IsNullOrEmpty(loadTrack) || string.IsNullOrEmpty(loadLayout))
         {
-            Debug.LogError("No name assigned in loadFromFileName");
+            Debug.LogError("No name suppied to loadTrack or loadLayout");
             return;
         }
 
-        if (!Track.Exists(loadFromFileName))
+        /*
+        if (!Track.Exists(loadTrack))
         {
-            Debug.LogError("No track with name " + loadFromFileName + " exists");
+
+        }*/
+
+        if (!Track.Exists(loadTrack, loadLayout))
+        {
+            Debug.LogError("No track with name " + loadTrack + " - " + " exists");
             return;
         }
 
-        DeserializeTrack(loadFromFileName);
+        DeserializeTrack(loadTrack, loadLayout);
     }
 
-    public void DeserializeTrack(string trackName)
+    public void DeserializeTrack(string trackName, string layoutName)
     {
-        track = Track.GetFromFile(trackName);
+        track = Track.GetFromFile(trackName, layoutName);
 
         string dirPath = track.DirPath;
 
