@@ -335,7 +335,6 @@ public class TrackManager : MonoBehaviour
         if (!GO)
         {
             GO = new GameObject(System.IO.Path.GetFileName(hierarchyPath));
-            Debug.Log(GO.name);
             GO.transform.parent = atParent;
         }
 
