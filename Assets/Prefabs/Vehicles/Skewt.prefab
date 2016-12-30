@@ -1054,9 +1054,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba60725b2205ff4d8d197ce6d56ee03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  steerAxis: P1 Horizontal
-  accelAxis: P1 Vertical
-  handbrakeButton: P1 Handbrake
+  controlScheme:
+    name: 
+    steeringAxisName: 
+    accelAxisName: 
+    handbrakeButtonName: 
+    cancelButtonName: 
+    confirmButtonName: 
+  steerAxis: WASD Steering
+  accelAxis: WASD Accel
+  handbrakeButton: WASD Handbrake
 --- !u!114 &114617906354561958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1133,6 +1140,7 @@ MonoBehaviour:
       m_RotationOrder: 0
     suspensionLength: 0.7
     wheelRadius: 0.3
+    steeringLock: 60
   axles:
   - wheels:
     - pivot: {fileID: 4893226777367442}

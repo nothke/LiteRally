@@ -230,7 +230,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: XboX1 Handbrake
+    m_Name: XboX2 Handbrake
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 

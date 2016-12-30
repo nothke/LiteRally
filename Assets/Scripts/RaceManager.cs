@@ -14,6 +14,7 @@ public class RaceManager : MonoBehaviour
     public Gradient grassMarksGradient;
 
     public Player[] players;
+    public ControlScheme[] playerControlSchemes = new ControlScheme[2];
 
     public bool doCountdown = true;
 
@@ -38,6 +39,8 @@ public class RaceManager : MonoBehaviour
 
     public void InitPlayers()
     {
+        playerControlSchemes = new ControlScheme[numberOfPlayers];
+
         if (numberOfPlayers == 0) return;
 
         if (players.Length > 0)
@@ -45,7 +48,7 @@ public class RaceManager : MonoBehaviour
                 Destroy(players[i].gameObject);
 
         players = new Player[numberOfPlayers];
-
+        
         for (int i = 0; i < numberOfPlayers; i++)
         {
             GameObject playerGO = Instantiate(playerPrefab);
@@ -55,12 +58,16 @@ public class RaceManager : MonoBehaviour
             players[i] = player;
 
             // init controllers
+            player.GetComponent<VehicleInput>().controlScheme = playerControlSchemes[i];
 
+            /*
             VehicleInput playerInput = players[i].GetComponent<VehicleInput>();
-            int p = i + 1;
             playerInput.steerAxis = "P" + p + " Horizontal";
             playerInput.accelAxis = "P" + p + " Vertical";
             playerInput.handbrakeButton = "P" + p + " Handbrake";
+            */
+
+            int p = i + 1;
 
             player.name = player.name.Replace("(Clone)", "");
             player.name = "P" + p + "_" + player.name;

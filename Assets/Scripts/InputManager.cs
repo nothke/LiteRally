@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager e;
+    void Awake() { e = this; }
+
     public ControlScheme[] controlSchemes;
 
     public string[] GetControlSchemeNames()

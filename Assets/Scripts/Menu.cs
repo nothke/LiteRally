@@ -186,11 +186,13 @@ public class Menu : MonoBehaviour
         Tab P1 = new Tab();
         Tab P2 = new Tab();
 
-        string[] controls = { "WASD", "Arrows", "XboX 1", "XboX 2" };
+        string[] controls = InputManager.e.GetControlSchemeNames();
         string[] vehicles = { "Skewt", "Formulite" };
 
         Option P1_controls = new Option("Controls: ", controls);
+        P1_controls.Select = SelectPlayerControlScheme;
         Option P2_controls = new Option("Controls: ", controls);
+        P2_controls.Select = SelectPlayerControlScheme;
 
         Option P1_vehicles = new Option("Vehicles: ", vehicles);
         Option P2_vehicles = new Option("Vehicles: ", vehicles);
@@ -202,6 +204,9 @@ public class Menu : MonoBehaviour
         P2.options.Add(P2_vehicles);
 
         selectPlayer.tabs = new Tab[] { P1, P2 };
+        selectPlayer.Select = SelectPlayerControlScheme;
+
+        selectPlayer.Select = SelectPlayer;
 
         driversTab.options.Add(selectPlayer);
 
@@ -464,11 +469,27 @@ public class Menu : MonoBehaviour
         TrackManager.e.track = TrackManager.e.AllLayouts[i];
     }
 
+
+
     void DriveTrack()
     {
         GameManager.e.InitSession();
         ShowMenu(false);
         VerticalSelect(0);
+    }
+
+    int selectedPlayer;
+
+    void SelectPlayer(int i)
+    {
+        selectedPlayer = i;
+    }
+
+    void SelectPlayerControlScheme(int i)
+    {
+        // player = playerSelectOption.currentIndex;
+        int index = currentOption.currentIndex;
+        RaceManager.e.playerControlSchemes[selectedPlayer] = InputManager.e.controlSchemes[index];
     }
 
     #endregion

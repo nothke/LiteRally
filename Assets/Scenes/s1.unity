@@ -747,10 +747,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 1568092556721828, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
   m_IsPrefabParent: 0
@@ -1209,6 +1205,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   players:
   - {fileID: 532287266}
+  playerControlSchemes: []
   doCountdown: 0
   vehiclePaintSchemes:
   - primaryColor: {r: 1, g: 0, b: 0, a: 1}
@@ -1631,7 +1628,25 @@ MonoBehaviour:
     accelAxisName: WASD Accel
     handbrakeButtonName: WASD Handbrake
     cancelButtonName: WASD Menu
-    confirmButtonName: 'WASD '
+    confirmButtonName: 
+  - name: Arrows
+    steeringAxisName: Arrows Steering
+    accelAxisName: Arrows Accel
+    handbrakeButtonName: Arrows Handbrake
+    cancelButtonName: Arrows Menu
+    confirmButtonName: 
+  - name: XboX 1
+    steeringAxisName: XboX1 Steering
+    accelAxisName: XboX1 Accel
+    handbrakeButtonName: XboX1 Handbrake
+    cancelButtonName: XboX1 Menu
+    confirmButtonName: 
+  - name: XboX 2
+    steeringAxisName: XboX2 Steering
+    accelAxisName: XboX2 Accel
+    handbrakeButtonName: XboX2 Handbrake
+    cancelButtonName: XboX2 Menu
+    confirmButtonName: 
 --- !u!1 &823548891
 GameObject:
   m_ObjectHideFlags: 0

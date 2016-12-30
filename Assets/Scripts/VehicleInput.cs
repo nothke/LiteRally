@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(VehicleController))]
 public class VehicleInput : MonoBehaviour
 {
+    public ControlScheme controlScheme;
 
     private VehicleController _control;
 
