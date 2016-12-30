@@ -1143,6 +1143,7 @@ GameObject:
   - component: {fileID: 675655005}
   - component: {fileID: 675655007}
   - component: {fileID: 675655009}
+  - component: {fileID: 675655010}
   m_Layer: 0
   m_Name: MAIN
   m_TagString: Untagged
@@ -1611,9 +1612,26 @@ MonoBehaviour:
   menu: {fileID: 522566182}
   selectClip: {fileID: 0}
   confirmClip: {fileID: 0}
-  currentOptions: []
   controllerTypes: 00000000000000000000000000000000
   mode: 0
+--- !u!114 &675655010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 675655004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d797af6263bdfcb44af6f55dcef2a4cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlSchemes:
+  - name: WASD
+    steeringAxisName: WASD Steering
+    accelAxisName: WASD Accel
+    handbrakeButtonName: WASD Handbrake
+    cancelButtonName: WASD Menu
+    confirmButtonName: 'WASD '
 --- !u!1 &823548891
 GameObject:
   m_ObjectHideFlags: 0

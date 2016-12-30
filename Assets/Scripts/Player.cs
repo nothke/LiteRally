@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
 
     public Renderer vehicleBody;
 
+    public ControlScheme controlScheme;
+
     public VehicleController control
     {
         get
