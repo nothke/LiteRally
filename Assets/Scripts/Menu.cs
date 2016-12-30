@@ -12,39 +12,79 @@ public class Menu : MonoBehaviour
     public AudioClip selectClip;
     public AudioClip confirmClip;
 
-    public string[] currentOptions;
+    //public string[] currentOptions;
 
-    Tab currentTab;
-    Option currentOption { get { return currentTab.options[selectedItem]; } }
+    //Tab currentTab;
+    Option currentOption { get { return tabber.GetTree()[selectedIndex]; } }
 
     public class Tab
     {
+        public string name = "NONAME";
+
+        public Tab() { }
+        public Tab(string name) { this.name = name; }
+
         public List<Option> options = new List<Option>();
+
+        public Option[] GetTree()
+        {
+            List<Option> optionTree = new List<Option>();
+
+            for (int i = 0; i < options.Count; i++)
+            {
+                optionTree.Add(options[i]);
+
+                if (options[i].HasTabs)
+                    optionTree.AddRange(options[i].CurrentTab.GetTree());
+            }
+
+            return optionTree.ToArray();
+        }
     }
 
     public class Option
     {
-        //public bool isSwitchable; // subOptions.Length alrady doubles for this
-        public bool isConfirmable;
-
         public Tab[] tabs; // if added will switch tabs;
 
         public string preface;
         public string[] subOptions;
 
-        public int currentOption;
+        public int currentIndex;
 
+        public Tab CurrentTab { get { return tabs[currentIndex]; } }
+        public string CurrentOption { get { return subOptions[currentIndex]; } }
+
+        // Delegates
         public delegate void ConfirmHandler(); // a delegate for confirming
         public ConfirmHandler Confirm;
         public delegate void SelectHandler(int i); // a delegate for selecting
         public SelectHandler Select;
+        public delegate void BecomeSelectedHandler();
+        public BecomeSelectedHandler BecomeSelected;
+        public delegate void EndSelectedHandler();
+        public EndSelectedHandler EndSelected;
+
+        // Methods
+
+        public Option[] GetTree()
+        {
+            if (!HasTabs) return null;
+
+            List<Option> options = new List<Option>();
+
+            options.Add(this);
+
+            options.AddRange(CurrentTab.GetTree());
+
+            return options.ToArray();
+        }
 
         public override string ToString()
         {
             if (Length == 0)
                 return preface;
 
-            return preface + subOptions[currentOption];
+            return preface + subOptions[currentIndex];
         }
 
         public Option() { }
@@ -69,7 +109,7 @@ public class Menu : MonoBehaviour
         {
             Debug.Assert(HasTabs, "You are requesting tabs, but this option doesn't have them");
 
-            return tabs[currentOption];
+            return tabs[currentIndex];
         }
 
         /// <summary>
@@ -90,16 +130,28 @@ public class Menu : MonoBehaviour
 
         public void SelectBy(int by)
         {
-            currentOption += by;
+            currentIndex += by;
 
-            if (currentOption >= Length)
-                currentOption = 0;
+            if (currentIndex >= Length)
+                currentIndex = 0;
 
-            if (currentOption < 0)
-                currentOption = Length - 1;
+            if (currentIndex < 0)
+                currentIndex = Length - 1;
 
             if (Select != null)
-                Select(currentOption);
+                Select(currentIndex);
+        }
+
+        public void Selected()
+        {
+            if (BecomeSelected != null)
+                BecomeSelected();
+        }
+
+        public void Deselected()
+        {
+            if (EndSelected != null)
+                EndSelected();
         }
     }
 
@@ -113,29 +165,51 @@ public class Menu : MonoBehaviour
         ShowMenu(false);
     }
 
+    Option tabber;
+
     void InitMenu()
     {
         // Create tab option
-        Option tabber = new Option("", "Drivers", "Tracks", "Drive!");
+        tabber = new Option("", "Drivers", "Tracks"); // , "Drive!"
 
         // DRIVER tab
         Tab driversTab = new Tab();
-        driversTab.options.Add(tabber);
+        //driversTab.options.Add(tabber);
 
-        Option selectPlayer = new Option();
-        selectPlayer.subOptions = new string[] { "P1", "P2", "P3", "P4" };
-        selectPlayer.Confirm = TurnPlayerOn;
+        Option selectPlayer = new Option("Player: ", "P1", "P2");
+
+        Tab P1 = new Tab();
+        Tab P2 = new Tab();
+
+        string[] controls = { "WASD", "Arrows", "XboX 1", "XboX 2" };
+        string[] vehicles = { "Skewt", "Formulite" };
+
+        Option P1_controls = new Option("Controls: ", controls);
+        Option P2_controls = new Option("Controls: ", controls);
+
+        Option P1_vehicles = new Option("Vehicles: ", vehicles);
+        Option P2_vehicles = new Option("Vehicles: ", vehicles);
+
+        P1.options.Add(P1_controls);
+        P1.options.Add(P1_vehicles);
+
+        P2.options.Add(P2_controls);
+        P2.options.Add(P2_vehicles);
+
+        selectPlayer.tabs = new Tab[] { P1, P2 };
+
+        //selectPlayer.Confirm = TurnPlayerOn;
         driversTab.options.Add(selectPlayer);
 
-        Option controller = new Option("Controls: ", "WASD", "Arrows", "XboX 1", "XboX 2");
-        driversTab.options.Add(controller);
+        //Option controller = new Option("Controls: ", "WASD", "Arrows", "XboX 1", "XboX 2");
+        //driversTab.options.Add(controller);
 
-        Option vehicle = new Option("Vehicle: ", "Skewt", "Formulite");
-        driversTab.options.Add(vehicle);
+        //Option vehicle = new Option("Vehicle: ", "Skewt", "Formulite");
+        //driversTab.options.Add(vehicle);
 
         // TRACKS tab
         Tab tracksTab = new Tab();
-        tracksTab.options.Add(tabber);
+        //tracksTab.options.Add(tabber);
 
         Option selectTrack = new Option("", TrackManager.e.GetLayoutNames());
         selectTrack.Select = SelectTrack;
@@ -153,12 +227,12 @@ public class Menu : MonoBehaviour
         // Now add tabs to tabber option
         tabber.tabs = new Tab[] { driversTab, tracksTab };
 
-        currentTab = driversTab;
+        //currentTab = driversTab;
     }
 
     Text[] _texts;
 
-    Text[] texts
+    Text[] UITexts
     {
         get
         {
@@ -176,16 +250,36 @@ public class Menu : MonoBehaviour
 
     void Refresh()
     {
-        for (int i = 0; i < texts.Length; i++)
+        //options = tabber.CurrentTab.GetTree();
+
+        for (int i = 0; i < UITexts.Length; i++)
         {
-            if (i >= currentTab.options.Count)
-                texts[i].text = "";
-            else
-                texts[i].text = currentTab.options[i].ToString();
+            if (i < Options.Length)
+                UITexts[i].text = Options[i].ToString();
+            else UITexts[i].text = "";
+
+            /*
+            if (i < currentTab.options.Count)
+            {
+                if (i != 0 && currentTab.options[i].HasTabs) // if it has tabs, draw options below
+                {
+
+
+
+                    continue;
+                }
+
+                // write options
+                UITexts[i].text = currentTab.options[i].ToString();
+
+
+            }
+            else // else clear text
+                UITexts[i].text = "";*/
         }
     }
 
-    int selectedItem = 0;
+    int selectedIndex = 0;
 
     // Update is called once per frame
     void Update()
@@ -218,22 +312,35 @@ public class Menu : MonoBehaviour
 
     int prevSelectedOption;
 
+    //Option[] options;
+    Option[] Options
+    {
+        get
+        {
+            return tabber.GetTree();
+        }
+    }
+
+    Option CurrentOption { get { return Options[selectedIndex]; } }
+
     void VerticalSelect(int i)
     {
+        //options = tabber.CurrentTab.GetTree(); // currentTab.GetTree();
+
         // if there is just one item, do nothing
-        if (currentTab.options.Count == 1)
-            return;
+        //if (tabber.CurrentTab.options.Count == 1)
+        //return;
 
-        selectedItem = Wrap(selectedItem + i, currentTab.options.Count);
+        selectedIndex = Wrap(selectedIndex + i, Options.Length);
 
-        Transform selectedT = textTransforms[selectedItem];
+        Transform selectedT = textTransforms[selectedIndex];
 
-        if (prevSelectedOption != selectedItem)
+        if (prevSelectedOption != selectedIndex)
         {
-            texts[prevSelectedOption].text = Dewedge(texts[prevSelectedOption].text);
+            UITexts[prevSelectedOption].text = Dewedge(UITexts[prevSelectedOption].text);
         }
 
-        selectedText = texts[selectedItem];
+        selectedText = UITexts[selectedIndex];
         //prevText = selectedText.text;
         selectedText.text = Wedge(selectedText.text);
         //selectedText.text = "< " + selectedText.text + " >";
@@ -245,7 +352,7 @@ public class Menu : MonoBehaviour
 
         prevSelected = selectedT;
 
-        prevSelectedOption = selectedItem;
+        prevSelectedOption = selectedIndex;
 
         Refresh();
     }
@@ -255,16 +362,18 @@ public class Menu : MonoBehaviour
 
     void HorizontalSelect(int i)
     {
-        Option option = currentTab.options[selectedItem];
+        //if (selectedItem == 0)
+        //Option option = currentTab.options[selectedIndex];
+        Option option = CurrentOption;
 
         option.SelectBy(i);
 
         if (option.HasTabs)
         {
-            currentTab = option.GetCurrentTab();
+            //   currentTab = option.GetCurrentTab();
 
-            if (currentTab.options.Count == 0)
-                throw new System.Exception("Tab should not be empty. Did you forget to add a tab selection option?");
+            // if (currentTab.options.Count == 0)
+            //   throw new System.Exception("Tab should not be empty. Did you forget to add a tab selection option?");
         }
 
         Refresh();
@@ -371,7 +480,10 @@ public class Menu : MonoBehaviour
         menu.gameObject.SetActive(show);
 
         if (show)
+        {
+            VerticalSelect(0);
             Refresh();
+        }
     }
 
 
@@ -396,6 +508,7 @@ public class Menu : MonoBehaviour
     {
         GameManager.e.InitSession();
         ShowMenu(false);
+        VerticalSelect(0);
     }
 
     #endregion
