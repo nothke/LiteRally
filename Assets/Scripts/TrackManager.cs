@@ -24,7 +24,7 @@ public class TrackManager : MonoBehaviour
     [Header("TRACK")]
     public Track track;
 
-    bool trackHasBeenLoadedFromFile;
+    //bool trackHasBeenLoadedFromFile;
 
     [Header("OTHER")]
     public SurfaceData surfaceData;
@@ -461,11 +461,9 @@ public class TrackManager : MonoBehaviour
     /// </summary>
     void InitTexture()
     {
-        if (!trackHasBeenLoadedFromFile)
-        {
-            Texture2D origTex = trackRenderer.material.mainTexture as Texture2D;
-            tex = Instantiate(origTex) as Texture2D;
-        }
+        // TODO: is this leading to a memory leak?
+        Texture2D origTex = trackRenderer.material.mainTexture as Texture2D;
+        tex = Instantiate(origTex) as Texture2D;
 
         colors = tex.GetPixels32();
 

@@ -41,6 +41,8 @@ public class TrackObjectEntity : MonoBehaviour
     void TryDeserialize()
     {
         string serialized = System.IO.File.ReadAllText("GameData/Objects/" + trackObjectName + "/" + trackObjectName + ".json");
-        Object o = JsonUtility.FromJson<Object>(serialized);
+        JsonUtility.FromJson<Object>(serialized);
+
+        Debug.Log("Deserialized successfully");
     }
 }
