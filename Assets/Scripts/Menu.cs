@@ -248,6 +248,8 @@ public class Menu : MonoBehaviour
 
     }
 
+    Text UIText { get { return UITexts[selectedIndex]; } }
+
     void Refresh()
     {
         for (int i = 0; i < UITexts.Length; i++)
@@ -255,7 +257,17 @@ public class Menu : MonoBehaviour
             if (i < Options.Length)
                 UITexts[i].text = Options[i].ToString();
             else UITexts[i].text = "";
+
+            // make all texts normal scale, and dewedge them
+            UITexts[i].text = Dewedge(UITexts[i].text);
+            UITexts[i].transform.localScale = Vector3.one;
+
+
         }
+
+        // make this text bigger and wedge it
+        UIText.text = Wedge(UIText.text);
+        UIText.transform.localScale = Vector3.one * 1.3f;
     }
 
     int selectedIndex = 0;
@@ -290,7 +302,7 @@ public class Menu : MonoBehaviour
 
     Transform prevSelected;
 
-    Text selectedText;
+
 
     int prevSelectedOption;
 
@@ -308,32 +320,12 @@ public class Menu : MonoBehaviour
     {
         selectedIndex = Wrap(selectedIndex + i, Options.Length);
 
-        Transform selectedT = textTransforms[selectedIndex];
-
-        if (prevSelectedOption != selectedIndex)
-        {
-            UITexts[prevSelectedOption].text = Dewedge(UITexts[prevSelectedOption].text);
-        }
-
-        selectedText = UITexts[selectedIndex];
-        //prevText = selectedText.text;
-        selectedText.text = Wedge(selectedText.text);
-        //selectedText.text = "< " + selectedText.text + " >";
-
-        selectedT.localScale = Vector3.one * 1.3f;
-
-        if (prevSelected)
-            prevSelected.localScale = Vector3.one;
-
-        prevSelected = selectedT;
+        UITexts[prevSelectedOption].text = Dewedge(UITexts[prevSelectedOption].text);
 
         prevSelectedOption = selectedIndex;
 
         Refresh();
     }
-
-    public enum ControllerType { None, XboX, PS };
-    public ControllerType[] controllerTypes = new ControllerType[4];
 
     void HorizontalSelect(int i)
     {
@@ -344,7 +336,8 @@ public class Menu : MonoBehaviour
         Refresh();
     }
 
-
+    public enum ControllerType { None, XboX, PS };
+    public ControllerType[] controllerTypes = new ControllerType[4];
 
     void ConfirmSelect()
     {
@@ -446,8 +439,8 @@ public class Menu : MonoBehaviour
 
         if (show)
         {
-            VerticalSelect(0);
             Refresh();
+            VerticalSelect(0);
         }
     }
 
