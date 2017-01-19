@@ -531,7 +531,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 68.486, y: 0, z: 0}
 --- !u!81 &212740127
 AudioListener:
@@ -1124,7 +1124,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Literally
+  m_Text: LiteRally
 --- !u!222 &350686078
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1288,7 +1288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 423883439}
   m_Layer: 5
-  m_Name: Cover
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1435,7 +1435,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4898868691456216, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1568092556721828, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
@@ -1912,7 +1916,7 @@ Transform:
   - {fileID: 332739538}
   - {fileID: 1180908178}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &590593364
 GameObject:
@@ -1991,7 +1995,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4216443697628314, guid: d94aceafded3c7e4892726ff3686e922, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114588005982491942, guid: d94aceafded3c7e4892726ff3686e922,
         type: 2}
@@ -2088,7 +2092,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 221.8, y: 155.6}
+  m_AnchoredPosition: {x: 229.3, y: 155.6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &624783445
@@ -2519,10 +2523,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
-  playerDatas: []
   players:
   - {fileID: 532287266}
-  playerControlSchemes: []
   doCountdown: 0
   vehiclePaintSchemes:
   - primaryColor: {r: 1, g: 0, b: 0, a: 1}
@@ -2562,7 +2564,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &675655007
 MonoBehaviour:
@@ -2930,6 +2932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 522566182}
+  gameTitle: {fileID: 423883438}
   selectClip: {fileID: 0}
   confirmClip: {fileID: 0}
   controllerTypes: 00000000000000000000000000000000
@@ -3636,7 +3639,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Literally 0.1
+  m_Text: LiteRally 0.1
 --- !u!222 &965623859
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3912,7 +3915,7 @@ Transform:
   - {fileID: 2142658889}
   - {fileID: 2005651205}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1327359258
 GameObject:
@@ -4362,7 +4365,7 @@ GameObject:
   - component: {fileID: 1566962809}
   - component: {fileID: 1566962808}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: Sun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4413,7 +4416,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 36, y: 215.849, z: -33.019}
 --- !u!1 &1638683016
 GameObject:
@@ -4589,7 +4592,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 68.486, y: 0, z: 0}
 --- !u!1 &1709032439
 GameObject:

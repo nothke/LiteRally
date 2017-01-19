@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
+    public static Menu e;
+    void Awake() { e = this; }
+
     public GameObject menu;
     public GameObject gameTitle;
 

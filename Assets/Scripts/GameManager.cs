@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
 
     public void InitSession()
     {
+        Menu.e.gameTitle.SetActive(false);
         TrackManager.e.enabled = true;
         TrackManager.e.InitThisTrack();
         RaceManager.e.InitRace();
