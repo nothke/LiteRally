@@ -11,8 +11,24 @@ public class GameManager : MonoBehaviour
 
     public bool trackTestingMode;
 
+    public List<PlayerData> playerDatas = new List<PlayerData>();
+    public VehicleController[] vehicles;
+
+    public string[] GetVehicleNames()
+    {
+        string[] names = new string[vehicles.Length];
+
+        for (int i = 0; i < vehicles.Length; i++)
+            names[i] = vehicles[i].name;
+
+        return names;
+    }
+
     private void Start()
     {
+        playerDatas.Add(new PlayerData());
+        playerDatas.Add(new PlayerData());
+
         if (!trackTestingMode)
         {
             // Final game setting, start the "main menu"
@@ -26,6 +42,7 @@ public class GameManager : MonoBehaviour
                     car.gameObject.SetActive(false);
 
             TrackManager.e.enabled = false;
+
         }
         else
         {

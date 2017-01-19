@@ -121,10 +121,6 @@ public class Menu : MonoBehaviour
             return preface + subOptions[currentIndex];
         }
 
-
-
-
-
         public Tab GetCurrentTab()
         {
             Debug.Assert(HasTabs, "You are requesting tabs, but this option doesn't have them");
@@ -187,7 +183,7 @@ public class Menu : MonoBehaviour
         Tab P2 = new Tab();
 
         string[] controls = InputManager.e.GetControlSchemeNames();
-        string[] vehicles = { "Skewt", "Formulite" };
+        string[] vehicles = GameManager.e.GetVehicleNames();
 
         Option P1_controls = new Option("Controls: ", controls);
         P1_controls.Select = SelectPlayerControlScheme;
@@ -195,7 +191,9 @@ public class Menu : MonoBehaviour
         P2_controls.Select = SelectPlayerControlScheme;
 
         Option P1_vehicles = new Option("Vehicles: ", vehicles);
+        P1_vehicles.Select = SelectPlayerVehicle;
         Option P2_vehicles = new Option("Vehicles: ", vehicles);
+        P2_vehicles.Select = SelectPlayerVehicle;
 
         P1.options.Add(P1_controls);
         P1.options.Add(P1_vehicles);
@@ -301,8 +299,6 @@ public class Menu : MonoBehaviour
     }
 
     Transform prevSelected;
-
-
 
     int prevSelectedOption;
 
@@ -482,9 +478,16 @@ public class Menu : MonoBehaviour
 
     void SelectPlayerControlScheme(int i)
     {
-        // player = playerSelectOption.currentIndex;
         int index = currentOption.currentIndex;
-        RaceManager.e.playerControlSchemes[selectedPlayer] = InputManager.e.controlSchemes[index];
+
+        GameManager.e.playerDatas[selectedPlayer].controlScheme = InputManager.e.controlSchemes[index];
+    }
+
+    void SelectPlayerVehicle(int i)
+    {
+        int index = currentOption.currentIndex;
+
+        GameManager.e.playerDatas[selectedPlayer].vehicle = GameManager.e.vehicles[index];
     }
 
     #endregion
