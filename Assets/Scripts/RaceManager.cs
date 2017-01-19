@@ -23,8 +23,6 @@ public class RaceManager : MonoBehaviour
 
     public Gradient grassMarksGradient;
 
-    public PlayerData[] playerDatas;
-
     public Player[] players;
     public ControlScheme[] playerControlSchemes;
 
@@ -34,16 +32,6 @@ public class RaceManager : MonoBehaviour
 
     public GameObject playerPrefab;
     public int numberOfPlayers;
-
-    public void InitPlayerDatas()
-    {
-        playerDatas = new PlayerData[2];
-
-        for (int i = 0; i < playerDatas.Length; i++)
-        {
-            playerDatas[i] = new PlayerData();
-        }
-    }
 
     public void InitRace()
     {

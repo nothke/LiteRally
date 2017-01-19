@@ -26,8 +26,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        playerDatas.Add(new PlayerData());
-        playerDatas.Add(new PlayerData());
+        InitPlayerData();
 
         if (!trackTestingMode)
         {
@@ -49,6 +48,19 @@ public class GameManager : MonoBehaviour
             EndMainMenu();
 
             InitSession();
+        }
+    }
+
+    void InitPlayerData()
+    {
+        int players = 2;
+
+        for (int i = 0; i < players; i++)
+        {
+            playerDatas.Add(new PlayerData());
+
+            playerDatas[i].controlScheme = InputManager.e.controlSchemes[0];
+            playerDatas[i].vehicle = vehicles[i];
         }
     }
 
