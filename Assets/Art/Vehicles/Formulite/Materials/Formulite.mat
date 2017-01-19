@@ -72,7 +72,7 @@ Material:
     - first:
         name: _Splat
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1bc0d7bd1bb20584e9e90f536a521d2c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
