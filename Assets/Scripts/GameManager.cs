@@ -26,20 +26,22 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        InitPlayerData();
-
         if (!trackTestingMode)
         {
-            // Final game setting, start the "main menu"
+            // Start the MAIN MENU
             mainMenuObject.SetActive(true);
 
-            // find all cars and turn them off
+            // find all cars and destroy them
             VehicleController[] cars = FindObjectsOfType<VehicleController>();
 
             if (cars != null)
-                foreach (var car in cars)
-                    car.gameObject.SetActive(false);
+                for (int i = 0; i < cars.Length; i++)
+                    Destroy(cars[i].gameObject);
 
+            InitPlayerData();
+            InitTrackData();
+
+            // disable the trackmanager for the main menu
             TrackManager.e.enabled = false;
 
         }
@@ -62,6 +64,11 @@ public class GameManager : MonoBehaviour
             playerDatas[i].controlScheme = InputManager.e.controlSchemes[0];
             playerDatas[i].vehicle = vehicles[i];
         }
+    }
+
+    void InitTrackData()
+    {
+
     }
 
     public void EndMainMenu()

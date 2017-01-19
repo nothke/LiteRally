@@ -26,8 +26,8 @@ public class VehicleInput : MonoBehaviour
 
     void Update()
     {
-        control.accelInput = Input.GetAxis(accelAxis);
-        control.steerInput = Input.GetAxis(steerAxis);
-        control.handbrakeInput = Input.GetButton(handbrakeButton) ? 1 : 0;
+        control.accelInput = Input.GetAxis(controlScheme.accelAxisName);
+        control.steerInput = Input.GetAxis(controlScheme.steeringAxisName);
+        control.handbrakeInput = Input.GetButton(controlScheme.handbrakeButtonName) ? 1 : 0;
     }
 }
