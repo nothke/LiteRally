@@ -61,14 +61,14 @@ public class GameManager : MonoBehaviour
         {
             playerDatas.Add(new PlayerData());
 
-            playerDatas[i].controlScheme = InputManager.e.controlSchemes[0];
-            playerDatas[i].vehicle = vehicles[i];
+            playerDatas[i].controlScheme = InputManager.e.controlSchemes[i];
+            playerDatas[i].vehicle = vehicles[0];
         }
     }
 
     void InitTrackData()
     {
-
+        TrackManager.e.track = TrackManager.e.AllLayouts[0];
     }
 
     public void EndMainMenu()

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     public GameObject menu;
+    public GameObject gameTitle;
 
     List<Transform> textTransforms = new List<Transform>();
 
@@ -187,8 +188,10 @@ public class Menu : MonoBehaviour
 
         Option P1_controls = new Option("Controls: ", controls);
         P1_controls.Select = SelectPlayerControlScheme;
+        P1_controls.currentIndex = 0;
         Option P2_controls = new Option("Controls: ", controls);
         P2_controls.Select = SelectPlayerControlScheme;
+        P2_controls.currentIndex = 1;
 
         Option P1_vehicles = new Option("Vehicles: ", vehicles);
         P1_vehicles.Select = SelectPlayerVehicle;
