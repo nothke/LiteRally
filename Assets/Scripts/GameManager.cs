@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
                 foreach (var car in cars)
                     car.gameObject.SetActive(false);
 
-            //TrackManager.e.enabled = false;
+            TrackManager.e.enabled = false;
         }
         else
         {
@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
 
     public void InitSession()
     {
+        TrackManager.e.enabled = true;
         TrackManager.e.InitThisTrack();
         RaceManager.e.InitRace();
     }

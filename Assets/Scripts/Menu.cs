@@ -175,7 +175,7 @@ public class Menu : MonoBehaviour
 
     void InitMenu()
     {
-        // Create tab option
+        // Create tab selection option
         tabber = new Option("", "Drivers", "Tracks"); // , "Drive!"
 
         // DRIVER tab
@@ -221,7 +221,7 @@ public class Menu : MonoBehaviour
         driveTrack.Confirm = DriveTrack;
         tracksTab.options.Add(driveTrack);
 
-        // Currently in Tracks
+        // DRIVE option is currently in Tracks
         // DRIVE! tab, should be empty, maybe overview?
         // Tab driveNowTab = new Tab();
         // driveNowTab.options.Add(tabber);
@@ -468,6 +468,8 @@ public class Menu : MonoBehaviour
     {
         GameManager.e.InitSession();
         ShowMenu(false);
+        GameManager.e.EndMainMenu();
+        GameObject.Find("SkyCamera").GetComponent<Camera>().enabled = true; // Not so nice
         VerticalSelect(0);
     }
 

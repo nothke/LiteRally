@@ -4,6 +4,14 @@ using UnityEngine;
 
 using UnityEngine.UI;
 
+public class PlayerData
+{
+    public string name;
+    public Player player;
+
+    public ControlScheme controlScheme;
+}
+
 public class RaceManager : MonoBehaviour
 {
     public static RaceManager e;
@@ -14,7 +22,7 @@ public class RaceManager : MonoBehaviour
     public Gradient grassMarksGradient;
 
     public Player[] players;
-    public ControlScheme[] playerControlSchemes = new ControlScheme[2];
+    public ControlScheme[] playerControlSchemes;
 
     public bool doCountdown = true;
 
@@ -22,6 +30,7 @@ public class RaceManager : MonoBehaviour
 
     public GameObject playerPrefab;
     public int numberOfPlayers;
+
 
     public void InitRace()
     {
@@ -48,7 +57,7 @@ public class RaceManager : MonoBehaviour
                 Destroy(players[i].gameObject);
 
         players = new Player[numberOfPlayers];
-        
+
         for (int i = 0; i < numberOfPlayers; i++)
         {
             GameObject playerGO = Instantiate(playerPrefab);
