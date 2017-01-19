@@ -22,7 +22,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: Arrows Horizontal
+    m_Name: Arrows Steering
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: left
@@ -54,7 +54,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: Arrows Vertical
+    m_Name: Arrows Accel
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: down
@@ -150,7 +150,7 @@ InputManager:
     axis: 2
     joyNum: 0
   - serializedVersion: 3
-    m_Name: XboX1 Horizontal
+    m_Name: XboX1 Steering
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -166,7 +166,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: XboX2 Horizontal
+    m_Name: XboX2 Steering
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -182,7 +182,7 @@ InputManager:
     axis: 0
     joyNum: 2
   - serializedVersion: 3
-    m_Name: XboX1 Vertical
+    m_Name: XboX1 Accel
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -198,7 +198,7 @@ InputManager:
     axis: 2
     joyNum: 1
   - serializedVersion: 3
-    m_Name: XboX2 Vertical
+    m_Name: XboX2 Accel
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
