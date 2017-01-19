@@ -1428,6 +1428,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba60725b2205ff4d8d197ce6d56ee03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlScheme:
+    name: 
+    steeringAxisName: 
+    accelAxisName: 
+    handbrakeButtonName: 
+    cancelButtonName: 
+    confirmButtonName: 
   steerAxis: P1 Horizontal
   accelAxis: P1 Vertical
   handbrakeButton: P1 Handbrake
@@ -1444,7 +1451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeSinceLastLap: 0
   lapTimes: []
-  vehicleBody: {fileID: 23664439851163672}
+  vehicleBody: {fileID: 23175540138033914}
 --- !u!114 &114588005982491942
 MonoBehaviour:
   m_ObjectHideFlags: 1
