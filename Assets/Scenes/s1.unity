@@ -1439,7 +1439,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1568092556721828, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e0d16bff223aa8429df8c06e3055841, type: 2}
@@ -2082,6 +2082,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 624783443}
+--- !u!82 &630391713 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82606692285274848, guid: 5e0d16bff223aa8429df8c06e3055841,
+    type: 2}
+  m_PrefabInternal: {fileID: 441228747}
 --- !u!1 &644535771
 GameObject:
   m_ObjectHideFlags: 0
@@ -5589,6 +5594,26 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2095980461}
+--- !u!1 &2098577003 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1568092556721828, guid: 5e0d16bff223aa8429df8c06e3055841,
+    type: 2}
+  m_PrefabInternal: {fileID: 441228747}
+--- !u!114 &2098577004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2098577003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9ce63f93821a44bba41cb5c86e1a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engineSource: {fileID: 630391713}
+  engineMaxPitch: 0.2
+  engineMinPitch: 1
+  tireSquealSource: {fileID: 0}
 --- !u!1 &2107922616
 GameObject:
   m_ObjectHideFlags: 0
