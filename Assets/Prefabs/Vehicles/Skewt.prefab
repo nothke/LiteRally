@@ -198,7 +198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1472423354937500
 GameObject:
   m_ObjectHideFlags: 1
@@ -1505,7 +1505,7 @@ MonoBehaviour:
   engineSource: {fileID: 82606692285274848}
   engineMinPitch: 0.1
   engineMaxPitch: 0.8
-  tireSquealSource: {fileID: 0}
+  tireSquealSource: {fileID: 82057883497814942}
 --- !u!124 &124125446653766622
 Behaviour:
   m_ObjectHideFlags: 1

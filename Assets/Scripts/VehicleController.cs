@@ -32,7 +32,6 @@ public class VehicleController : MonoBehaviour
         public bool brakes = true;
         public bool handbrake = false;
 
-
     }
 
     public Axle[] axles;
@@ -84,6 +83,25 @@ public class VehicleController : MonoBehaviour
     void Start()
     {
         InitLights();
+    }
+
+
+    public float AverageTireForce()
+    {
+        int num = 0;
+        float total = 0;
+
+        foreach (var axle in axles)
+        {
+            foreach (var wheel in axle.wheels)
+            {
+                total += wheel.friction;
+
+                num++;
+            }
+        }
+
+        return total / num;
     }
 
     /// <summary>

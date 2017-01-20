@@ -21,6 +21,9 @@ public class VehicleAudio : MonoBehaviour
     float refVelo;
     float throttle;
 
+    float refVeloSqueal;
+    float squeal;
+
     void Update()
     {
         if (engineSource)
@@ -32,6 +35,10 @@ public class VehicleAudio : MonoBehaviour
             float pitchT = Mathf.Lerp(throttle, control.speed * 0.02f, 0.5f);
 
             engineSource.pitch = Mathf.Lerp(engineMinPitch, engineMaxPitch, pitchT);
+
+            squeal = Mathf.SmoothDamp(squeal, control.AverageTireForce(), ref refVeloSqueal, 1f);
+
+            tireSquealSource.volume = squeal * 0.00001f;
         }
     }
 }
