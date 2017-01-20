@@ -162,6 +162,8 @@ public class RaceManager : MonoBehaviour
             return 0;
         }
 
+        Debug.Log("There's " + portalGO.transform.childCount + " portals");
+
         return portalGO.transform.childCount;
     }
 

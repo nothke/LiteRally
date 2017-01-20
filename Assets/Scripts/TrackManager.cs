@@ -372,6 +372,8 @@ public class TrackManager : MonoBehaviour
             GO.transform.eulerAngles = portals[i].eulerAngles;
             GO.transform.parent = rootGO.transform;
 
+            GO.tag = "Portal";
+
             BoxCollider col = GO.AddComponent<BoxCollider>();
             col.isTrigger = true;
             col.center = portals[i].center;

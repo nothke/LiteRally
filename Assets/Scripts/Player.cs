@@ -32,9 +32,17 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        portalNum = RaceManager.e.GetNumberOfPortals();
+        //portalNum = RaceManager.e.GetNumberOfPortals();
+        StartCoroutine(FrameWait());
 
         nextPortal = 1;
+    }
+
+    IEnumerator FrameWait()
+    {
+        yield return null;
+
+        portalNum = RaceManager.e.GetNumberOfPortals();
     }
 
     public void EnableInput(bool enabled, bool freezeRigidbody = true)

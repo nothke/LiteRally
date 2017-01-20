@@ -28,6 +28,8 @@ public class VehicleAudio : MonoBehaviour
     {
         if (engineSource)
         {
+            // TODO: Expose all these values
+
             engineSource.volume = 0.1f;
 
             throttle = Mathf.SmoothDamp(throttle, control.accelInput, ref refVelo, 0.2f);
