@@ -36,9 +36,11 @@ public class VehicleAudio : MonoBehaviour
 
             engineSource.pitch = Mathf.Lerp(engineMinPitch, engineMaxPitch, pitchT);
 
-            squeal = Mathf.SmoothDamp(squeal, control.AverageTireForce(), ref refVeloSqueal, 1f);
+            float forceFactor = control.axles[1].wheels[0].friction; // control.AverageTireForce()
 
-            tireSquealSource.volume = squeal * 0.00001f;
+            squeal = Mathf.SmoothDamp(squeal, forceFactor, ref refVeloSqueal, 0.1f);
+
+            tireSquealSource.volume = (squeal / 10000 - 0.5f) * 0.4f;
         }
     }
 }
