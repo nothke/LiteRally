@@ -145,7 +145,7 @@ public class VehicleController : MonoBehaviour
                         float suspensionForce = spring + dampening;
 
                         // Apply suspension force
-                        rb.AddForceAtPosition(suspensionForce * wheelPivot.up, wheelPivot.position);
+                        rb.AddForceAtPosition(suspensionForce * hit.normal, wheelPivot.position);
 
                         // WHEEL FRICTION
 
