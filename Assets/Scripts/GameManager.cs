@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject mainMenuObject;
 
-    public bool trackTestingMode;
-
     public List<PlayerData> playerDatas = new List<PlayerData>();
     public VehicleController[] vehicles;
 
@@ -26,31 +24,36 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (!trackTestingMode)
+        DestroyAllCarsInScene();
+
+        InitPlayerData();
+        InitTrackData();
+
+        var tester = GetComponent<TrackTester>();
+        if (tester && tester.enabled)
         {
-            // Start the MAIN MENU
-            mainMenuObject.SetActive(true);
+            tester.SetNamesToTrackManager();
 
-            // find all cars and destroy them
-            VehicleController[] cars = FindObjectsOfType<VehicleController>();
-
-            if (cars != null)
-                for (int i = 0; i < cars.Length; i++)
-                    Destroy(cars[i].gameObject);
-
-            InitPlayerData();
-            InitTrackData();
-
-            // disable the trackmanager for the main menu
-            TrackManager.e.enabled = false;
-
-        }
-        else
-        {
             EndMainMenu();
-
             InitSession();
+
+            return;
         }
+
+        // Start the MAIN MENU
+        mainMenuObject.SetActive(true);
+
+        // disable the trackmanager for the main menu
+        TrackManager.e.enabled = false;
+    }
+
+    void DestroyAllCarsInScene()
+    {
+        VehicleController[] cars = FindObjectsOfType<VehicleController>();
+
+        if (cars != null)
+            for (int i = 0; i < cars.Length; i++)
+                Destroy(cars[i].gameObject);
     }
 
     void InitPlayerData()
@@ -84,5 +87,13 @@ public class GameManager : MonoBehaviour
         TrackManager.e.enabled = true;
         TrackManager.e.InitThisTrack();
         RaceManager.e.InitRace();
+
+        EnableRaceSkyCamera();
+    }
+
+    public void EnableRaceSkyCamera()
+    {
+         // Not so nice, but fine for now:
+        GameObject.Find("SkyCamera").GetComponent<Camera>().enabled = true;
     }
 }

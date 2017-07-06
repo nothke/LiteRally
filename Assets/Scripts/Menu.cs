@@ -471,7 +471,6 @@ public class Menu : MonoBehaviour
         GameManager.e.InitSession();
         ShowMenu(false);
         GameManager.e.EndMainMenu();
-        GameObject.Find("SkyCamera").GetComponent<Camera>().enabled = true; // Not so nice
         VerticalSelect(0);
     }
 
