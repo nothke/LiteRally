@@ -124,9 +124,8 @@ public class TrackManager : MonoBehaviour
         track.scale = trackGO.transform.localScale;
 
         // Camera
-        GameObject skyCamera = GameObject.Find("SkyCamera");
-        track.cameraPosition = skyCamera.transform.position;
-        track.cameraEulerAngles = skyCamera.transform.eulerAngles;
+        track.cameraPosition = GameManager.e.skyCamera.transform.position;
+        track.cameraEulerAngles = GameManager.e.skyCamera.transform.eulerAngles;
 
         // Portals
 
@@ -221,12 +220,6 @@ public class TrackManager : MonoBehaviour
             return;
         }
 
-        /*
-        if (!Track.Exists(loadTrack))
-        {
-
-        }*/
-
         if (!Track.Exists(loadTrack, loadLayout))
         {
             Debug.LogError("No track with name " + loadTrack + " - " + " exists");
@@ -246,17 +239,6 @@ public class TrackManager : MonoBehaviour
         track.IsValid(debug: true);
     }
 
-    Camera _skyCamera;
-    Camera SkyCamera
-    {
-        get
-        {
-            if (!_skyCamera) _skyCamera = GameObject.Find("SkyCamera").GetComponent<Camera>();
-
-            return _skyCamera;
-        }
-    }
-
     Transform _bounds;
     Transform Bounds
     {
@@ -271,7 +253,8 @@ public class TrackManager : MonoBehaviour
     [ContextMenu("Create Track in Scene")]
     public void CreateTrack()
     {
-        if (!track.IsValid()) return;
+        if (!track.IsValid())
+            return;
 
         tex = track.GetTextureFromFile();
 
@@ -284,8 +267,8 @@ public class TrackManager : MonoBehaviour
         Bounds.transform.localScale = track.scale * 0.1f;
 
         // Reposition camera
-        SkyCamera.transform.position = track.cameraPosition;
-        SkyCamera.transform.eulerAngles = track.cameraEulerAngles;
+        GameManager.e.skyCamera.transform.position = track.cameraPosition;
+        GameManager.e.skyCamera.transform.eulerAngles = track.cameraEulerAngles;
 
         // Get texture
         if (Application.isPlaying)
@@ -305,7 +288,6 @@ public class TrackManager : MonoBehaviour
     public const string gridH = "World/Grid";
     public const string objectsH = "World/Objects";
     public const string pitsH = "World/Pits";
-    public const string cameraH = "SkyCamera";
 
     /// <summary>
     /// Destroys portals, grid, pits and objects

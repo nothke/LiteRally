@@ -13,6 +13,28 @@ public class GameManager : MonoBehaviour
     public List<PlayerData> playerDatas = new List<PlayerData>();
     public VehicleController[] vehicles;
 
+    #region Sky Camera
+
+    public const string SKY_CAMERA_NAME = "SkyCamera";
+
+    Camera _skyCamera;
+    public Camera skyCamera
+    {
+        get
+        {
+            if (!_skyCamera)
+            {
+                _skyCamera = GameObject.Find(SKY_CAMERA_NAME).GetComponent<Camera>();
+                if (!_skyCamera)
+                    Debug.LogError("No object called " + SKY_CAMERA_NAME + " in scene");
+            }
+
+            return _skyCamera;
+        }
+    }
+
+    #endregion
+
     public string[] GetVehicleNames()
     {
         string[] names = new string[vehicles.Length];
@@ -92,12 +114,8 @@ public class GameManager : MonoBehaviour
         TrackManager.e.InitThisTrack();
         RaceManager.e.InitRace();
 
-        EnableRaceSkyCamera();
+        skyCamera.enabled = true;
     }
 
-    public void EnableRaceSkyCamera()
-    {
-        // Not so nice, but fine for now:
-        GameObject.Find("SkyCamera").GetComponent<Camera>().enabled = true;
-    }
+
 }
