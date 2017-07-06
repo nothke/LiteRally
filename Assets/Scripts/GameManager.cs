@@ -53,7 +53,6 @@ public class GameManager : MonoBehaviour
         TrackManager.e.trackRenderer.material.mainTexture = menuTrackTexture;
 
         InitPlayerData();
-        InitTrackData();
 
         var tester = GetComponent<TrackTester>();
         if (tester && tester.enabled)
@@ -65,6 +64,8 @@ public class GameManager : MonoBehaviour
 
             return;
         }
+
+        InitTrackData();
 
         // Start the MAIN MENU
         mainMenuObject.SetActive(true);

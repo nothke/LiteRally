@@ -22,9 +22,7 @@ public class TrackTester : MonoBehaviour
 
     public void SetNamesToTrackManager()
     {
-        if (loadTrackInTrackManager)
-            TrackManager.e.InitThisTrack();
-        else
+        if (!loadTrackInTrackManager)
             TrackManager.e.DeserializeTrack(trackName, layoutName);
     }
 }
