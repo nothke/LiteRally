@@ -76,15 +76,6 @@ public class Track
         return null;
     }
 
-    // OLD
-    /*
-    public static Track GetFromFile(string trackName, string layoutName)
-    {
-        string serialized = File.ReadAllText(GetLayoutPath(trackName, layoutName));
-        return JsonUtility.FromJson<Track>(serialized);
-    }*/
-
-    // NEW - should be not be broken
     /// <summary>
     /// Gets texture from file at the same name as track and in the same folder
     /// </summary>
@@ -263,63 +254,6 @@ public class TrackObject
     public Vector3 position;
     public Vector3 rotation;
     public Vector3 scale;
-
-    /*
-    public GameObject Spawn()
-    {
-        if (!Exists()) return null;
-
-        GameObject GO = OBJLoader.LoadOBJFile(FilePath);
-
-        if (collision != CollisionType.None)
-        {
-            foreach (Transform child in GO.transform)
-            {
-                GameObject cGO = child.gameObject;
-
-                switch (collision)
-                {
-                    case CollisionType.Mesh:
-                        cGO.AddComponent<MeshCollider>();
-                        break;
-                    case CollisionType.Box:
-                        cGO.AddComponent<BoxCollider>();
-                        break;
-                    case CollisionType.Sphere:
-                        cGO.AddComponent<SphereCollider>();
-                        break;
-                    case CollisionType.Capsule:
-                        cGO.AddComponent<CapsuleCollider>();
-                        break;
-                }
-            }
-        }
-
-        GO.transform.position = position;
-        GO.transform.eulerAngles = rotation;
-        GO.transform.localScale = scale;
-
-        return GO;
-    }
-
-    public static void SpawnFromFile(string name, Vector3 position, Vector3 eulerAngles, Vector3 scale, CollisionType collision = CollisionType.None)
-    {
-
-
-        TrackObject TO = new TrackObject();
-
-        TO.name = name;
-
-        if (!TO.Exists()) return;
-
-        TO.position = position;
-        TO.rotation = eulerAngles;
-        TO.scale = scale;
-
-        TO.collision = collision;
-
-        TO.Spawn();
-    }*/
 }
 
 [Serializable]
