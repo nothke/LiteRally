@@ -310,7 +310,6 @@ public class TrackManager : MonoBehaviour
     /// <summary>
     /// Destroys portals, grid, pits and objects
     /// </summary>
-    [ContextMenu("Cleanup")]
     public void CleanUpTrack()
     {
         GameObject portalRoot = GameObject.Find(portalsH);
@@ -546,6 +545,18 @@ public class TrackManager : MonoBehaviour
     void LoadSurface()
     {
         surfaceData = SurfaceData.Load();
+    }
+
+    [ContextMenu("Clean Up Scene")]
+    public void CleanupScene()
+    {
+        CleanUpTrack();
+    }
+
+    [ContextMenu("Clear Track")]
+    public void Untrack()
+    {
+        track = null;
     }
 
     [ContextMenu("List All Layouts")]
