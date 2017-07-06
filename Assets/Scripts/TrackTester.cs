@@ -6,14 +6,20 @@ public class TrackTester : MonoBehaviour
 {
 
     public string vehicleName;
+    public bool loadTrackInTrackManager;
     public string trackName;
     public string layoutName;
 
-	// Just to make it enablable in editor:
-    void Start() {}
+    // Just to make it enablable in editor:
+    void Start() { }
 
     public void SetNamesToTrackManager()
     {
-        TrackManager.e.DeserializeTrack(trackName, layoutName);
+        if (loadTrackInTrackManager)
+        {
+
+        }
+        else
+            TrackManager.e.DeserializeTrack(trackName, layoutName);
     }
 }

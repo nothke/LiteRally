@@ -15,11 +15,11 @@ public class TrackManager : MonoBehaviour
     public Texture2D tex;
 
     [Header("Load from File")]
-    public bool loadFromFile;
     public string loadTrack;
     public string loadLayout;
 
-    public Transform[] gridPoints;
+    Transform[] _gridPoints;
+    public Transform[] gridPoints { get { return _gridPoints; } }
 
     [Header("TRACK")]
     public Track track;
@@ -68,6 +68,9 @@ public class TrackManager : MonoBehaviour
     {
         get
         {
+            if (!Application.isPlaying)
+                return GetLayoutsFromGameData();
+
             if (_allLayouts == null)
                 _allLayouts = GetLayoutsFromGameData();
 
@@ -106,9 +109,6 @@ public class TrackManager : MonoBehaviour
 
     public void InitThisTrack()
     {
-        if (loadFromFile && !string.IsNullOrEmpty(loadLayout))
-            DeserializeTrack(loadTrack, loadLayout);
-
         CreateTrack();
 
         InitTexture();
@@ -268,7 +268,7 @@ public class TrackManager : MonoBehaviour
         }
     }
 
-    [ContextMenu("Create from Track")]
+    [ContextMenu("Create Track in Scene")]
     public void CreateTrack()
     {
         if (!track.IsValid()) return;
@@ -388,7 +388,7 @@ public class TrackManager : MonoBehaviour
         GameObject rootGO = GetOrCreate(gridH, WorldRoot);
         DestroyChildren(rootGO);
 
-        gridPoints = new Transform[grids.Length];
+        _gridPoints = new Transform[grids.Length];
 
         for (int i = 0; i < grids.Length; i++)
         {
@@ -400,7 +400,7 @@ public class TrackManager : MonoBehaviour
             // not in build?
             GO.AddComponent<GridHelper>();
 
-            gridPoints[i] = GO.transform;
+            _gridPoints[i] = GO.transform;
         }
 
         Debug.Assert(rootGO);
@@ -548,5 +548,16 @@ public class TrackManager : MonoBehaviour
     void LoadSurface()
     {
         surfaceData = SurfaceData.Load();
+    }
+
+    [ContextMenu("List All Layouts")]
+    public void ListAllLayouts()
+    {
+        string[] layoutNames = GetLayoutNames();
+
+        foreach (var layoutName in layoutNames)
+        {
+            Debug.Log(layoutName);
+        }
     }
 }
