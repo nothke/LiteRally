@@ -310,7 +310,8 @@ public class TrackManager : MonoBehaviour
     /// <summary>
     /// Destroys portals, grid, pits and objects
     /// </summary>
-    void CleanUpTrack()
+    [ContextMenu("Cleanup")]
+    public void CleanUpTrack()
     {
         GameObject portalRoot = GameObject.Find(portalsH);
         if (portalRoot) DestroyGO(portalRoot);
@@ -321,11 +322,8 @@ public class TrackManager : MonoBehaviour
         GameObject objectsRoot = GameObject.Find(objectsH);
         if (objectsRoot) DestroyGO(objectsRoot);
 
-        // TODO: when pits are implemented, uncomment:
-        /*
         GameObject pitsRoot = GameObject.Find(pitsH);
         if (pitsRoot) DestroyGO(pitsRoot);
-        */
     }
 
     GameObject GetOrCreate(string hierarchyPath, Transform atParent = null)
