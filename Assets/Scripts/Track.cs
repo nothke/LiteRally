@@ -59,23 +59,6 @@ public class Track
         return Deserialize(GetLayoutPath(trackName, layoutName));
     }
 
-    [Obsolete("Use GetFromFile(trackName, layoutName) instead")]
-    public static Track GetFromFile(string layoutName)
-    {
-        string[] layoutPaths = GetLayoutPaths();
-
-        foreach (var layoutPath in layoutPaths)
-        {
-            Track t = Deserialize(layoutPath);
-
-            if (t.layoutName == layoutName)
-                return t;
-        }
-
-        Debug.LogError("This layout doesn't exist");
-        return null;
-    }
-
     /// <summary>
     /// Gets texture from file at the same name as track and in the same folder
     /// </summary>
