@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        //portalNum = RaceManager.e.GetNumberOfPortals();
         StartCoroutine(FrameWait());
 
         nextPortal = 1;
