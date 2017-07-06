@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
 
     public const string SKY_CAMERA_NAME = "SkyCamera";
 
-    Camera _skyCamera;
-    public Camera skyCamera
+    static Camera _skyCamera;
+    public static Camera skyCamera
     {
         get
         {

@@ -115,7 +115,7 @@ public class TrackManager : MonoBehaviour
     }
 
     [ContextMenu("Convert Scene to Track")]
-    void SerializeSceneTrack()
+    public void SerializeSceneTrack()
     {
         // Scale
         if (!trackGO)
@@ -124,8 +124,8 @@ public class TrackManager : MonoBehaviour
         track.scale = trackGO.transform.localScale;
 
         // Camera
-        track.cameraPosition = GameManager.e.skyCamera.transform.position;
-        track.cameraEulerAngles = GameManager.e.skyCamera.transform.eulerAngles;
+        track.cameraPosition = GameManager.skyCamera.transform.position;
+        track.cameraEulerAngles = GameManager.skyCamera.transform.eulerAngles;
 
         // Portals
 
@@ -206,13 +206,13 @@ public class TrackManager : MonoBehaviour
     }
 
     [ContextMenu("Save Track to File")]
-    void SerializeToFile()
+    public void SerializeToFile()
     {
         track.SerializeToFile();
     }
 
     [ContextMenu("Load Track from File")]
-    void Deserialize()
+    public void Deserialize()
     {
         if (string.IsNullOrEmpty(loadTrack) || string.IsNullOrEmpty(loadLayout))
         {
@@ -267,8 +267,11 @@ public class TrackManager : MonoBehaviour
         Bounds.transform.localScale = track.scale * 0.1f;
 
         // Reposition camera
-        GameManager.e.skyCamera.transform.position = track.cameraPosition;
-        GameManager.e.skyCamera.transform.eulerAngles = track.cameraEulerAngles;
+
+        Debug.Assert(GameManager.skyCamera, "Sky camera is missing");
+
+        GameManager.skyCamera.transform.position = track.cameraPosition;
+        GameManager.skyCamera.transform.eulerAngles = track.cameraEulerAngles;
 
         // Get texture
         if (Application.isPlaying)
