@@ -48,11 +48,13 @@ public class RaceManager : MonoBehaviour
 
     public void InitPlayers()
     {
-        if (numberOfPlayers == 0) return;
+        Debug.Assert(numberOfPlayers == 0, "Number of players should not be 0");
 
+        // Destroy player objects if they exist
         if (players.Length > 0)
             for (int i = 0; i < players.Length; i++)
-                Destroy(players[i].gameObject);
+                if (players[i] != null && players[i].gameObject != null)
+                    Destroy(players[i].gameObject);
 
         players = new Player[numberOfPlayers];
 
