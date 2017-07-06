@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     void Awake() { e = this; }
 
     public GameObject mainMenuObject;
+    public Texture2D menuTrackTexture;
 
     public List<PlayerData> playerDatas = new List<PlayerData>();
     public VehicleController[] vehicles;
@@ -25,6 +26,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         DestroyAllCarsInScene();
+
+        // Temp solution:
+        TrackManager.e.trackRenderer.material.mainTexture = menuTrackTexture;
 
         InitPlayerData();
         InitTrackData();
@@ -93,7 +97,7 @@ public class GameManager : MonoBehaviour
 
     public void EnableRaceSkyCamera()
     {
-         // Not so nice, but fine for now:
+        // Not so nice, but fine for now:
         GameObject.Find("SkyCamera").GetComponent<Camera>().enabled = true;
     }
 }
