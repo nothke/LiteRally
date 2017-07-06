@@ -350,7 +350,7 @@ public class OBJLoader
         {
             GameObject subObject = new GameObject(obj);
             subObject.transform.parent = parentObject.transform;
-            subObject.transform.localScale = new Vector3(-1, 1, 1);
+            subObject.transform.localScale = new Vector3(1, 1, 1);
             //Create mesh
             Mesh m = new Mesh();
             m.name = obj;
