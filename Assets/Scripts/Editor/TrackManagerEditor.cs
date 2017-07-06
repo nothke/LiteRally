@@ -49,7 +49,7 @@ public class TrackManagerEditor : Editor
         if (GUILayout.Button("Cleanup Scene"))
             tm.CleanupScene();
 
-        if (GUILayout.Button("Cleanup track"))
-            tm.CleanUpTrack();
+        if (GUILayout.Button("Cleanup Track"))
+            tm.ClearTrack();
     }
 }

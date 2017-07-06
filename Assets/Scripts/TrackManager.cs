@@ -539,9 +539,10 @@ public class TrackManager : MonoBehaviour
     }
 
     [ContextMenu("Clear Track")]
-    public void Untrack()
+    public void ClearTrack()
     {
         track = null;
+        tex = null;
     }
 
     [ContextMenu("List All Layouts")]
