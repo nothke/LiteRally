@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿#define SIMPLE_MODEL
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -75,14 +77,21 @@ public class VehicleController : MonoBehaviour
     public float torqueAssistMult = 0;
     public AnimationCurve torqueAssistCurve;
     public float torqueAssistStraighten = 0;
+    public float maxYawRate = 5;
 
     public float speed;
 
     int gear;
 
+    Vector3 powerApplicationPoint;
+
     void Start()
     {
         InitLights();
+
+
+        rb.inertiaTensor *= 0.7f;
+
     }
 
 
@@ -115,6 +124,8 @@ public class VehicleController : MonoBehaviour
 
     void FixedUpdate()
     {
+        int groundedPowerWheels = 0;
+
         foreach (var axle in axles)
         {
             foreach (var wheel in axle.wheels)
@@ -154,6 +165,7 @@ public class VehicleController : MonoBehaviour
                         else
                             wheel.surfaceGrip = 1;
 
+#if !SIMPLE_MODEL
                         // Sideways
                         int signX = V.x == 0 ? 0 : (V.x < 0 ? -1 : 1);
                         float sidewaysForce = -signX * wheelData.sidewaysFriction.Evaluate(Mathf.Abs(V.x) * wheelData.gripScale) * wheelData.gripGain;
@@ -187,6 +199,13 @@ public class VehicleController : MonoBehaviour
 
                         // apply friction forces
                         rb.AddForceAtPosition(frictionForce, wheelPivot.position);
+#else
+                        if (axle.powered)
+                        {
+                            powerApplicationPoint += wheel.pivot.position;
+                            groundedPowerWheels++;
+                        }
+#endif
 
                         // SURFACE COLORING
 
@@ -219,18 +238,69 @@ public class VehicleController : MonoBehaviour
             }
         }
 
+#if SIMPLE_MODEL
+        {
+            Vector3 V = transform.InverseTransformVector(rb.velocity);
+
+            // Sideways
+            int signX = V.x == 0 ? 0 : (V.x < 0 ? -1 : 1);
+            float sidewaysForce = 2 * -signX * wheelData.sidewaysFriction.Evaluate(Mathf.Abs(V.x) * wheelData.gripScale) * wheelData.gripGain;
+            //wheel.sidewaysForce = sidewaysForce;
+
+            bool handbrakePressed = false; //axle.handbrake && handbrake == 1;
+            // gets range from 0 to -1:
+            float brakes = 1 - Mathf.Clamp01(1 + accel);
+
+            if (handbrakePressed) brakes = 1;
+
+            // longitudial (when wheels are still)
+            int signZ = V.z == 0 ? 0 : (V.z < 0 ? -1 : 1);
+            float longitudialForce = -signZ * wheelData.longitudialFriction.Evaluate(Mathf.Abs(V.z) * wheelData.gripScale) * wheelData.gripGain;
+
+            // Traction force (from using engine)
+            float accelForce = 0;
+            if (groundedPowerWheels > 0)
+            {
+                accelForce = Mathf.Clamp01(accel) * accelCurve.Evaluate(V.z) * accelMult * gear;
+                powerApplicationPoint /= groundedPowerWheels;
+
+            }
+
+            float brakeForce = longitudialForce * brakes;
+
+            //if (handbrakePressed) wheel.surfaceGrip = 0;
+
+            Vector3 tractionForce = new Vector3(0, 0, accelForce);
+            Vector3 frictionForce = new Vector3(sidewaysForce, 0, brakeForce); // longitudialForce
+            //frictionForce *= wheel.surfaceGrip;
+
+            tractionForce = transform.TransformVector(tractionForce);
+            frictionForce = transform.TransformVector(frictionForce);
+
+            //wheel.friction = frictionForce.magnitude;
+
+            // apply friction forces
+            rb.AddForce(frictionForce);
+            rb.AddForceAtPosition(tractionForce, transform.position);
+        }
+#endif
+
         // TORQUE ASSIST
 
         if (torqueAssistMult > 0)
         {
-            float straightenAmount = rb.angularVelocity.y;
+            float yawRate = transform.InverseTransformVector(rb.angularVelocity).y;
 
-            speed = rb.velocity.magnitude;
+            //speed = rb.velocity.magnitude;
 
-            float straightenTorque = Mathf.Abs(steer) < 0.01f ? -straightenAmount * torqueAssistStraighten : 0;
-            float steerAssistTorque = steer * torqueAssistMult * torqueAssistCurve.Evaluate(rb.velocity.magnitude);
+            //float straightenTorque = Mathf.Abs(steer) < 0.01f ? -yawRate * torqueAssistStraighten : 0;
+            float straightenTorque = (1 - Mathf.Abs(steer)) * -yawRate * torqueAssistStraighten;
+            float steerTorque = steer * torqueAssistMult * torqueAssistCurve.Evaluate(rb.velocity.magnitude);
 
-            rb.AddRelativeTorque(Vector3.up * (steerAssistTorque + straightenTorque));
+            float maxYaw = maxYawRate * steer;
+            if (Mathf.Abs(yawRate) > Mathf.Abs(maxYaw)) steerTorque = 0;
+
+            rb.AddRelativeTorque(Vector3.up * (steerTorque + straightenTorque));
 
         }
     }

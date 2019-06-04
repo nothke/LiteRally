@@ -147,7 +147,7 @@ public class Track
     public static Track Deserialize(string layoutPath)
     {
         if (!File.Exists(layoutPath))
-            throw new Exception("Layout with this path doesn't exist");
+            throw new Exception("Layout with this path doesn't exist. JSON file must be named like the layout");
 
         string serialized = File.ReadAllText(layoutPath);
         return JsonUtility.FromJson<Track>(serialized);

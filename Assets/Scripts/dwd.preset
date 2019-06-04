@@ -1,0 +1,667 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: dwd
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: e3b0caa24806e6848a4988a26f2d8b30,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.gripGain
+    value: 8000
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.gripScale
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[0].time
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[0].value
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[0].inSlope
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[0].outSlope
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[0].tangentMode
+    value: 34
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[0].weightedMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[0].inWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[0].outWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[1].time
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[1].value
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[1].inSlope
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[1].outSlope
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[1].tangentMode
+    value: 34
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[1].weightedMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[1].inWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_Curve.Array.data[1].outWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_PreInfinity
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_PostInfinity
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.sidewaysFriction.m_RotationOrder
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[0].time
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[0].value
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[0].inSlope
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[0].outSlope
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[0].tangentMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[0].weightedMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[0].inWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[0].outWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[1].time
+    value: 0.099999994
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[1].value
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[1].inSlope
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[1].outSlope
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[1].tangentMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[1].weightedMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[1].inWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[1].outWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[2].time
+    value: 3.8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[2].value
+    value: 0.91999996
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[2].inSlope
+    value: -0.01663758
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[2].outSlope
+    value: -0.01663758
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[2].tangentMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[2].weightedMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[2].inWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[2].outWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[3].time
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[3].value
+    value: 0.85999995
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[3].inSlope
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[3].outSlope
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[3].tangentMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[3].weightedMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[3].inWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_Curve.Array.data[3].outWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_PreInfinity
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_PostInfinity
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.longitudialFriction.m_RotationOrder
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.suspensionLength
+    value: 0.7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.wheelRadius
+    value: 0.3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: wheelData.steeringLock
+    value: 60
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].wheels.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].wheels.Array.data[0].pivot
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].wheels.Array.data[0].distance
+    value: 0.68992746
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].wheels.Array.data[0].sidewaysForce
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].wheels.Array.data[0].accelForce
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].wheels.Array.data[0].surfaceGrip
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].wheels.Array.data[0].friction
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].wheels.Array.data[1].pivot
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].wheels.Array.data[1].distance
+    value: 0.5223215
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].wheels.Array.data[1].sidewaysForce
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].wheels.Array.data[1].accelForce
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].wheels.Array.data[1].surfaceGrip
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].wheels.Array.data[1].friction
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].powered
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].steering
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].invertedSteering
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].brakes
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[0].handbrake
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].wheels.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].wheels.Array.data[0].pivot
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].wheels.Array.data[0].distance
+    value: 0.61417
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].wheels.Array.data[0].sidewaysForce
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].wheels.Array.data[0].accelForce
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].wheels.Array.data[0].surfaceGrip
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].wheels.Array.data[0].friction
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].wheels.Array.data[1].pivot
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].wheels.Array.data[1].distance
+    value: 0.4465642
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].wheels.Array.data[1].sidewaysForce
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].wheels.Array.data[1].accelForce
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].wheels.Array.data[1].surfaceGrip
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].wheels.Array.data[1].friction
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].powered
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].steering
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].invertedSteering
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].brakes
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: axles.Array.data[1].handbrake
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelMult
+    value: 20000
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[0].time
+    value: 0.050276935
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[0].value
+    value: 0.9903623
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[0].inSlope
+    value: -0.034905758
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[0].outSlope
+    value: -0.034905758
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[0].tangentMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[0].weightedMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[0].inWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[0].outWeight
+    value: 0.13475822
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[1].time
+    value: 15.435383
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[1].value
+    value: 0.4686911
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[1].inSlope
+    value: -0.038594104
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[1].outSlope
+    value: -0.038594104
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[1].tangentMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[1].weightedMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[1].inWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[1].outWeight
+    value: 0.16121927
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[2].time
+    value: 30.097473
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[2].value
+    value: -0.015014648
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[2].inSlope
+    value: -0.01644442
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[2].outSlope
+    value: -0.01644442
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[2].tangentMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[2].weightedMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[2].inWeight
+    value: 0.14832725
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_Curve.Array.data[2].outWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_PreInfinity
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_PostInfinity
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelCurve.m_RotationOrder
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: test_suspensionForceMult
+    value: 20000
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: test_dampeningForceMult
+    value: 4000
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistMult
+    value: 10000
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[0].time
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[0].value
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[0].inSlope
+    value: 0.08163024
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[0].outSlope
+    value: 0.08163024
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[0].tangentMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[0].weightedMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[0].inWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[0].outWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[1].time
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[1].value
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[1].inSlope
+    value: 0.00014924961
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[1].outSlope
+    value: 0.00014924961
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[1].tangentMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[1].weightedMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[1].inWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_Curve.Array.data[1].outWeight
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_PreInfinity
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_PostInfinity
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistCurve.m_RotationOrder
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: torqueAssistStraighten
+    value: 8000
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: maxYawRate
+    value: 2.53
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: speed
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: steerInput
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: accelInput
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: handbrakeInput
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: activeInput
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: revLights
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: headLights
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: brakeLights
+    value: 
+    objectReference: {fileID: 0}

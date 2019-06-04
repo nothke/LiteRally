@@ -921,7 +921,7 @@ Rigidbody:
   m_GameObject: {fileID: 1568092556721828}
   serializedVersion: 2
   m_Mass: 1000
-  m_Drag: 0.1
+  m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -941,26 +941,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelData:
-    gripGain: 10000
-    gripScale: 1
+    gripGain: 6000
+    gripScale: 10
     sidewaysFriction:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
+        time: 0.099999994
         value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 3.8
+        value: 0.91999996
+        inSlope: -0.01663758
+        outSlope: -0.01663758
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 10
+        value: 0.85999995
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -1015,16 +1033,16 @@ MonoBehaviour:
   axles:
   - wheels:
     - pivot: {fileID: 4893226777367442}
-      distance: 0.57277274
+      distance: 0
       sidewaysForce: 0
       accelForce: 0
-      surfaceGrip: 1
+      surfaceGrip: 0
       friction: 0
     - pivot: {fileID: 4231560229654928}
-      distance: 0.5692036
+      distance: 0
       sidewaysForce: 0
       accelForce: 0
-      surfaceGrip: 1
+      surfaceGrip: 0
       friction: 0
     powered: 0
     steering: 1
@@ -1033,23 +1051,23 @@ MonoBehaviour:
     handbrake: 0
   - wheels:
     - pivot: {fileID: 4262322076139406}
-      distance: 0.515944
+      distance: 0
       sidewaysForce: 0
       accelForce: 0
-      surfaceGrip: 1
+      surfaceGrip: 0
       friction: 0
     - pivot: {fileID: 4720609178099540}
-      distance: 0.5123749
+      distance: 0
       sidewaysForce: 0
       accelForce: 0
-      surfaceGrip: 1
+      surfaceGrip: 0
       friction: 0
     powered: 1
     steering: 0
     invertedSteering: 0
     brakes: 0
     handbrake: 1
-  accelMult: 12000
+  accelMult: 10000
   accelCurve:
     serializedVersion: 2
     m_Curve:
@@ -1065,18 +1083,18 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 30
       value: 0
-      inSlope: -0.108060285
-      outSlope: -0.108060285
+      inSlope: -0.07111535
+      outSlope: -0.07111535
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.03855629
+      inWeight: 0.33333334
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
   test_suspensionForceMult: 20000
-  test_dampeningForceMult: 1000
-  torqueAssistMult: 6000
+  test_dampeningForceMult: 4000
+  torqueAssistMult: 10000
   torqueAssistCurve:
     serializedVersion: 2
     m_Curve:
@@ -1090,7 +1108,7 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.2819824
+      time: 30
       value: 1
       inSlope: 0.00014924961
       outSlope: 0.00014924961
@@ -1101,8 +1119,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  torqueAssistStraighten: 4000
-  maxYawRate: 2.53
+  torqueAssistStraighten: 30000
+  maxYawRate: 2
   speed: 0
   steerInput: 0
   accelInput: 0
